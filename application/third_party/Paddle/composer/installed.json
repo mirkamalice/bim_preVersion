@@ -1,0 +1,53 @@
+[
+    {
+        "name": "rayatomsk/paddle-api",
+        "version": "v0.6.1",
+        "version_normalized": "0.6.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/RayAtomsk/paddle-api.git",
+            "reference": "f8f3d8ad07ca597f9c826d90b50d00218c41b352"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/RayAtomsk/paddle-api/zipball/f8f3d8ad07ca597f9c826d90b50d00218c41b352",
+            "reference": "f8f3d8ad07ca597f9c826d90b50d00218c41b352",
+            "shasum": ""
+        },
+        "require": {
+            "ext-curl": "*",
+            "ext-json": "*",
+            "php": ">=5.5.0"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "~4.8"
+        },
+        "time": "2022-04-05T20:32:36+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Paddle": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Andrii Holubenko",
+                "email": "rayatomsk@gmail.com",
+                "homepage": "https://www.linkedin.com/in/andrii-holubenko-8a110264/",
+                "role": "Full Stack Web Developer"
+            }
+        ],
+        "description": "Paddle.com API PHP library",
+        "homepage": "https://github.com/RayAtomsk/paddle-php",
+        "keywords": [
+            "api",
+            "paddle",
+            "php"
+        ]
+    }
+]
