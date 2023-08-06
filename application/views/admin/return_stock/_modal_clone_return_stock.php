@@ -35,7 +35,7 @@
                            if (!empty($return_stock_info->return_stock_date)) {
                                echo $return_stock_info->return_stock_date;
                            } else {
-                               echo date('Y-m-d H:i');
+                               echo jdate('Y-m-d H:i');
                            }
                            ?>"
                            data-date-format="<?= config_item('date_picker_format'); ?>">

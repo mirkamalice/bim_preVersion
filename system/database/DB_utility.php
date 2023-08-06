@@ -357,7 +357,7 @@ abstract class CI_DB_utility
             // Set the filename if not provided (only needed with Zip files)
             if ($prefs['filename'] === '') {
                 $prefs['filename'] = (count($prefs['tables']) === 1 ? $prefs['tables'] : $this->db->database)
-                    . date('Y-m-d_H-i', time()) . '.sql';
+                    . jdate('Y-m-d_H-i', time()) . '.sql';
             } else {
                 // If they included the .zip file extension we'll remove it
                 if (preg_match('|.+?\.zip$|', $prefs['filename'])) {

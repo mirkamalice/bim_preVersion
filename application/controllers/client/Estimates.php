@@ -103,9 +103,9 @@ class Estimates extends Client_Controller
             }
             if ($filterBy == 'last_month' || $filterBy == 'this_months') {
                 if ($filterBy == 'last_month') {
-                    $month = date('Y-m', strtotime('-1 months'));
+                    $month = jdate('Y-m', strtotime('-1 months'));
                 } else {
-                    $month = date('Y-m');
+                    $month = jdate('Y-m');
                 }
                 $where = array('client_id' => $client_id, 'status !=' => 'draft', 'estimate_month' => $month);
             } else if ($filterBy == 'expired') {
@@ -192,7 +192,7 @@ class Estimates extends Client_Controller
     public function save_estimates($id = NULL)
     {
         $data = $this->estimates_model->array_from_post(array('reference_no', 'client_id', 'tax', 'discount'));
-        $data['due_date'] = date('Y-m-d', strtotime($this->input->post('due_date', TRUE)));
+        $data['due_date'] = jdate('Y-m-d', strtotime($this->input->post('due_date', TRUE)));
         $data['notes'] = $this->input->post('notes', TRUE);
         $currency = $this->estimates_model->client_currency_symbol($data['client_id']);
         $data['currency'] = $currency->code;
@@ -346,7 +346,7 @@ class Estimates extends Client_Controller
 
         $this->send_email_estimates($estimates_id, $message, $subject); // Email estimates
 
-        $data = array('emailed' => 'Yes', 'date_sent' => date("Y-m-d H:i:s", time()));
+        $data = array('emailed' => 'Yes', 'date_sent' => jdate("Y-m-d H:i:s", time()));
 
         $this->estimates_model->_table_name = 'tbl_estimates';
         $this->estimates_model->_primary_key = 'estimates_id';

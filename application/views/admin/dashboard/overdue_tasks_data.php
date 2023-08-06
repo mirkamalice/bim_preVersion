@@ -120,6 +120,6 @@ foreach ($task_all_info as $_key => $v_task) {
     }
 }
 
-$today = date('Y-m-d h:i:s');
+$today = jdate('Y-m-d h:i:s');
 $where = array('tbl_task.task_status !=' => 'completed', 'tbl_task.due_date <' => $today);
 render_table($data, $where);

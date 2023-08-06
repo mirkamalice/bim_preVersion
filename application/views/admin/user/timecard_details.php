@@ -6,7 +6,7 @@
                 <strong><?= lang('timecard_details') ?></strong>
                 <?php if (!empty($attendace_info)) { ?>
                     <div class="pull-right ">
-                        <span><?php echo btn_pdf('admin/user/timecard_details_pdf/' . $profile_info->user_id . '/' . date('Y-n', strtotime($date))); ?></span>
+                        <span><?php echo btn_pdf('admin/user/timecard_details_pdf/' . $profile_info->user_id . '/' . jdate('Y-n', strtotime($date))); ?></span>
                     </div>
                 <?php } ?>
             </div>
@@ -19,7 +19,7 @@
                         <div class="input-group">
                             <input type="text" class="form-control monthyear" value="<?php
                                                                                         if (!empty($date)) {
-                                                                                            echo date('Y-n', strtotime($date));
+                                                                                            echo jdate('Y-n', strtotime($date));
                                                                                         }
                                                                                         ?>" name="date">
                             <div class="input-group-addon">
@@ -37,7 +37,7 @@
                     <div class="panel panel-custom ">
                         <div class="panel-heading">
                             <h4 class="panel-title">
-                                <strong><?= lang('works_hours_deatils') . ' ' ?><?php echo date('F-Y', strtotime($date));; ?></strong>
+                                <strong><?= lang('works_hours_deatils') . ' ' ?><?php echo jdate('F-Y', strtotime($date));; ?></strong>
                             </h4>
                         </div>
                         <?php

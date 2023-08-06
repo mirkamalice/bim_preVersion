@@ -91,7 +91,7 @@ if(!empty($due_date_expired_invo_res)) {
                         <?php
                         if (!empty($invoice_result)) {
                             foreach ($invoice_result as $date => $v_invoice_result) {
-                                echo date('d', strtotime($date)) . ' ';
+                                echo jdate('d', strtotime($date)) . ' ';
                             }
                         }
                         ?>

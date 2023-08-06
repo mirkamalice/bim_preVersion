@@ -70,7 +70,7 @@ class CurrencyConverter
 
         foreach ($query->result() as $row) {
             $lastUpdated = $row->modified;
-            $now = date('Y-m-d H:i:s');
+            $now = jdate('Y-m-d H:i:s');
             $dStart = new DateTime($now);
             $dEnd = new DateTime($lastUpdated);
             $diff = $dStart->diff($dEnd);
@@ -89,8 +89,8 @@ class CurrencyConverter
                 'from' => $this->fromCurrency,
                 'to' => $this->toCurrency,
                 'rates' => $this->rate,
-                'created' => date('Y-m-d H:i:s'),
-                'modified' => date('Y-m-d H:i:s'),
+                'created' => jdate('Y-m-d H:i:s'),
+                'modified' => jdate('Y-m-d H:i:s'),
             );
 
             $this->CI->db->insert($this->dbTable, $data);
@@ -109,7 +109,7 @@ class CurrencyConverter
             'from' => $this->fromCurrency,
             'to' => $this->toCurrency,
             'rates' => $this->rate,
-            'modified' => date('Y-m-d H:i:s'),
+            'modified' => jdate('Y-m-d H:i:s'),
         );
 
         $this->CI->db->where('id', $row->id);

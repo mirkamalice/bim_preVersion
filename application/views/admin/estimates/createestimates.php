@@ -103,7 +103,7 @@
                                                                                                                                                     if (!empty($estimates_info->estimate_date)) {
                                                                                                                                                         echo $estimates_info->estimate_date;
                                                                                                                                                     } else {
-                                                                                                                                                        echo date('Y-m-d');
+                                                                                                                                                        echo jdate('Y-m-d');
                                                                                                                                                     }
                                                                                                                                                     ?>"
                                                         data-date-format="<?= config_item('date_picker_format'); ?>">
@@ -123,7 +123,7 @@
                                                                                                                                                 if (!empty($estimates_info->due_date)) {
                                                                                                                                                     echo $estimates_info->due_date;
                                                                                                                                                 } else {
-                                                                                                                                                    echo date('Y-m-d');
+                                                                                                                                                    echo jdate('Y-m-d');
                                                                                                                                                 }
                                                                                                                                                 ?>"
                                                         data-date-format="<?= config_item('date_picker_format'); ?>">

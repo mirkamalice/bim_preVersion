@@ -16,7 +16,7 @@ if (!empty($goal_report_order)) {
     if ($this->input->post('goal_month', TRUE)) { // if input year
         $data['goal_month'] = $this->input->post('goal_month', TRUE);
     } else { // else current year
-        $data['goal_month'] = date('Y-m'); // get current year
+        $data['goal_month'] = jdate('Y-m'); // get current year
     }
     
     $goal_report = $this->admin_model->get_goal_report($data['goal_month']);

@@ -45,7 +45,7 @@ $deleted = can_action('74', 'deleted');
         <ul class="mt nav nav-pills nav-stacked navbar-custom-nav">
             <?php
             foreach ($all_overtime_info as $key => $v_overtime_info) :
-                $month_name = date('F', strtotime($year . '-' . $key)); // get full name of month by date query
+                $month_name = jdate('F', strtotime($year . '-' . $key)); // get full name of month by date query
             ?>
             <li class="<?php
                             if ($current_month == $key) {
@@ -71,7 +71,7 @@ $deleted = can_action('74', 'deleted');
             <?php
             foreach ($all_overtime_info as $key => $v_overtime_info) :
 
-                $month_name = date('F', strtotime($year . '-' . $key)); // get full name of month by date query
+                $month_name = jdate('F', strtotime($year . '-' . $key)); // get full name of month by date query
             ?>
             <div id="<?php echo $month_name ?>" class="tab-pane <?php
                                                                     if ($current_month == $key) {
@@ -149,7 +149,7 @@ $deleted = can_action('74', 'deleted');
                                                 ?>
                                 </td>
                                 <?php $hh += $v_overtime->overtime_hours; ?>
-                                <?php $mm += date('i', strtotime($v_overtime->overtime_hours)); ?>
+                                <?php $mm += jdate('i', strtotime($v_overtime->overtime_hours)); ?>
                                 <?php if ($this->session->userdata('user_type') == 1 || $this->session->userdata('user_id') == $v_overtime->user_id) { ?>
                                 <td>
                                     <?php echo btn_edit_modal('admin/utilities/add_overtime/' . $v_overtime->overtime_id) ?>

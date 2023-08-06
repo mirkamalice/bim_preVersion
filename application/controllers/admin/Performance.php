@@ -220,7 +220,7 @@ class Performance extends Admin_Controller
                 'module_field_id' => $id,
                 'activity' => $activity,
                 'value1' => $employee->fullname,
-                'value2' => lang('for') . date('M Y', strtotime($appraisal_data['appraisal_month']))
+                'value2' => lang('for') . jdate('M Y', strtotime($appraisal_data['appraisal_month']))
             );
 
             $this->performance_model->_table_name = 'tbl_activities';
@@ -237,12 +237,12 @@ class Performance extends Admin_Controller
     public function performance_report()
     {
         $data['title'] = lang('performance_report');
-        $data['current_month'] = date('m');
+        $data['current_month'] = jdate('m');
 
         if ($this->input->post('year', TRUE)) { // if input year 
             $data['year'] = $this->input->post('year', TRUE);
         } else { // else current year
-            $data['year'] = date('Y'); // get current year
+            $data['year'] = jdate('Y'); // get current year
         }
         // get all expense list by year and month
         $data['all_performance_info'] = $this->get_performance_info($data['year']);

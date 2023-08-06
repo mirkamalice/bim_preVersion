@@ -284,7 +284,7 @@ class Mailbox extends Client_Controller {
             //set subject
             $subject = $data['subject'];
             $data['user_id'] = $user_id;
-            $data['message_time'] = date('Y-m-d H:i:s');
+            $data['message_time'] = jdate('Y-m-d H:i:s');
             $draf = $this->input->post('draf', TRUE);
             if (!empty($draf)) {
                 $data['to'] = serialize($all_email);
@@ -315,7 +315,7 @@ class Mailbox extends Client_Controller {
                 $idata['user_id'] = $user_id;
                 $idata['subject'] = $data['subject'];
                 $idata['message_body'] = $data['message_body'];
-                $idata['message_time'] = date('Y-m-d H:i:s');
+                $idata['message_time'] = jdate('Y-m-d H:i:s');
                 // save into inbox
                 $this->mailbox_model->_table_name = 'tbl_inbox';
                 $this->mailbox_model->_primary_key = 'inbox_id';

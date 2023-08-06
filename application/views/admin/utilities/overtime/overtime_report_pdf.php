@@ -100,8 +100,8 @@ if(!file_exists($img)){
                     <td><?php echo $v_overtime->fullname ?></td>
                     <td><?php echo strftime(config_item('date_format'), strtotime($v_overtime->overtime_date)); ?></td>
                     <td><?php echo display_time($v_overtime->overtime_hours); ?></td>
-                    <?php $hh += date('h', strtotime($v_overtime->overtime_hours)); ?>
-                    <?php $mm += date('i', strtotime($v_overtime->overtime_hours)); ?>
+                    <?php $hh += jdate('h', strtotime($v_overtime->overtime_hours)); ?>
+                    <?php $mm += jdate('i', strtotime($v_overtime->overtime_hours)); ?>
 
                 </tr>
                 <?php

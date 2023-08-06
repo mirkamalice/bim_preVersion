@@ -25,7 +25,7 @@
                                                                                                                     if (!empty($leads_info->last_contact)) {
                                                                                                                         echo $leads_info->last_contact;
                                                                                                                     } else {
-                                                                                                                        echo date('Y-m-d H:i');
+                                                                                                                        echo jdate('Y-m-d H:i');
                                                                                                                     }
                                                                                                                     ?>" data-date-format="<?= config_item('date_picker_format'); ?>">
                         <div class="input-group-addon">

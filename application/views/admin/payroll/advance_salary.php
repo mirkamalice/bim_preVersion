@@ -68,7 +68,7 @@ $deleted = can_action('98', 'deleted');
             <ul class="mt nav nav-pills nav-stacked navbar-custom-nav">
                 <?php
                     foreach ($advance_salary_info as $key => $v_advance_salary) :
-                        $month_name = date('F', strtotime($year . '-' . $key)); // get full name of month by date query
+                        $month_name = jdate('F', strtotime($year . '-' . $key)); // get full name of month by date query
                     ?>
                 <li class="<?php
                                     if ($current_month == $key) {
@@ -92,7 +92,7 @@ $deleted = can_action('98', 'deleted');
             <div class="tab-content pl0">
                 <?php
                     foreach ($advance_salary_info as $key => $v_advance_salary) :
-                        $month_name = date('F', strtotime($year . '-' . $key)); // get full name of month by date query
+                        $month_name = jdate('F', strtotime($year . '-' . $key)); // get full name of month by date query
                     ?>
                 <div id="<?php echo $month_name ?>" class="tab-pane <?php
                                                                             if ($current_month == $key) {
@@ -136,7 +136,7 @@ $deleted = can_action('98', 'deleted');
                                     <td><?php echo display_money($advance_salary->advance_amount, default_currency());
                                                         $total_amount += $advance_salary->advance_amount;
                                                         ?></td>
-                                    <td><?php echo date('Y M', strtotime($advance_salary->deduct_month)) ?></td>
+                                    <td><?php echo jdate('Y M', strtotime($advance_salary->deduct_month)) ?></td>
                                     <td><?= strftime(config_item('date_format'), strtotime($advance_salary->request_date)) ?>
                                     </td>
 
@@ -353,7 +353,7 @@ $(function() {
 
     var chartdata = [
         <?php foreach ($advance_salary_info as $key => $v_advance_salary) {
-                        $month_name = date('F', strtotime($year . '-' . $key)); // get full name of month by date query
+                        $month_name = jdate('F', strtotime($year . '-' . $key)); // get full name of month by date query
                         $total_amount = 0;
                         foreach ($v_advance_salary as $advance_salary) {
                             $total_amount += $advance_salary->advance_amount;
@@ -389,7 +389,7 @@ $(function() {
 
     var my_chartdata = [
         <?php foreach ($advance_salary_info as $mkey => $my_advance_salary) {
-                    $my_month_name = date('F', strtotime($year . '-' . $mkey)); // get full name of month by date query
+                    $my_month_name = jdate('F', strtotime($year . '-' . $mkey)); // get full name of month by date query
                     $my_total = 0;
                     foreach ($my_advance_salary as $my_advance_salary) {
                         if ($my_advance_salary->user_id == $this->session->userdata('user_id')) {

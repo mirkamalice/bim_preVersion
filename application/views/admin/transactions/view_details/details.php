@@ -55,7 +55,7 @@ if (!empty($category_info)) {
                     }
                 }
                 if ($show_recurring_expense_info) {
-                    $next_date = date('Y-m-d', strtotime('+' . $recurring_from->recurring . ' ' . strtoupper($recurring_from->recurring_type), strtotime($next_recurring_date_compare)));
+                    $next_date = jdate('Y-m-d', strtotime('+' . $recurring_from->recurring . ' ' . strtoupper($recurring_from->recurring_type), strtotime($next_recurring_date_compare)));
                 }
 
             ?>

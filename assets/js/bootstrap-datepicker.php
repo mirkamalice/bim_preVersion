@@ -1163,7 +1163,7 @@
             forceParse: true,
             format: 'yyyy/mm/dd',
             keyboardNavigation: true,
-            language: 'en',
+            language: 'fa',
             minViewMode: 0,
             orientation: "auto",
             rtl: false,
@@ -1188,6 +1188,17 @@
                 monthsShort: ["<?= lang('Jan')?>", "<?= lang('Feb')?>", "<?= lang('Mar')?>", "<?= lang('Apr')?>", "<?= lang('May')?>", "<?= lang('Jun')?>", "<?= lang('Jul')?>", "<?= lang('Aug')?>", "<?= lang('Sept')?>", "<?= lang('Oct')?>", "<?= lang('Nov')?>", "<?= lang('Dec')?>"],
                 today: "<?= lang('today')?>",
                 clear: "<?= lang('Clear')?>"
+            },
+            fa: {
+                days: ["یک‌شنبه", "دوشنبه", "سه‌شنبه", "چهارشنبه", "پنج‌شنبه", "جمعه", "شنبه", "یک‌شنبه"],
+                daysShort: ["یک", "دو", "سه", "چهار", "پنج", "جمعه", "شنبه", "یک"],
+                daysMin: ["ی", "د", "س", "چ", "پ", "ج", "ش", "ی"],
+                months: ["فروردین", "اردیبهشت", "خرداد", "تیر", "مرداد", "شهریور", "مهر", "آبان", "آذر", "دی", "بهمن", "اسفند"],
+                monthsShort: ["فروردین", "اردیبهشت", "خرداد", "تیر", "مرداد", "شهریور", "مهر", "آبان", "آذر", "دی", "بهمن", "اسفند"],
+                today: "امروز",
+                clear: "پاک کن",
+                weekStart: 1,
+                format: "yyyy/mm/dd"
             }
         };
         var DPGlobal = {

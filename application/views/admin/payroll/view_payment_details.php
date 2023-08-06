@@ -84,7 +84,7 @@
                     <div class="">
                         <label for="field-1" class="col-sm-5 control-label"><strong><?= lang('salary_month') ?>
                                 :</strong></label>
-                        <p class="form-control-static"><?php echo date('F Y', strtotime($payment_month)); ?></p>
+                        <p class="form-control-static"><?php echo jdate('F Y', strtotime($payment_month)); ?></p>
                     </div>
                     <div class="">
                         <label for="field-1"

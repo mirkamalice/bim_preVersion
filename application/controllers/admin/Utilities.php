@@ -27,11 +27,11 @@ class Utilities extends Admin_Controller
     {
         $data['title'] = lang('overtime_details');
         // active check with current month
-        $data['current_month'] = date('m');
+        $data['current_month'] = jdate('m');
         if ($this->input->post('year', TRUE)) { // if input year
             $data['year'] = $this->input->post('year', TRUE);
         } else { // else current year
-            $data['year'] = date('Y'); // get current year
+            $data['year'] = jdate('Y'); // get current year
         }
         // get all expense list by year and month
         $data['all_overtime_info'] = $this->get_overtime_info($data['year']);
@@ -43,11 +43,11 @@ class Utilities extends Admin_Controller
     public function add_overtime($id = null)
     {
         // active check with current month
-        $data['current_month'] = date('m');
+        $data['current_month'] = jdate('m');
         if ($this->input->post('year', TRUE)) { // if input year
             $data['year'] = $this->input->post('year', TRUE);
         } else { // else current year
-            $data['year'] = date('Y'); // get current year
+            $data['year'] = jdate('Y'); // get current year
         }
 
         $data['all_employee'] = $this->utilities_model->get_all_employee();
@@ -80,7 +80,7 @@ class Utilities extends Admin_Controller
     public function overtime_report_pdf($year, $month)
     {
         $data['overtime_info'] = $this->get_overtime_info($year, $month);
-        $month_name = date('F', strtotime($year . '-' . $month)); // get full name of month by date query
+        $month_name = jdate('F', strtotime($year . '-' . $month)); // get full name of month by date query
         $data['monthyaer'] = $month_name . '  ' . $year;
 
         $this->load->helper('dompdf');

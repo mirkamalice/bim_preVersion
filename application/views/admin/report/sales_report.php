@@ -1,5 +1,5 @@
 <?php
-$chart_year = ($this->session->userdata('chart_year')) ? $this->session->userdata('chart_year') : date('Y');
+$chart_year = ($this->session->userdata('chart_year')) ? $this->session->userdata('chart_year') : jdate('Y');
 $cur = $this->report_model->check_by(array('code' => config_item('default_currency')), 'tbl_currencies');
 $this->lang->load('calendar', config_item('language'));
 ?>
@@ -135,7 +135,7 @@ $this->lang->load('calendar', config_item('language'));
                             <span class="text-dark"><?= lang('paid_this_month') ?></a>
                                 <small class="block text-danger pull-right ">
                                     <strong>
-                                        <?= display_money($this->invoice_model->paid_by_date(date('Y'), date('m')), $cur->symbol) ?>
+                                        <?= display_money($this->invoice_model->paid_by_date(date('Y'), jdate('m')), $cur->symbol) ?>
                                     </strong>
                                 </small>
                                 </div>
@@ -147,9 +147,9 @@ $this->lang->load('calendar', config_item('language'));
                             <span class="text-dark"><?= lang('paid') . ' ' . lang('last_month') ?></a>
                                 <small class="block text-danger pull-right ">
                                     <?php
-                                    $prevmonth = date('Y-m', strtotime("last month"));
-                                    $lyear = date('Y', strtotime($prevmonth));
-                                    $lmonth = date('m', strtotime($prevmonth));
+                                    $prevmonth = jdate('Y-m', strtotime("last month"));
+                                    $lyear = jdate('Y', strtotime($prevmonth));
+                                    $lmonth = jdate('m', strtotime($prevmonth));
                                     echo display_money($this->invoice_model->paid_by_date($lyear, $lmonth), $cur->symbol) ?>
                                 </small>
                                 </div>

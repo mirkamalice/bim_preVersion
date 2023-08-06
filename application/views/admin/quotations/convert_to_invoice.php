@@ -55,8 +55,8 @@
                                 <label class="col-lg-3 control-label"><?= lang('start_date') ?></label>
                                 <div class="col-lg-7">
                                     <?php
-                                    $recur_start_date = date('Y-m-d');
-                                    $recur_end_date = date('Y-m-d');
+                                    $recur_start_date = jdate('Y-m-d');
+                                    $recur_end_date = jdate('Y-m-d');
                                     ?>
                                     <div class="input-group">
                                         <input class="form-control datepicker" type="text" value="<?= $recur_start_date; ?>" name="recur_start_date" data-date-format="<?= config_item('date_picker_format'); ?>">
@@ -148,7 +148,7 @@
                                                                                                                     if (!empty($quotations_info->proposal_date)) {
                                                                                                                         echo $quotations_info->proposal_date;
                                                                                                                     } else {
-                                                                                                                        echo date('Y-m-d');
+                                                                                                                        echo jdate('Y-m-d');
                                                                                                                     }
                                                                                                                     ?>" data-date-format="<?= config_item('date_picker_format'); ?>">
                                     <div class="input-group-addon">
@@ -165,7 +165,7 @@
                                                                                                                 if (!empty($quotations_info->due_date)) {
                                                                                                                     echo $quotations_info->due_date;
                                                                                                                 } else {
-                                                                                                                    echo date('Y-m-d');
+                                                                                                                    echo jdate('Y-m-d');
                                                                                                                 }
                                                                                                                 ?>" data-date-format="<?= config_item('date_picker_format'); ?>">
                                     <div class="input-group-addon">

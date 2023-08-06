@@ -78,7 +78,7 @@
                         <span>
                             <strong><?= lang('generate_payslip_for') ?><?php
                                 if (!empty($payment_month)) {
-                                    echo ' <span class="text-danger">' . date('F Y', strtotime($payment_month)) . '</span>';
+                                    echo ' <span class="text-danger">' . jdate('F Y', strtotime($payment_month)) . '</span>';
                                 }
                                 ?></strong>
                         </span>

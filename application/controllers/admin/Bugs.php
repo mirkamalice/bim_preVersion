@@ -246,7 +246,7 @@ class Bugs extends Admin_Controller
             ));
 
             if (empty($id)) {
-                $data['created_time'] = date("Y-m-d H:i:s");
+                $data['created_time'] = jdate("Y-m-d H:i:s");
             }
             $result = 0;
             $project_id = $this->input->post('project_id', TRUE);

@@ -559,11 +559,11 @@ class Items_Model extends MY_Model
         if (!empty(config_item('projects_number_format'))) {
             $projects_format = config_item('projects_number_format');
             $projects_prefix = str_replace("[" . config_item('projects_prefix') . "]", config_item('projects_prefix'), $projects_format);
-            $yyyy = str_replace("[yyyy]", date('Y'), $projects_prefix);
-            $yy = str_replace("[yy]", date('y'), $yyyy);
-            $mm = str_replace("[mm]", date('M'), $yy);
-            $m = str_replace("[m]", date('m'), $mm);
-            $dd = str_replace("[dd]", date('d'), $m);
+            $yyyy = str_replace("[yyyy]", jdate('Y'), $projects_prefix);
+            $yy = str_replace("[yy]", jdate('y'), $yyyy);
+            $mm = str_replace("[mm]", jdate('M'), $yy);
+            $m = str_replace("[m]", jdate('m'), $mm);
+            $dd = str_replace("[dd]", jdate('d'), $m);
             $next_number = str_replace("[number]", $next_number, $dd);
         }
         return $next_number;
@@ -575,11 +575,11 @@ class Items_Model extends MY_Model
         if (!empty(config_item('projects_number_format'))) {
             $projects_format = config_item('projects_number_format');
             $projects_prefix = str_replace("[" . config_item('projects_prefix') . "]", config_item('projects_prefix'), $projects_format);
-            $yyyy = str_replace("[yyyy]", date('Y'), $projects_prefix);
-            $yy = str_replace("[yy]", date('y'), $yyyy);
-            $mm = str_replace("[mm]", date('M'), $yy);
-            $m = str_replace("[m]", date('m'), $mm);
-            $dd = str_replace("[dd]", date('d'), $m);
+            $yyyy = str_replace("[yyyy]", jdate('Y'), $projects_prefix);
+            $yy = str_replace("[yy]", jdate('y'), $yyyy);
+            $mm = str_replace("[mm]", jdate('M'), $yy);
+            $m = str_replace("[m]", jdate('m'), $mm);
+            $dd = str_replace("[dd]", jdate('d'), $m);
             $enext_number = str_replace("[number]", $next_number, $dd);
         }
         $records = $this->db->where('project_no', $enext_number)->get('tbl_project')->num_rows();

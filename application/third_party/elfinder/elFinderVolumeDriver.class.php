@@ -1218,7 +1218,7 @@ abstract class elFinderVolumeDriver
             $this->access = $this->options['accessControl'];
         }
 
-        $this->today = mktime(0, 0, 0, date('m'), date('d'), date('Y'));
+        $this->today = mktime(0, 0, 0, jdate('m'), jdate('d'), jdate('Y'));
         $this->yesterday = $this->today - 86400;
 
         if (!$this->init()) {

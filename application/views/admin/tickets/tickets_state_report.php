@@ -9,7 +9,7 @@ $progress_tickets_info = $this->tickets_model->get_permission('tbl_tickets');
 // 30 days before
 
 for ($iDay = 30; $iDay >= 0; $iDay--) {
-    $date = date('Y-m-d', strtotime('today - ' . $iDay . 'days'));
+    $date = jdate('Y-m-d', strtotime('today - ' . $iDay . 'days'));
     $where = array('created >=' => $date . " 00:00:00", 'created <=' => $date . " 23:59:59");
 
     $tickets_result[$date] = count($this->db->where($where)->get('tbl_tickets')->result());

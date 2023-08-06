@@ -96,7 +96,7 @@ if(!file_exists($img)){
             <tr class="table_tr2">
                 <td><?php echo $advance_salary->employment_id ?></td>
                 <td><?php echo $advance_salary->fullname ?></td>
-                <td><?php echo date('Y M', strtotime($advance_salary->deduct_month)) ?></td>
+                <td><?php echo jdate('Y M', strtotime($advance_salary->deduct_month)) ?></td>
                 <td><?= strftime(config_item('date_format'), strtotime($advance_salary->request_date)) ?></td>
                 <td><?php echo display_money($advance_salary->advance_amount, $curency->symbol);
                     $total_amount += $advance_salary->advance_amount;

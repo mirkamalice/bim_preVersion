@@ -59,7 +59,7 @@ $deleted = can_action('99', 'deleted');
                 <ul class="mt nav nav-pills nav-stacked navbar-custom-nav">
                     <?php
                     foreach ($all_employee_award as $key => $v_employee_award):
-                        $month_name = date('F', strtotime($year . '-' . $key)); // get full name of month by date query
+                        $month_name = jdate('F', strtotime($year . '-' . $key)); // get full name of month by date query
                         ?>
                         <li class="<?php
                         if ($current_month == $key) {
@@ -82,7 +82,7 @@ $deleted = can_action('99', 'deleted');
                 <div class="tab-content pl0">
                     <?php
                     foreach ($all_employee_award as $key => $v_employee_award):
-                        $month_name = date('F', strtotime($year . '-' . $key)); // get full name of month by date query
+                        $month_name = jdate('F', strtotime($year . '-' . $key)); // get full name of month by date query
                         ?>
                         <div id="<?php echo $month_name ?>" class="tab-pane <?php
                         if ($current_month == $key) {
@@ -128,7 +128,7 @@ $deleted = can_action('99', 'deleted');
                                             <td><?php echo $employee_award->award_name; ?></td>
                                             <td><?php echo $employee_award->gift_item; ?></td>
                                             <td><?php echo display_money($employee_award->award_amount, default_currency()) ?></td>
-                                            <td><?= date('M,Y', strtotime($employee_award->award_date)) ?></td>
+                                            <td><?= jdate('M,Y', strtotime($employee_award->award_date)) ?></td>
                                             <td><?= display_date($employee_award->given_date) ?></td>
                                             <?php if (!empty($deleted) || !empty($edited)) { ?>
                                                 <td>

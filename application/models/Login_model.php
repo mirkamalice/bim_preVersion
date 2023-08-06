@@ -151,8 +151,8 @@ class Login_Model extends MY_Model
                 $clocktime = 1;
             }
             
-            $date = date('Y-m-d');
-            $time = date('H:i:s');;
+            $date = jdate('Y-m-d');
+            $time = jdate('H:i:s');;
             if ($clocktime == 1) {
                 $adata['date_in'] = $date;
                 $adata['date_out'] = $date;
@@ -295,7 +295,7 @@ class Login_Model extends MY_Model
     function set_password_key($user_id, $new_pass_key)
     {
         $this->db->set('new_password_key', $new_pass_key);
-        $this->db->set('new_password_requested', date('Y-m-d H:i:s'));
+        $this->db->set('new_password_requested', jdate('Y-m-d H:i:s'));
         $this->db->where('user_id', $user_id);
         $this->db->update('tbl_users');
         return $this->db->affected_rows() > 0;
@@ -362,7 +362,7 @@ class Login_Model extends MY_Model
             }
         } else {
             $user_id = $this->session->userdata('user_id');
-            update('tbl_users', array('user_id' => $user_id), array('last_login' => date("Y-m-d H:i:s")));
+            update('tbl_users', array('user_id' => $user_id), array('last_login' => jdate("Y-m-d H:i:s")));
             $this->session->sess_destroy();
         }
     }
@@ -385,18 +385,18 @@ class Login_Model extends MY_Model
                     $attendance_info = $this->db->where('attendance_id', $clock_out->attendance_id)->get('tbl_attendance')->row();
                     
                     if (empty($attendance_info->date_in)) {
-                        $adata['date_in'] = date('Y-m-d');
+                        $adata['date_in'] = jdate('Y-m-d');
                     }
                     $adata['clocking_status'] = 0;
-                    $adata['date_out'] = date('Y-m-d');
+                    $adata['date_out'] = jdate('Y-m-d');
                     
                     $this->_table_name = "tbl_attendance"; // table name
                     $this->_primary_key = "attendance_id"; // $id
                     $this->save($adata, $clock_out->attendance_id);
                     if (empty($clock_out->clockin_time)) {
-                        $data['clockin_time'] = date('H:i:s');
+                        $data['clockin_time'] = jdate('H:i:s');
                     }
-                    $data['clockout_time'] = date('H:i:s');
+                    $data['clockout_time'] = jdate('H:i:s');
                     $data['clocking_status'] = 0;
                     
                     $this->_table_name = "tbl_clock"; // table name

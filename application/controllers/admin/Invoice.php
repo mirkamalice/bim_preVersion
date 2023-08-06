@@ -163,7 +163,7 @@ class Invoice extends Admin_Controller
         $data['permission_user'] = $this->invoice_model->all_permission_user('13');
         $type = $this->uri->segment(5);
         if (empty($type)) {
-            $type = '_' . date('Y');
+            $type = '_' . jdate('Y');
         }
         $filterBy = null;
         if (!empty($type) && !is_numeric($type)) {
@@ -304,7 +304,7 @@ class Invoice extends Admin_Controller
         $data['permission_user'] = $this->invoice_model->all_permission_user('13');
         $type = $this->uri->segment(5);
         if (empty($type)) {
-            $type = '_' . date('Y');
+            $type = '_' . jdate('Y');
         }
         $filterBy = null;
         if (!empty($type) && !is_numeric($type)) {
@@ -491,8 +491,8 @@ class Invoice extends Admin_Controller
             'invoices_id' => $invoices_id,
             'credit_note_id' => $input_post['credit_note_id'],
             'user_id' => my_id(),
-            'date' => date('Y-m-d'),
-            'date_applied' => date('Y-m-d H:i'),
+            'date' => jdate('Y-m-d'),
+            'date_applied' => jdate('Y-m-d H:i'),
             'amount' => $input_post['amount'],
         );
         $this->invoice_model->_table_name = 'tbl_credit_used';
@@ -526,11 +526,11 @@ class Invoice extends Admin_Controller
                 'payment_method' => config_item('default_payment_method'),
                 'currency' => client_currency($inv_info->client_id),
                 'amount' => $paid_amount,
-                'payment_date' => date('Y-m-d'),
+                'payment_date' => jdate('Y-m-d'),
                 'trans_id' => $trans_id,
                 'notes' => 'This Payment from Credit notes <a href="' . base_url('admin/credit_note/index/credit_note_details/' . $input_post['credit_note_id']) . '">' . $credit_notes->reference_no . '</a>',
-                'month_paid' => date("m"),
-                'year_paid' => date("Y"),
+                'month_paid' => jdate("m"),
+                'year_paid' => jdate("Y"),
             );
             $this->invoice_model->_table_name = 'tbl_payments';
             $this->invoice_model->_primary_key = 'payments_id';
@@ -590,7 +590,7 @@ class Invoice extends Admin_Controller
                         'type' => 'Income',
                         'amount' => $paid_amount,
                         'credit' => $paid_amount,
-                        'date' => date('Y-m-d'),
+                        'date' => jdate('Y-m-d'),
                         'paid_by' => $inv_info->client_id,
                         'payment_methods_id' => config_item('default_payment_method'),
                         'reference' => $trans_id,
@@ -758,7 +758,7 @@ class Invoice extends Admin_Controller
             $this->datatables->order = array('invoices_id' => 'desc');
 
             if (empty($filterBy)) {
-                $filterBy = '_' . date('Y');
+                $filterBy = '_' . jdate('Y');
             }
             if (!empty($filterBy) && !is_numeric($filterBy)) {
                 $ex = explode('_', $filterBy);
@@ -800,9 +800,9 @@ class Invoice extends Admin_Controller
                     $where = array('UNIX_TIMESTAMP(due_date) <' => strtotime(date('Y-m-d')), 'status !=' => 'Paid');
                 } else if ($filterBy == 'last_month' || $filterBy == 'this_months') {
                     if ($filterBy == 'last_month') {
-                        $month = date('Y-m', strtotime('-1 months'));
+                        $month = jdate('Y-m', strtotime('-1 months'));
                     } else {
-                        $month = date('Y-m');
+                        $month = jdate('Y-m');
                     }
                     $where = array('invoice_month' => $month);
                 } else if (strstr($filterBy, '_')) {
@@ -1047,11 +1047,11 @@ class Invoice extends Admin_Controller
             } else {
                 if ($filterBy == 'last_month' || $filterBy == 'this_months') {
                     if ($filterBy == 'last_month') {
-                        $month = date('m', strtotime('-1 months'));
-                        $year = date('Y', strtotime('-1 months'));
+                        $month = jdate('m', strtotime('-1 months'));
+                        $year = jdate('Y', strtotime('-1 months'));
                     } else {
-                        $month = date('m');
-                        $year = date('Y');
+                        $month = jdate('m');
+                        $year = jdate('Y');
                     }
                     $where = array('year_paid' => $year, 'month_paid' => $month);
                 } else if ($filterBy == 'today') {
@@ -1280,13 +1280,13 @@ class Invoice extends Admin_Controller
             }
 
             $data['client_visible'] = ($this->input->post('client_visible') == 'Yes') ? 'Yes' : 'No';
-            $data['invoice_date'] = date('Y-m-d', strtotime($this->input->post('invoice_date', TRUE)));
+            $data['invoice_date'] = jdate('Y-m-d', strtotime($this->input->post('invoice_date', TRUE)));
             if (empty($data['invoice_date'])) {
-                $data['invoice_date'] = date('Y-m-d');
+                $data['invoice_date'] = jdate('Y-m-d');
             }
-            $data['invoice_year'] = date('Y', strtotime($this->input->post('invoice_date', TRUE)));
-            $data['invoice_month'] = date('Y-m', strtotime($this->input->post('invoice_date', TRUE)));
-            $data['due_date'] = date('Y-m-d', strtotime($this->input->post('due_date', TRUE)));
+            $data['invoice_year'] = jdate('Y', strtotime($this->input->post('invoice_date', TRUE)));
+            $data['invoice_month'] = jdate('Y-m', strtotime($this->input->post('invoice_date', TRUE)));
+            $data['due_date'] = jdate('Y-m-d', strtotime($this->input->post('due_date', TRUE)));
             $pos = $this->input->post('pos', true);
             if (!empty($pos)) {
                 $permission = 'everyone';
@@ -1379,7 +1379,7 @@ class Invoice extends Admin_Controller
             } else {
                 $update_recur = array(
                     'recurring' => 'No',
-                    'recur_end_date' => date('Y-m-d'),
+                    'recur_end_date' => jdate('Y-m-d'),
                     'recur_next_date' => '0000-00-00'
                 );
                 $this->invoice_model->_table_name = 'tbl_invoices';
@@ -1540,18 +1540,18 @@ class Invoice extends Admin_Controller
         $recur_days = $this->get_calculate_recurring_days($recur_data['recuring_frequency']);
         $due_date = $this->invoice_model->get_table_field('tbl_invoices', array('invoices_id' => $invoices_id), 'due_date');
 
-        $next_date = date("Y-m-d", strtotime($due_date . "+ " . $recur_days . " days"));
+        $next_date = jdate("Y-m-d", strtotime($due_date . "+ " . $recur_days . " days"));
 
         if ($recur_data['recur_end_date'] == '') {
             $recur_end_date = '0000-00-00';
         } else {
-            $recur_end_date = date('Y-m-d', strtotime($recur_data['recur_end_date']));
+            $recur_end_date = jdate('Y-m-d', strtotime($recur_data['recur_end_date']));
         }
         $update_invoice = array(
             'recurring' => 'Yes',
             'recuring_frequency' => $recur_days,
             'recur_frequency' => $recur_data['recuring_frequency'],
-            'recur_start_date' => date('Y-m-d', strtotime($recur_data['recur_start_date'])),
+            'recur_start_date' => jdate('Y-m-d', strtotime($recur_data['recur_start_date'])),
             'recur_end_date' => $recur_end_date,
             'recur_next_date' => $next_date
         );
@@ -1635,7 +1635,7 @@ class Invoice extends Admin_Controller
     {
         $update_recur = array(
             'recurring' => 'No',
-            'recur_end_date' => date('Y-m-d'),
+            'recur_end_date' => jdate('Y-m-d'),
             'recur_next_date' => '0000-00-00'
         );
         $this->invoice_model->_table_name = 'tbl_invoices';
@@ -1722,8 +1722,8 @@ class Invoice extends Admin_Controller
                 'warehouse_id' => $invoice_info->warehouse_id,
                 'project_id' => $invoice_info->project_id,
                 'invoice_date' => $this->input->post('invoice_date', true),
-                'invoice_year' => date('Y', strtotime($this->input->post('invoice_date', true))),
-                'invoice_month' => date('Y-m', strtotime($this->input->post('invoice_date', true))),
+                'invoice_year' => jdate('Y', strtotime($this->input->post('invoice_date', true))),
+                'invoice_month' => jdate('Y-m', strtotime($this->input->post('invoice_date', true))),
                 'due_date' => $this->input->post('due_date', true),
                 'notes' => $invoice_info->notes,
                 'tags' => $invoice_info->tags,
@@ -2134,7 +2134,7 @@ class Invoice extends Admin_Controller
 
             if (!empty($pos)) {
                 $paid_amount = $due;
-                $payment_date = date('Y-m-d H:i');
+                $payment_date = jdate('Y-m-d H:i');
                 $this->load->helper('string');
                 $trans_id = random_string('nozero', 6);
                 $notes = 'directly from POS';
@@ -2169,8 +2169,8 @@ class Invoice extends Admin_Controller
                         'payment_date' => $payment_date,
                         'trans_id' => $trans_id,
                         'notes' => $notes,
-                        'month_paid' => date("m", strtotime($payment_date)),
-                        'year_paid' => date("Y", strtotime($payment_date)),
+                        'month_paid' => jdate("m", strtotime($payment_date)),
+                        'year_paid' => jdate("Y", strtotime($payment_date)),
                     );
 
                     $this->invoice_model->_table_name = 'tbl_payments';
@@ -2214,7 +2214,7 @@ class Invoice extends Admin_Controller
                     $award_p['user_id'] = my_id();
                     $award_p['invoices_id'] = $invoices_id;
                     $award_p['payment_status'] = $status;
-                    $award_p['date'] = date('Y-m-d');
+                    $award_p['date'] = jdate('Y-m-d');
                     $this->invoice_model->save($award_p);
 
                     $activity = array(
@@ -2261,7 +2261,7 @@ class Invoice extends Admin_Controller
                                 'type' => 'Income',
                                 'amount' => $paid_amount,
                                 'credit' => $paid_amount,
-                                'date' => date('Y-m-d', strtotime($this->input->post('payment_date', TRUE))),
+                                'date' => jdate('Y-m-d', strtotime($this->input->post('payment_date', TRUE))),
                                 'paid_by' => $inv_info->client_id,
                                 'payment_methods_id' => $this->input->post('payment_methods_id', TRUE),
                                 'reference' => $trans_id,
@@ -2344,10 +2344,10 @@ class Invoice extends Admin_Controller
         $data = array(
             'amount' => $this->input->post('amount', TRUE),
             'payment_method' => $this->input->post('payment_methods_id', TRUE),
-            'payment_date' => date('Y-m-d', strtotime($this->input->post('payment_date', TRUE))),
+            'payment_date' => jdate('Y-m-d', strtotime($this->input->post('payment_date', TRUE))),
             'notes' => $this->input->post('notes', TRUE),
-            'month_paid' => date("m", strtotime($this->input->post('payment_date', TRUE))),
-            'year_paid' => date("Y", strtotime($this->input->post('payment_date', TRUE))),
+            'month_paid' => jdate("m", strtotime($this->input->post('payment_date', TRUE))),
+            'year_paid' => jdate("Y", strtotime($this->input->post('payment_date', TRUE))),
         );
         $payments_info = $this->invoice_model->check_by(array('payments_id' => $payments_id), 'tbl_payments');
         if (empty($payments_info)) {
@@ -2430,7 +2430,7 @@ class Invoice extends Admin_Controller
     function change_invoice_status($action, $id)
     {
         if ($action == 'mark_as_sent') {
-            $data = array('emailed' => 'Yes', 'date_sent' => date("Y-m-d H:i:s", time()), 'status' => 'Unpaid');
+            $data = array('emailed' => 'Yes', 'date_sent' => jdate("Y-m-d H:i:s", time()), 'status' => 'Unpaid');
         }
         if ($action == 'mark_as_cancelled') {
             $data = array('status' => 'Cancelled');
@@ -2489,7 +2489,7 @@ class Invoice extends Admin_Controller
 
         $this->send_email_invoice($invoice_id, $message, $subject); // Email Invoice
 
-        $data = array('status' => 'sent', 'emailed' => 'Yes', 'date_sent' => date("Y-m-d H:i:s", time()));
+        $data = array('status' => 'sent', 'emailed' => 'Yes', 'date_sent' => jdate("Y-m-d H:i:s", time()));
 
         $this->invoice_model->_table_name = 'tbl_invoices';
         $this->invoice_model->_primary_key = 'invoices_id';
@@ -2609,7 +2609,7 @@ class Invoice extends Admin_Controller
             unlink('uploads/' . slug_it(lang('invoice') . '_' . $data['invoice_info']->reference_no) . '.pdf');
         }
 
-        $data = array('emailed' => 'Yes', 'date_sent' => date("Y-m-d H:i:s", time()));
+        $data = array('emailed' => 'Yes', 'date_sent' => jdate("Y-m-d H:i:s", time()));
 
         $this->invoice_model->_table_name = 'tbl_invoices';
         $this->invoice_model->_primary_key = 'invoices_id';

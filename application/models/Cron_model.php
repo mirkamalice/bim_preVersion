@@ -22,7 +22,7 @@ class Cron_Model extends MY_Model
         } else {
             $due_date = 'due_date';
         }
-        $where = array($due_date => date("Y-m-d"), 'alert_overdue' => 0);
+        $where = array($due_date => jdate("Y-m-d"), 'alert_overdue' => 0);
         if ($tbl_name == 'tbl_invoices') {
             $where['status !='] = 'Paid';
             $where['status !='] = 'Cancelled';

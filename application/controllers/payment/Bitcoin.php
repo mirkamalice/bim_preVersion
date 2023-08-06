@@ -67,8 +67,8 @@ class bitcoin extends MY_Controller {
             'amount' => $paid,
             'trans_id' => $transactionid,
             'notes' => 'Amount in BTC: ' . $amountsent,
-            'month_paid' => date('m'),
-            'year_paid' => date('Y'),
+            'month_paid' => jdate('m'),
+            'year_paid' => jdate('Y'),
         );
         $this->db->insert('payments', $p_info); // insert to payments
         $cur_i = $this->applib->currencies($this->user_profile->get_invoice_details($invoiceid, 'currency'));

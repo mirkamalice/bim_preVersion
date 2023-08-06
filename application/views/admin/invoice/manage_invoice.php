@@ -32,11 +32,11 @@ if (!empty($type) && !is_numeric($type)) {
     $ex = explode('_', $type);
     if ($ex[0] == 'c') {
         $c_id = $ex[1];
-        $type = '_' . date('Y');
+        $type = '_' . jdate('Y');
     }
 }
 if (empty($type)) {
-    $type = '_' . date('Y');
+    $type = '_' . jdate('Y');
 }
 
 $created = can_action('13', 'created');

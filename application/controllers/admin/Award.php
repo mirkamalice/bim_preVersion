@@ -37,11 +37,11 @@ class Award extends Admin_Controller
             $data['active'] = 2;
         }
         // active check with current month
-        $data['current_month'] = date('m');
+        $data['current_month'] = jdate('m');
         if ($this->input->post('year', TRUE)) { // if input year
             $data['year'] = $this->input->post('year', TRUE);
         } else { // else current year
-            $data['year'] = date('Y'); // get current year
+            $data['year'] = jdate('Y'); // get current year
         }
         // get all expense list by year and month
         $data['all_employee_award'] = $this->get_employee_award($data['year']);
@@ -101,7 +101,7 @@ class Award extends Admin_Controller
                 $sub_array[] = $v_award_info->award_name;
                 $sub_array[] = $v_award_info->gift_item;
                 $sub_array[] = display_money($v_award_info->award_amount, default_currency());
-                $sub_array[] = date('M Y', strtotime($v_award_info->award_date));
+                $sub_array[] = jdate('M Y', strtotime($v_award_info->award_date));
                 $sub_array[] = display_date($v_award_info->given_date);
                 
                 if (!empty($edited)) {
@@ -170,7 +170,7 @@ class Award extends Admin_Controller
                 'activity' => $activity,
                 'icon' => 'fa-trophy',
                 'value1' => $data['award_name'],
-                'value2' => date('Y M', strtotime($data['award_date'])),
+                'value2' => jdate('Y M', strtotime($data['award_date'])),
             );
             
             // Update into tbl_project
@@ -187,7 +187,7 @@ class Award extends Admin_Controller
                     $subject = $email_template->subject;
                     $username = str_replace("{NAME}", $profile_info->fullname, $message);
                     $award_name = str_replace("{AWARD_NAME}", $data['award_name'], $username);
-                    $award_date = str_replace("{MONTH}", date('M Y', strtotime($data['award_date'])), $award_name);
+                    $award_date = str_replace("{MONTH}", jdate('M Y', strtotime($data['award_date'])), $award_name);
                     $message = str_replace("{SITE_NAME}", config_item('company_name'), $award_date);
                     $data['message'] = $message;
                     $message = $this->load->view('email_template', $data, TRUE);
@@ -207,7 +207,7 @@ class Award extends Admin_Controller
                             'description' => $description,
                             'icon' => 'trophy',
                             'link' => 'admin/award',
-                            'value' => date('M Y', strtotime($data['award_date'])),
+                            'value' => jdate('M Y', strtotime($data['award_date'])),
                         ));
                     }
                 }
@@ -243,7 +243,7 @@ class Award extends Admin_Controller
                 'activity' => 'activity_delete_award',
                 'icon' => 'fa-trophy',
                 'value1' => $award_info->award_name,
-                'value2' => date('Y M', strtotime($award_info->award_date)),
+                'value2' => jdate('Y M', strtotime($award_info->award_date)),
             );
             
             // Update into tbl_project

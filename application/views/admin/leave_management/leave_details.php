@@ -79,7 +79,7 @@ if ($application_info->application_status == '1') {
                                 $ge_days = 0;
                                 $m_days = 0;
 
-                                $month = cal_days_in_month(CAL_GREGORIAN, date('m', strtotime($application_info->leave_start_date)), date('Y', strtotime($application_info->leave_start_date)));
+                                $month = cal_days_in_month(CAL_GREGORIAN, jdate('m', strtotime($application_info->leave_start_date)), jdate('Y', strtotime($application_info->leave_start_date)));
                                 $datetime1 = new DateTime($application_info->leave_start_date);
                                 if (empty($application_info->leave_end_date)) {
                                     $application_info->leave_end_date = $application_info->leave_start_date;

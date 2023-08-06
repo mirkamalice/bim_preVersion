@@ -1,6 +1,6 @@
 <?php
-$mdate = date('Y-m-d');
-$last_7_days = date('Y-m-d', strtotime('today - 7 days'));
+$mdate = jdate('Y-m-d');
+$last_7_days = jdate('Y-m-d', strtotime('today - 7 days'));
 $all_goal_tracking = $this->bugs_model->get_permission('tbl_goal_tracking');
 
 $all_goal = 0;
@@ -34,7 +34,7 @@ if (!empty($all_goal_tracking)) {
 // 30 days before
 
 for ($iDay = 7; $iDay >= 0; $iDay--) {
-    $date = date('Y-m-d', strtotime('today - ' . $iDay . 'days'));
+    $date = jdate('Y-m-d', strtotime('today - ' . $iDay . 'days'));
     $where = array('update_time >=' => $date . " 00:00:00", 'update_time <=' => $date . " 23:59:59", 'bug_status' => 'resolved');
 
     $invoice_result[$date] = count($this->db->where($where)->get('tbl_bug')->result());
@@ -93,7 +93,7 @@ if ($this->session->userdata('user_type') == 1) {
                             <?php
                             if (!empty($invoice_result)) {
                                 foreach ($invoice_result as $date => $v_invoice_result) {
-                                    echo date('d', strtotime($date)) . ' ';
+                                    echo jdate('d', strtotime($date)) . ' ';
                                 }
                             }
                             ?>

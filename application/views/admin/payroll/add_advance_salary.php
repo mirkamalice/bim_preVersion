@@ -65,7 +65,7 @@
                         if (!empty($advance_salary->deduct_month)) {
                             echo $advance_salary->deduct_month;
                         } else {
-                            echo date('Y-m', strtotime('+1 month'));
+                            echo jdate('Y-m', strtotime('+1 month'));
                         }
                         ?>" name="deduct_month" type="text">
                         <div class="input-group-addon">

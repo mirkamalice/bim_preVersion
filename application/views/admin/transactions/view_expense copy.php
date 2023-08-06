@@ -89,7 +89,7 @@ $edited = can_action('30', 'edited');
                                     }
                                 }
                                 if ($show_recurring_expense_info) {
-                                    $next_date = date('Y-m-d', strtotime('+' . $recurring_from->recurring . ' ' . strtoupper($recurring_from->recurring_type), strtotime($next_recurring_date_compare)));
+                                    $next_date = jdate('Y-m-d', strtotime('+' . $recurring_from->recurring . ' ' . strtoupper($recurring_from->recurring_type), strtotime($next_recurring_date_compare)));
                                 }
 
                             ?>
@@ -656,9 +656,9 @@ $edited = can_action('30', 'edited');
                                                                                                                         if (!empty($reminder_info->date)) {
                                                                                                                             echo $reminder_info->date;
                                                                                                                         } else {
-                                                                                                                            echo date('Y-m-d h:i');
+                                                                                                                            echo jdate('Y-m-d h:i');
                                                                                                                         }
-                                                                                                                        ?>" data-date-min-date="<?= date('Y-m-d'); ?>">
+                                                                                                                        ?>" data-date-min-date="<?= jdate('Y-m-d'); ?>">
                                             <div class="input-group-addon">
                                                 <a href="#"><i class="fa fa-calendar"></i></a>
                                             </div>

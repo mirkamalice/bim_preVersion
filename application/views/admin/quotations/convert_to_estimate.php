@@ -42,7 +42,7 @@
                                                                                                                             if (!empty($quotations_info->proposal_date)) {
                                                                                                                                 echo $quotations_info->proposal_date;
                                                                                                                             } else {
-                                                                                                                                echo date('Y-m-d');
+                                                                                                                                echo jdate('Y-m-d');
                                                                                                                             }
                                                                                                                             ?>" data-date-format="<?= config_item('date_picker_format'); ?>">
                                     <div class="input-group-addon">
@@ -59,7 +59,7 @@
                                                                                                                         if (!empty($quotations_info->due_date)) {
                                                                                                                             echo $quotations_info->due_date;
                                                                                                                         } else {
-                                                                                                                            echo date('Y-m-d');
+                                                                                                                            echo jdate('Y-m-d');
                                                                                                                         }
                                                                                                                         ?>" data-date-format="<?= config_item('date_picker_format'); ?>">
                                     <div class="input-group-addon">

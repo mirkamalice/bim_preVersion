@@ -98,7 +98,7 @@ class CachePluginTest extends \Guzzle\Tests\GuzzleTestCase
             // Performs revalidation due to ETag on the response and no cache-control on the request
             array(new Request('GET', 'http://foo.com'), new Response(200, array(
                 'ETag' => 'ABC',
-                'Expires' => date('c', strtotime('+1 year'))
+                'Expires' => jdate('c', strtotime('+1 year'))
             )), true, true),
         );
     }

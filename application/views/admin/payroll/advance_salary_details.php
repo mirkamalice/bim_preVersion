@@ -33,7 +33,7 @@
                 <label class="control-label"><strong><?= lang('deduct_month') ?> : </strong></label>
             </div>
             <div class="col-sm-8">
-                <p class="form-control-static"><?php echo date('Y M', strtotime($advance_salary_info->deduct_month)); ?></p>
+                <p class="form-control-static"><?php echo jdate('Y M', strtotime($advance_salary_info->deduct_month)); ?></p>
             </div>
         </div>
 

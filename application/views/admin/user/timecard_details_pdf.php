@@ -86,7 +86,7 @@ $department = $this->db->where('departments_id', $designation->departments_id)->
     <div>
         <div style="width: 100%; background: #E3E3E3;padding: 1px 0px 1px 10px; color: black; vertical-align: middle; ">
             <p style="margin-left: 10px; font-size: 15px; font-weight: lighter;">
-                <strong><?= lang('works_hours_deatils') ?><?php echo date('F-Y', strtotime($date));; ?></strong>
+                <strong><?= lang('works_hours_deatils') ?><?php echo jdate('F-Y', strtotime($date));; ?></strong>
         </div>
         <?php
         define("SECONDS_PER_HOUR", 60 * 60);

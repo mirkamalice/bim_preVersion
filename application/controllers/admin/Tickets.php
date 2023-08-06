@@ -154,7 +154,7 @@ class Tickets extends Admin_Controller
     }
 
     public function changed_ticket_status($id=null){
-        $date = date('Y-m-d H:i:s');
+        $date = jdate('Y-m-d H:i:s');
         $status = $this->uri->segment(5);
 
         if (!empty($status)) {
@@ -492,7 +492,7 @@ class Tickets extends Admin_Controller
 
     public function save_tickets_reply($id)
     {
-        $date = date('Y-m-d H:i:s');
+        $date = jdate('Y-m-d H:i:s');
         $status = $this->uri->segment(6);
         if (!empty($status)) {
             if ($status == 'closed' && config_item('notify_ticket_reopened') == 'TRUE') {

@@ -114,7 +114,7 @@
                         <td colspan="3" style="text-align: center; font-size: 18px; padding-bottom: 18px;">
                             <strong><?= lang('payslip') ?>
                                 <br/><?= lang('salary_month') ?>
-                                : <?php echo date('F  Y', strtotime($employee_salary_info->payment_month)) ?>
+                                : <?php echo jdate('F  Y', strtotime($employee_salary_info->payment_month)) ?>
                             </strong></td>
                     </tr>
                     <tr>

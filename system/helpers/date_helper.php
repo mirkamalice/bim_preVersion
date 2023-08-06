@@ -260,7 +260,7 @@ if (!function_exists('days_in_month')) {
         if ($month < 1 or $month > 12) {
             return 0;
         } elseif (!is_numeric($year) or strlen($year) !== 4) {
-            $year = date('Y');
+            $year = jdate('Y');
         }
 
         if (defined('CAL_GREGORIAN')) {
@@ -379,20 +379,20 @@ if (!function_exists('unix_to_human')) {
      */
     function unix_to_human($time = '', $seconds = FALSE, $fmt = 'us')
     {
-        $r = date('Y', $time) . '-' . date('m', $time) . '-' . date('d', $time) . ' ';
+        $r = jdate('Y', $time) . '-' . jdate('m', $time) . '-' . jdate('d', $time) . ' ';
 
         if ($fmt === 'us') {
-            $r .= date('h', $time) . ':' . date('i', $time);
+            $r .= jdate('h', $time) . ':' . jdate('i', $time);
         } else {
-            $r .= date('H', $time) . ':' . date('i', $time);
+            $r .= jdate('H', $time) . ':' . jdate('i', $time);
         }
 
         if ($seconds) {
-            $r .= ':' . date('s', $time);
+            $r .= ':' . jdate('s', $time);
         }
 
         if ($fmt === 'us') {
-            return $r . ' ' . date('A', $time);
+            return $r . ' ' . jdate('A', $time);
         }
 
         return $r;

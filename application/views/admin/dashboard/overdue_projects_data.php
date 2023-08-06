@@ -61,6 +61,6 @@ $data[] = $sub_array;
 }
 }
 
-$today = date('Y-m-d h:i:s');
+$today = jdate('Y-m-d h:i:s');
 $where = array('tbl_project.project_status !=' => 'completed', 'tbl_project.end_date <' => $today);
 render_table($data, $where);

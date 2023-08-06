@@ -2,8 +2,8 @@
 <?= message_box('success') ?>
 <?= message_box('error') ?>
 <?php
-$mdate = date('Y-m-d');
-$last_7_days = date('Y-m-d', strtotime('today - 7 days'));
+$mdate = jdate('Y-m-d');
+$last_7_days = jdate('Y-m-d', strtotime('today - 7 days'));
 $all_goal_tracking = $this->invoice_model->get_permission('tbl_goal_tracking');
 
 $all_goal = 0;
@@ -35,7 +35,7 @@ if (!empty($all_goal_tracking)) {
 // 30 days before
 
 for ($iDay = 7; $iDay >= 0; $iDay--) {
-    $date = date('Y-m-d', strtotime('today - ' . $iDay . 'days'));
+    $date = jdate('Y-m-d', strtotime('today - ' . $iDay . 'days'));
     $where = array('payment_date >=' => $date, 'payment_date <=' => $date);
     $invoice_result[$date] = $this->db->select_sum('amount')->where($where)->get('tbl_payments')->result();
 }
@@ -96,7 +96,7 @@ if ($this->session->userdata('user_type') == 1) {
                                 <?php
                                 if (!empty($invoice_result)) {
                                     foreach ($invoice_result as $date => $v_invoice_result) {
-                                        echo date('d', strtotime($date)) . ' ';
+                                        echo jdate('d', strtotime($date)) . ' ';
                                     }
                                 }
                                 ?>

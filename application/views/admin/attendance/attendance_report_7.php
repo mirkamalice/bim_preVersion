@@ -29,9 +29,9 @@
 <div id="EmpprintReport">
     <?php if (!empty($attendance)):
         if ($search_type == 'month') {
-            $month = date('F Y', strtotime($date));
+            $month = jdate('F Y', strtotime($date));
         } else {
-            $month = date('F d, Y', strtotime($start_date)) . ' - ' . date('F d, Y', strtotime($end_date));
+            $month = jdate('F d, Y', strtotime($start_date)) . ' - ' . jdate('F d, Y', strtotime($end_date));
             $date = $start_date . '/' . $end_date;
         }
         

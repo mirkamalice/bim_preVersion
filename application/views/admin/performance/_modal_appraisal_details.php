@@ -65,7 +65,7 @@
                                     <tr>
                                         <td><strong><?= lang('appraisal_month') ?></strong></td>
                                         <td>&nbsp;&nbsp;&nbsp;</td>
-                                        <td><?php echo date('M Y', strtotime($get_appraisal_info->appraisal_month)); ?></td>
+                                        <td><?php echo jdate('M Y', strtotime($get_appraisal_info->appraisal_month)); ?></td>
                                     </tr>
                                 </table>
                             </div>

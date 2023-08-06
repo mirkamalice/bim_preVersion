@@ -17,7 +17,7 @@
 
         <div id="panelChart4" class="panel panel-custom">
             <div class="panel-heading">
-                <div class="panel-title"><?= lang('bugs') . ' ' . lang('report') . ' ' . date('Y') ?></div>
+                <div class="panel-title"><?= lang('bugs') . ' ' . lang('report') . ' ' . jdate('Y') ?></div>
             </div>
             <div class="panel-body">
                 <div class="chart-line flot-chart"></div>
@@ -198,7 +198,7 @@ endif;
                     "color": "#ff902b",
                     "data": [
                         <?php foreach ($yearly_report as $name => $v_report):
-                        $month_name = date('M', strtotime(date('Y') . '-' . $name)); // get full name of month by date query
+                        $month_name = jdate('M', strtotime(date('Y') . '-' . $name)); // get full name of month by date query
                         ?>
                         ["<?= $month_name?>", <?php
                             $y_not_started = 0;
@@ -215,7 +215,7 @@ endif;
                     "color": "#5d9cec",
                     "data": [
                         <?php foreach ($yearly_report as $name => $v_report):
-                        $month_name = date('M', strtotime(date('Y') . '-' . $name)); // get full name of month by date query
+                        $month_name = jdate('M', strtotime(date('Y') . '-' . $name)); // get full name of month by date query
                         ?>
                         ["<?= $month_name?>", <?php
                             $y_not_started = 0;
@@ -233,7 +233,7 @@ endif;
                     "color": "#23b7e5",
                     "data": [
                         <?php foreach ($yearly_report as $name => $v_report):
-                        $month_name = date('M', strtotime(date('Y') . '-' . $name)); // get full name of month by date query
+                        $month_name = jdate('M', strtotime(date('Y') . '-' . $name)); // get full name of month by date query
                         ?>
                         ["<?= $month_name?>", <?php
                             $y_not_started = 0;
@@ -250,7 +250,7 @@ endif;
                     "color": "#7266ba",
                     "data": [
                         <?php foreach ($yearly_report as $name => $v_report):
-                        $month_name = date('M', strtotime(date('Y') . '-' . $name)); // get full name of month by date query
+                        $month_name = jdate('M', strtotime(date('Y') . '-' . $name)); // get full name of month by date query
                         ?>
                         ["<?= $month_name?>", <?php
                             $y_not_started = 0;
@@ -267,7 +267,7 @@ endif;
                     "color": "#27c24c",
                     "data": [
                         <?php foreach ($yearly_report as $name => $v_report):
-                        $month_name = date('M', strtotime(date('Y') . '-' . $name)); // get full name of month by date query
+                        $month_name = jdate('M', strtotime(date('Y') . '-' . $name)); // get full name of month by date query
                         ?>
                         ["<?= $month_name?>", <?php
                             $y_not_started = 0;

@@ -179,7 +179,7 @@ class Credit_note extends Admin_Controller
 
             if (!empty($edited) && !empty($deleted)) {
                 if (empty($filterBy)) {
-                    $filterBy = '_' . date('Y');
+                    $filterBy = '_' . jdate('Y');
                 }
             }
             if (!empty($filterBy) && !is_numeric($filterBy)) {
@@ -203,9 +203,9 @@ class Credit_note extends Admin_Controller
             } else {
                 if ($filterBy == 'last_month' || $filterBy == 'this_months') {
                     if ($filterBy == 'last_month') {
-                        $month = date('Y-m', strtotime('-1 months'));
+                        $month = jdate('Y-m', strtotime('-1 months'));
                     } else {
-                        $month = date('Y-m');
+                        $month = jdate('Y-m');
                     }
                     $where = array('credit_note_month' => $month);
                 } else if (strstr($filterBy, '_')) {
@@ -366,12 +366,12 @@ class Credit_note extends Admin_Controller
         if (!empty($created) || !empty($edited) && !empty($id)) {
             $data = $this->credit_note_model->array_from_post(array('reference_no', 'client_id', 'project_id', 'discount_type', 'tags', 'discount_percent', 'adjustment', 'discount_total', 'show_quantity_as'));
             $data['client_visible'] = ($this->input->post('client_visible') == 'Yes') ? 'Yes' : 'No';
-            $data['credit_note_date'] = date('Y-m-d', strtotime($this->input->post('credit_note_date', TRUE)));
+            $data['credit_note_date'] = jdate('Y-m-d', strtotime($this->input->post('credit_note_date', TRUE)));
             if (empty($data['credit_note_date'])) {
-                $data['credit_note_date'] = date('Y-m-d');
+                $data['credit_note_date'] = jdate('Y-m-d');
             }
-            $data['credit_note_year'] = date('Y', strtotime($this->input->post('credit_note_date', TRUE)));
-            $data['credit_note_month'] = date('Y-m', strtotime($this->input->post('credit_note_date', TRUE)));
+            $data['credit_note_year'] = jdate('Y', strtotime($this->input->post('credit_note_date', TRUE)));
+            $data['credit_note_month'] = jdate('Y-m', strtotime($this->input->post('credit_note_date', TRUE)));
             $data['warehouse_id'] = $this->input->post('warehouse_id', TRUE);
             $data['notes'] = $this->input->post('notes', TRUE);
             $tax['tax_name'] = $this->input->post('total_tax_name', TRUE);
@@ -814,18 +814,18 @@ class Credit_note extends Admin_Controller
             }
 
             $invoice_info = $this->credit_note_model->check_by(array('credit_note_id' => $id), 'tbl_credit_note');
-            $data['credit_note_date'] = date('Y-m-d', strtotime($this->input->post('credit_note_date', TRUE)));
+            $data['credit_note_date'] = jdate('Y-m-d', strtotime($this->input->post('credit_note_date', TRUE)));
             if (empty($data['credit_note_date'])) {
-                $data['credit_note_date'] = date('Y-m-d');
+                $data['credit_note_date'] = jdate('Y-m-d');
             }
             // save into invoice table
             $new_invoice = array(
                 'reference_no' => $reference_no,
                 'client_id' => $this->input->post('client_id', true),
                 'project_id' => $invoice_info->project_id,
-                'credit_note_date' => date('Y-m-d', strtotime($this->input->post('credit_note_date', TRUE))),
-                'credit_note_month' => date('Y-m', strtotime($this->input->post('credit_note_date', TRUE))),
-                'credit_note_year' => date('Y', strtotime($this->input->post('credit_note_date', TRUE))),
+                'credit_note_date' => jdate('Y-m-d', strtotime($this->input->post('credit_note_date', TRUE))),
+                'credit_note_month' => jdate('Y-m', strtotime($this->input->post('credit_note_date', TRUE))),
+                'credit_note_year' => jdate('Y', strtotime($this->input->post('credit_note_date', TRUE))),
                 'notes' => $invoice_info->notes,
                 'total_tax' => $invoice_info->total_tax,
                 'tax' => $invoice_info->tax,
@@ -906,7 +906,7 @@ class Credit_note extends Admin_Controller
         if (!empty($can_edit) && !empty($edited)) {
             $where = array('credit_note_id' => $id);
             if ($action == 'sent') {
-                $data = array('emailed' => 'Yes', 'date_sent' => date("Y-m-d H:i:s", time()));
+                $data = array('emailed' => 'Yes', 'date_sent' => jdate("Y-m-d H:i:s", time()));
             } elseif (!empty($action)) {
                 $data = array('status' => $action);
             }
@@ -1030,7 +1030,7 @@ class Credit_note extends Admin_Controller
 
         $this->send_email_credit_note($credit_note_id, $message, $subject); // Email credit_note
 
-        $data = array('status' => 'sent', 'emailed' => 'Yes', 'date_sent' => date("Y-m-d H:i:s", time()));
+        $data = array('status' => 'sent', 'emailed' => 'Yes', 'date_sent' => jdate("Y-m-d H:i:s", time()));
 
         $this->credit_note_model->_table_name = 'tbl_credit_note';
         $this->credit_note_model->_primary_key = 'credit_note_id';
@@ -1134,7 +1134,7 @@ class Credit_note extends Admin_Controller
 
         $this->credit_note_model->send_email($params);
 
-        $data = array('emailed' => 'Yes', 'date_sent' => date("Y-m-d H:i:s", time()));
+        $data = array('emailed' => 'Yes', 'date_sent' => jdate("Y-m-d H:i:s", time()));
 
         $this->credit_note_model->_table_name = 'tbl_credit_note';
         $this->credit_note_model->_primary_key = 'credit_note_id';

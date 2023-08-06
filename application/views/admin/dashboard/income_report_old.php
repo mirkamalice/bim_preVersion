@@ -46,7 +46,7 @@ if ($this->session->userdata('user_type') == '1') { ?>
                 labels: [
                     <?php
                     foreach ($all_income as $name => $v_income) :
-                        $month_name = date('F', strtotime($year . '-' . $name));
+                        $month_name = jdate('F', strtotime($year . '-' . $name));
                     ?> "<?php echo $month_name; ?>",
                     <?php endforeach; ?>
                 ],

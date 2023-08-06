@@ -117,7 +117,7 @@ class CreditCardGateway
      */
     public function expiringBetween($startDate, $endDate)
     {
-        $queryPath = $this->_config->merchantPath() . '/payment_methods/all/expiring_ids?start=' . date('mY', $startDate) . '&end=' . date('mY', $endDate);
+        $queryPath = $this->_config->merchantPath() . '/payment_methods/all/expiring_ids?start=' . jdate('mY', $startDate) . '&end=' . jdate('mY', $endDate);
         $response = $this->_http->post($queryPath);
         $pager = [
             'object' => $this,
@@ -130,7 +130,7 @@ class CreditCardGateway
 
     public function fetchExpiring($startDate, $endDate, $ids)
     {
-        $queryPath = $this->_config->merchantPath() . '/payment_methods/all/expiring?start=' . date('mY', $startDate) . '&end=' . date('mY', $endDate);
+        $queryPath = $this->_config->merchantPath() . '/payment_methods/all/expiring?start=' . jdate('mY', $startDate) . '&end=' . jdate('mY', $endDate);
         $response = $this->_http->post($queryPath, ['search' => ['ids' => $ids]]);
 
         return Util::extractAttributeAsArray(

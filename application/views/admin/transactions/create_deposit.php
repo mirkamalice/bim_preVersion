@@ -132,7 +132,7 @@ if (!empty($created) || !empty($edited)) {
                                     if (!empty($deposit_info->date)) {
                                         echo $deposit_info->date;
                                     } else {
-                                        echo date('Y-m-d');
+                                        echo jdate('Y-m-d');
                                     }
                                     ?>"
                                            data-date-format="<?= config_item('date_picker_format'); ?>">

@@ -290,8 +290,8 @@ class Projects extends Admin_Controller
                         $data['project_no'] = $projects;
                         $data['project_name'] = trim($sheetData[$x]["A"]);
                         $data['progress'] = trim($sheetData[$x]["B"]);
-                        $data['start_date'] = date('Y-m-d', strtotime($sheetData[$x]["C"]));
-                        $data['end_date'] = date('Y-m-d', strtotime($sheetData[$x]["D"]));
+                        $data['start_date'] = jdate('Y-m-d', strtotime($sheetData[$x]["C"]));
+                        $data['end_date'] = jdate('Y-m-d', strtotime($sheetData[$x]["D"]));
                         $data['project_status'] = trim($sheetData[$x]["E"]);
                         $data['project_cost'] = trim($sheetData[$x]["F"]);
                         $data['demo_url'] = trim($sheetData[$x]["G"]);
@@ -898,13 +898,13 @@ class Projects extends Admin_Controller
                 }
                 
                 $data['client_visible'] = ($this->input->post('client_visible') == 'Yes') ? 'Yes' : 'No';
-                $data['invoice_date'] = date('Y-m-d', strtotime($this->input->post('invoice_date', TRUE)));
+                $data['invoice_date'] = jdate('Y-m-d', strtotime($this->input->post('invoice_date', TRUE)));
                 if (empty($data['invoice_date'])) {
-                    $data['invoice_date'] = date('Y-m-d');
+                    $data['invoice_date'] = jdate('Y-m-d');
                 }
-                $data['invoice_year'] = date('Y', strtotime($this->input->post('invoice_date', TRUE)));
-                $data['invoice_month'] = date('Y-m', strtotime($this->input->post('invoice_date', TRUE)));
-                $data['due_date'] = date('Y-m-d', strtotime($this->input->post('due_date', TRUE)));
+                $data['invoice_year'] = jdate('Y', strtotime($this->input->post('invoice_date', TRUE)));
+                $data['invoice_month'] = jdate('Y-m', strtotime($this->input->post('invoice_date', TRUE)));
+                $data['due_date'] = jdate('Y-m-d', strtotime($this->input->post('due_date', TRUE)));
                 $data['notes'] = $this->input->post('notes', TRUE);
                 $tax['tax_name'] = $this->input->post('total_tax_name', TRUE);
                 $tax['total_tax'] = $this->input->post('total_tax', TRUE);
@@ -1245,18 +1245,18 @@ class Projects extends Admin_Controller
         $recur_days = $this->get_calculate_recurring_days($recur_data['recuring_frequency']);
         $due_date = $this->items_model->get_table_field('tbl_invoices', array('invoices_id' => $invoices_id), 'due_date');
         
-        $next_date = date("Y-m-d", strtotime($due_date . "+ " . $recur_days . " days"));
+        $next_date = jdate("Y-m-d", strtotime($due_date . "+ " . $recur_days . " days"));
         
         if ($recur_data['recur_end_date'] == '') {
             $recur_end_date = '0000-00-00';
         } else {
-            $recur_end_date = date('Y-m-d', strtotime($recur_data['recur_end_date']));
+            $recur_end_date = jdate('Y-m-d', strtotime($recur_data['recur_end_date']));
         }
         $update_invoice = array(
             'recurring' => 'Yes',
             'recuring_frequency' => $recur_days,
             'recur_frequency' => $recur_data['recuring_frequency'],
-            'recur_start_date' => date('Y-m-d', strtotime($recur_data['recur_start_date'])),
+            'recur_start_date' => jdate('Y-m-d', strtotime($recur_data['recur_start_date'])),
             'recur_end_date' => $recur_end_date,
             'recur_next_date' => $next_date
         );
@@ -2692,16 +2692,16 @@ class Projects extends Admin_Controller
             $t_data = $this->items_model->array_from_post(array('project_id', 'start_date', 'start_time', 'end_date', 'end_time'));
             
             if (empty($t_data['start_date'])) {
-                $t_data['start_date'] = date('Y-m-d');
+                $t_data['start_date'] = jdate('Y-m-d');
             }
             if (empty($t_data['end_date'])) {
-                $t_data['end_date'] = date('Y-m-d');
+                $t_data['end_date'] = jdate('Y-m-d');
             }
             if (empty($t_data['start_time'])) {
-                $t_data['start_time'] = date('H:i');
+                $t_data['start_time'] = jdate('H:i');
             }
             if (empty($t_data['end_time'])) {
-                $t_data['end_time'] = date('H:i');
+                $t_data['end_time'] = jdate('H:i');
             }
             $data['start_time'] = strtotime($t_data['start_date'] . ' ' . $t_data['start_time']);
             $data['end_time'] = strtotime($t_data['end_date'] . ' ' . $t_data['end_time']);

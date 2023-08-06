@@ -29,7 +29,7 @@ class Menu
                     'icon' => 'fa fa-plug',
                     'parent' => '0',
                     'sort' => '1000',
-                    'time' => date('Y-m-d h:i:s'),
+                    'time' => jdate('Y-m-d h:i:s'),
                 ], [
                     'menu_id' => '1111222222221',
                     'label' => 'my_modules',
@@ -37,7 +37,7 @@ class Menu
                     'icon' => 'fa fa-bitbucket',
                     'parent' => '111122222222',
                     'sort' => '1',
-                    'time' => date('Y-m-d h:i:s'),
+                    'time' => jdate('Y-m-d h:i:s'),
                 ],
                 [
                     'menu_id' => '1111222222222',
@@ -47,7 +47,7 @@ class Menu
                     'parent' => '111122222222',
                     'sort' => '2',
                     'status' => '1',
-                    'time' => date('Y-m-d h:i:s'),
+                    'time' => jdate('Y-m-d h:i:s'),
                 ],
             ];
             $module_menu = json_decode(json_encode($module));

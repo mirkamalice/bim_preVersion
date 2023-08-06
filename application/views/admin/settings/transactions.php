@@ -37,9 +37,9 @@
                                        echo config_item('deposit_number_format');
                                    } ?>">
                             <small>ex [<?= config_item('deposit_prefix') ?>] = <?= lang('deposit_prefix') ?>,[yyyy] =
-                                'Current Year (<?= date('Y') ?>)'[yy] ='Current Year (<?= date('y') ?>)',[mm] =
-                                'Current Month(<?= date('M') ?>)',[m] =
-                                'Current Month(<?= date('m') ?>)',[dd] = 'Current Date (<?= date('d') ?>)',[number] =
+                                'Current Year (<?= jdate('Y') ?>)'[yy] ='Current Year (<?= jdate('y') ?>)',[mm] =
+                                'Current Month(<?= jdate('M') ?>)',[m] =
+                                'Current Month(<?= jdate('m') ?>)',[dd] = 'Current Date (<?= jdate('d') ?>)',[number] =
                                 'Invoice Number (<?= sprintf('%04d', config_item('deposit_start_no')) ?>)'
                             </small>
                         </div>
@@ -73,9 +73,9 @@
                                        echo config_item('expense_number_format');
                                    } ?>">
                             <small>ex [<?= config_item('expense_prefix') ?>] = <?= lang('expense_prefix') ?>,[yyyy] =
-                                'Current Year (<?= date('Y') ?>)'[yy] ='Current Year (<?= date('y') ?>)',[mm] =
-                                'Current Month(<?= date('M') ?>)',[m] =
-                                'Current Month(<?= date('m') ?>)',[dd] = 'Current Date (<?= date('d') ?>)',[number] =
+                                'Current Year (<?= jdate('Y') ?>)'[yy] ='Current Year (<?= jdate('y') ?>)',[mm] =
+                                'Current Month(<?= jdate('M') ?>)',[m] =
+                                'Current Month(<?= jdate('m') ?>)',[dd] = 'Current Date (<?= jdate('d') ?>)',[number] =
                                 'Invoice Number (<?= sprintf('%04d', config_item('expense_start_no')) ?>)'
                             </small>
                         </div>

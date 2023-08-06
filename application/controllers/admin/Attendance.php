@@ -32,7 +32,7 @@ class Attendance extends Admin_Controller
         } else {
             $data['user_id'] = $this->session->userdata('user_id');
         }
-        $data['active'] = date('Y');
+        $data['active'] = jdate('Y');
 
         $attendance_info = get_order_by('tbl_attendance', array('user_id' => $data['user_id']), 'date_in', true);
         $data['mytime_info'] = $this->get_mytime_info($attendance_info);
@@ -117,8 +117,8 @@ class Attendance extends Admin_Controller
 
         $data['clock_id'] = $clock_id;
         $data['user_id'] = $this->session->userdata('user_id');
-        $data['clockin_edit'] = date('H:i:s', strtotime($cdata['clockin_edit']));
-        $data['clockout_edit'] = date('H:i:s', strtotime($cdata['clockout_edit']));
+        $data['clockin_edit'] = jdate('H:i:s', strtotime($cdata['clockin_edit']));
+        $data['clockout_edit'] = jdate('H:i:s', strtotime($cdata['clockout_edit']));
         $data['reason'] = $cdata['reason'];
 
         //save data in database
@@ -206,17 +206,17 @@ class Attendance extends Admin_Controller
     {
 
         $adata = $this->attendance_model->array_from_post(array('user_id', 'date_in', 'date_out'));
-        $date_in = date('Y', strtotime($adata['date_in']));
+        $date_in = jdate('Y', strtotime($adata['date_in']));
         if (empty($adata['date_in'])) {
-            $adata['date_in'] = date('Y-m-d');
+            $adata['date_in'] = jdate('Y-m-d');
         } elseif ($date_in >= 1969 && $date_in <= 1999) {
-            $adata['date_in'] = date('Y-m-d');
+            $adata['date_in'] = jdate('Y-m-d');
         }
-        $date_in = date('Y', strtotime($adata['date_out']));
+        $date_in = jdate('Y', strtotime($adata['date_out']));
         if (empty($adata['date_out'])) {
-            $adata['date_out'] = date('Y-m-d');
+            $adata['date_out'] = jdate('Y-m-d');
         } elseif ($date_in >= 1969 && $date_in <= 1999) {
-            $adata['date_out'] = date('Y-m-d');
+            $adata['date_out'] = jdate('Y-m-d');
         }
         $check_date = $this->attendance_model->check_by(array('user_id' => $adata['user_id'], 'date_in' => $adata['date_in']), 'tbl_attendance');
         $this->attendance_model->_table_name = "tbl_attendance"; // table name
@@ -234,8 +234,8 @@ class Attendance extends Admin_Controller
             $data['attendance_id'] = $this->attendance_model->save($adata);
         }
 
-        $data['clockin_time'] = date('H:i:s', strtotime($this->input->post('clockin_time', TRUE)));
-        $data['clockout_time'] = date('H:i:s', strtotime($this->input->post('clockout_time', TRUE)));
+        $data['clockin_time'] = jdate('H:i:s', strtotime($this->input->post('clockin_time', TRUE)));
+        $data['clockout_time'] = jdate('H:i:s', strtotime($this->input->post('clockout_time', TRUE)));
         $data['clocking_status'] = 0;
         //save data in database
         $this->attendance_model->_table_name = "tbl_clock"; // table name
@@ -554,8 +554,8 @@ class Attendance extends Admin_Controller
         $departments_id = $this->input->post('departments_id', TRUE);
         $date = $this->input->post('date', TRUE);
 
-        $month = date('n', strtotime($date));
-        $year = date('Y', strtotime($date));
+        $month = jdate('n', strtotime($date));
+        $year = jdate('Y', strtotime($date));
         $num = cal_days_in_month(CAL_GREGORIAN, $month, $year);
         if (!empty($departments_id)) {
             $data['employee_info'] = $this->attendance_model->get_employee_id_by_dept_id($departments_id);
@@ -590,7 +590,7 @@ class Attendance extends Admin_Controller
                 } else {
                     $sdate = $yymm . '-' . $i;
                 }
-                $day_name = date('l', strtotime("+$x days", strtotime($year . '-' . $month . '-' . $key)));
+                $day_name = jdate('l', strtotime("+$x days", strtotime($year . '-' . $month . '-' . $key)));
 
                 $data['week_info'][date('W', strtotime($sdate))][$sdate] = $sdate;
 
@@ -624,7 +624,7 @@ class Attendance extends Admin_Controller
         $data['date'] = $this->input->post('date', TRUE);
         $where = array('departments_id' => $departments_id);
         $data['dept_name'] = $this->attendance_model->check_by($where, 'tbl_departments');
-        $data['month'] = date('F-Y', strtotime($yymm));
+        $data['month'] = jdate('F-Y', strtotime($yymm));
 
 
         $data['subview'] = $this->load->view('admin/attendance/attendance_report', $data, TRUE);
@@ -637,10 +637,10 @@ class Attendance extends Admin_Controller
             $start_date = $date['start_date'];
             $end_date = $date['end_date'];
             // get month and year from start date and end date and check if they are equal or not
-            $start_month = date('m', strtotime($start_date));
-            $start_year = date('Y', strtotime($start_date));
-            $end_month = date('m', strtotime($end_date));
-            $end_year = date('Y', strtotime($end_date));
+            $start_month = jdate('m', strtotime($start_date));
+            $start_year = jdate('Y', strtotime($start_date));
+            $end_month = jdate('m', strtotime($end_date));
+            $end_year = jdate('Y', strtotime($end_date));
             if ($start_month == $end_month && $start_year == $end_year) {
                 $yymm = $start_year . '-' . $start_month;
             } else {
@@ -653,8 +653,8 @@ class Attendance extends Admin_Controller
             $data['dateSl'] = $all_dates;
             $data['total_days'] = count(array($all_dates));
         } else {
-            $month = date('n', strtotime($date));
-            $year = date('Y', strtotime($date));
+            $month = jdate('n', strtotime($date));
+            $year = jdate('Y', strtotime($date));
             $num = cal_days_in_month(CAL_GREGORIAN, $month, $year);
             if ($month >= 1 && $month <= 9) {
                 $yymm = $year . '-' . '0' . $month;
@@ -704,7 +704,7 @@ class Attendance extends Admin_Controller
 
         foreach ($data['employee'] as $sl => $v_employee) {
             foreach ($all_dates as $key => $sdate) {
-                $day_name = date('l', strtotime($sdate));
+                $day_name = jdate('l', strtotime($sdate));
                 if (!empty($holidays)) {
                     foreach ($holidays as $v_holiday) {
                         if ($v_holiday->day == $day_name) {
@@ -738,9 +738,9 @@ class Attendance extends Admin_Controller
         $data['total_holiday'] = $total_holiday;
 
         if (!empty($yymm['start_month'])) {
-            $data['month'] = date('F-Y', strtotime($yymm['start_month']));
+            $data['month'] = jdate('F-Y', strtotime($yymm['start_month']));
         } else {
-            $data['month'] = date('F-Y', strtotime($yymm));
+            $data['month'] = jdate('F-Y', strtotime($yymm));
         }
         $data['search_type'] = $type;
         $data['start_date'] = (!empty($start_date) ? $start_date : '');
@@ -761,15 +761,15 @@ class Attendance extends Admin_Controller
     {
         $departments_id = $this->input->post('departments_id', TRUE);
         $date = $this->input->post('date', TRUE);
-        $month = date('n', strtotime($date));
-        $year = date('Y', strtotime($date));
+        $month = jdate('n', strtotime($date));
+        $year = jdate('Y', strtotime($date));
         $num = cal_days_in_month(CAL_GREGORIAN, $month, $year);
         if (!empty($departments_id)) {
             $data['employee'] = $this->attendance_model->get_employee_id_by_dept_id($departments_id);
         } else {
             $data['employee'] = get_staff_details();
         }
-        $day = date('d', strtotime($date));
+        $day = jdate('d', strtotime($date));
         $holidays = $this->common_model->get_holidays(); //tbl working Days Holiday
 
         if ($month >= 1 && $month <= 9) {
@@ -801,7 +801,7 @@ class Attendance extends Admin_Controller
                 } else {
                     $sdate = $yymm . '-' . $i;
                 }
-                $day_name = date('l', strtotime("+$x days", strtotime($year . '-' . $month . '-' . $key)));
+                $day_name = jdate('l', strtotime("+$x days", strtotime($year . '-' . $month . '-' . $key)));
 
 
                 if (!empty($holidays)) {
@@ -837,7 +837,7 @@ class Attendance extends Admin_Controller
         $where = array('departments_id' => $departments_id);
         $data['dept_name'] = $this->attendance_model->check_by($where, 'tbl_departments');
 
-        $data['month'] = date('F-Y', strtotime($yymm));
+        $data['month'] = jdate('F-Y', strtotime($yymm));
         $data['subview'] = $this->load->view('admin/attendance/attendance_report_2', $data, TRUE);
         $this->load->view('admin/_layout_main', $data);
     }
@@ -847,8 +847,8 @@ class Attendance extends Admin_Controller
         $departments_id = $this->input->post('departments_id', TRUE);
         $date = $this->input->post('date', TRUE);
 
-        $month = date('n', strtotime($date));
-        $year = date('Y', strtotime($date));
+        $month = jdate('n', strtotime($date));
+        $year = jdate('Y', strtotime($date));
         $num = cal_days_in_month(CAL_GREGORIAN, $month, $year);
 
 
@@ -885,7 +885,7 @@ class Attendance extends Admin_Controller
                 } else {
                     $sdate = $yymm . '-' . $i;
                 }
-                $day_name = date('l', strtotime("+$x days", strtotime($year . '-' . $month . '-' . $key)));
+                $day_name = jdate('l', strtotime("+$x days", strtotime($year . '-' . $month . '-' . $key)));
 
                 $data['week_info'][date('W', strtotime($sdate))][$sdate] = $sdate;
                 // get leave info
@@ -921,15 +921,15 @@ class Attendance extends Admin_Controller
         $where = array('departments_id' => $departments_id);
         $data['dept_name'] = $this->attendance_model->check_by($where, 'tbl_departments');
 
-        $data['month'] = date('F Y', strtotime($yymm));
+        $data['month'] = jdate('F Y', strtotime($yymm));
         $data['subview'] = $this->load->view('admin/attendance/attendance_report_3', $data, TRUE);
         $this->load->view('admin/_layout_main', $data);
     }
 
     public function attendance_pdf($type, $departments_id = null, $date)
     {
-        $month = date('n', strtotime($date));
-        $year = date('Y', strtotime($date));
+        $month = jdate('n', strtotime($date));
+        $year = jdate('Y', strtotime($date));
         $num = cal_days_in_month(CAL_GREGORIAN, $month, $year);
         if (!empty($departments_id)) {
             $data['employee'] = $this->attendance_model->get_employee_id_by_dept_id($departments_id);
@@ -963,7 +963,7 @@ class Attendance extends Admin_Controller
                     } else {
                         $sdate = $yymm . '-' . $i;
                     }
-                    $day_name = date('l', strtotime("+$x days", strtotime($year . '-' . $month . '-' . $key)));
+                    $day_name = jdate('l', strtotime("+$x days", strtotime($year . '-' . $month . '-' . $key)));
 
                     $data['week_info'][date('W', strtotime($sdate))][$sdate] = $sdate;
 
@@ -995,7 +995,7 @@ class Attendance extends Admin_Controller
             $where = array('departments_id' => $departments_id);
             $data['dept_name'] = $this->attendance_model->check_by($where, 'tbl_departments');
 
-            $data['month'] = date('F-Y', strtotime($yymm));
+            $data['month'] = jdate('F-Y', strtotime($yymm));
             $subview = 'attendance_report_pdf';
         } elseif ($type == 2) {
 
@@ -1010,7 +1010,7 @@ class Attendance extends Admin_Controller
                     } else {
                         $sdate = $yymm . '-' . $i;
                     }
-                    $day_name = date('l', strtotime("+$x days", strtotime($year . '-' . $month . '-' . $key)));
+                    $day_name = jdate('l', strtotime("+$x days", strtotime($year . '-' . $month . '-' . $key)));
 
 
                     if (!empty($holidays)) {
@@ -1042,7 +1042,7 @@ class Attendance extends Admin_Controller
             $data['title'] = lang('attendance_report');
             $where = array('departments_id' => $departments_id);
             $data['dept_name'] = $this->attendance_model->check_by($where, 'tbl_departments');
-            $data['month'] = date('F-Y', strtotime($yymm));
+            $data['month'] = jdate('F-Y', strtotime($yymm));
             $subview = 'attendance_report_2_pdf';
         } elseif ($type == 6) {
             foreach ($data['employee'] as $sl => $v_employee) {
@@ -1054,7 +1054,7 @@ class Attendance extends Admin_Controller
                     } else {
                         $sdate = $yymm . '-' . $i;
                     }
-                    $day_name = date('l', strtotime("+$x days", strtotime($year . '-' . $month . '-' . $key)));
+                    $day_name = jdate('l', strtotime("+$x days", strtotime($year . '-' . $month . '-' . $key)));
 
 
                     // get leave info
@@ -1087,7 +1087,7 @@ class Attendance extends Admin_Controller
             $where = array('departments_id' => $departments_id);
             $data['dept_name'] = $this->attendance_model->check_by($where, 'tbl_departments');
 
-            $data['month'] = date('F Y', strtotime($yymm));
+            $data['month'] = jdate('F Y', strtotime($yymm));
             $subview = 'attendance_report_6_pdf';
         } else {
             foreach ($data['employee'] as $sl => $v_employee) {
@@ -1100,7 +1100,7 @@ class Attendance extends Admin_Controller
                     } else {
                         $sdate = $yymm . '-' . $i;
                     }
-                    $day_name = date('l', strtotime("+$x days", strtotime($year . '-' . $month . '-' . $key)));
+                    $day_name = jdate('l', strtotime("+$x days", strtotime($year . '-' . $month . '-' . $key)));
 
                     $data['week_info'][date('W', strtotime($sdate))][$sdate] = $sdate;
                     // get leave info
@@ -1133,7 +1133,7 @@ class Attendance extends Admin_Controller
             $where = array('departments_id' => $departments_id);
             $data['dept_name'] = $this->attendance_model->check_by($where, 'tbl_departments');
 
-            $data['month'] = date('F Y', strtotime($yymm));
+            $data['month'] = jdate('F Y', strtotime($yymm));
             $subview = 'attendance_report_3_pdf';
         }
         $data['title'] = lang('attendance_report'); //Page title
@@ -1150,8 +1150,8 @@ class Attendance extends Admin_Controller
         $date = $this->input->post('date', TRUE);
 
 
-        $month = date('n', strtotime($date));
-        $year = date('Y', strtotime($date));
+        $month = jdate('n', strtotime($date));
+        $year = jdate('Y', strtotime($date));
         $num = cal_days_in_month(CAL_GREGORIAN, $month, $year);
 
 
@@ -1187,7 +1187,7 @@ class Attendance extends Admin_Controller
                 } else {
                     $sdate = $yymm . '-' . $i;
                 }
-                $day_name = date('l', strtotime("+$x days", strtotime($year . '-' . $month . '-' . $key)));
+                $day_name = jdate('l', strtotime("+$x days", strtotime($year . '-' . $month . '-' . $key)));
 
                 // get leave info
 
@@ -1223,7 +1223,7 @@ class Attendance extends Admin_Controller
         $data['date'] = $this->input->post('date', TRUE);
         $where = array('departments_id' => $departments_id);
         $data['dept_name'] = $this->attendance_model->check_by($where, 'tbl_departments');
-        $data['month'] = date('F Y', strtotime($yymm));
+        $data['month'] = jdate('F Y', strtotime($yymm));
         $data['subview'] = $this->load->view('admin/attendance/attendance_report_4', $data, TRUE);
         $this->load->view('admin/_layout_main', $data);
     }
@@ -1236,9 +1236,9 @@ class Attendance extends Admin_Controller
         $data['date'] = $date;
         $payment_month = $date;
 
-        $month = date('n', strtotime($date));
-        $year = date('Y', strtotime($date));
-        $day = date('d', strtotime($date));
+        $month = jdate('n', strtotime($date));
+        $year = jdate('Y', strtotime($date));
+        $day = jdate('d', strtotime($date));
         $num = cal_days_in_month(CAL_GREGORIAN, $month, $year);
 
 
@@ -1272,7 +1272,7 @@ class Attendance extends Admin_Controller
                 } else {
                     $sdate = $yymm . '-' . $i;
                 }
-                $day_name = date('l', strtotime("+$x days", strtotime($year . '-' . $month . '-' . $key)));
+                $day_name = jdate('l', strtotime("+$x days", strtotime($year . '-' . $month . '-' . $key)));
 
 
                 // get leave info
@@ -1310,7 +1310,7 @@ class Attendance extends Admin_Controller
         $data['date'] = $this->input->post('date', TRUE);
         $where = array('departments_id' => $departments_id);
         $data['dept_name'] = $this->attendance_model->check_by($where, 'tbl_departments');
-        $data['month'] = date('F Y', strtotime($yymm));
+        $data['month'] = jdate('F Y', strtotime($yymm));
         $data['subview'] = $this->load->view('admin/attendance/attendance_report_5', $data, TRUE);
         $this->load->view('admin/_layout_main', $data);
     }
@@ -1323,9 +1323,9 @@ class Attendance extends Admin_Controller
         $data['date'] = $date;
         $payment_month = $date;
 
-        $month = date('n', strtotime($date));
-        $year = date('Y', strtotime($date));
-        $day = date('d', strtotime($date));
+        $month = jdate('n', strtotime($date));
+        $year = jdate('Y', strtotime($date));
+        $day = jdate('d', strtotime($date));
         $num = cal_days_in_month(CAL_GREGORIAN, $month, $year);
 
         if (!empty($departments_id)) {
@@ -1360,7 +1360,7 @@ class Attendance extends Admin_Controller
                 } else {
                     $sdate = $yymm . '-' . $i;
                 }
-                $day_name = date('l', strtotime("+$x days", strtotime($year . '-' . $month . '-' . $key)));
+                $day_name = jdate('l', strtotime("+$x days", strtotime($year . '-' . $month . '-' . $key)));
 
 
                 // get leave info
@@ -1396,7 +1396,7 @@ class Attendance extends Admin_Controller
         $data['date'] = $this->input->post('date', TRUE);
         $where = array('departments_id' => $departments_id);
         $data['dept_name'] = $this->attendance_model->check_by($where, 'tbl_departments');
-        $data['month'] = date('F Y', strtotime($yymm));
+        $data['month'] = jdate('F Y', strtotime($yymm));
         $data['subview'] = $this->load->view('admin/attendance/attendance_report_6', $data, TRUE);
         $this->load->view('admin/_layout_main', $data);
     }

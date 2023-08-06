@@ -108,10 +108,10 @@ if ($task_timer_id) {
                                                                                                                                             ?>" method="post" class="form-horizontal">
                 <?php
                 if (!empty($project_timer_info)) {
-                    $start_date = date('Y-m-d', $project_timer_info->start_time);
-                    $start_time = date('H:i', $project_timer_info->start_time);
-                    $end_date = date('Y-m-d', $project_timer_info->end_time);
-                    $end_time = date('H:i', $project_timer_info->end_time);
+                    $start_date = jdate('Y-m-d', $project_timer_info->start_time);
+                    $start_time = jdate('H:i', $project_timer_info->start_time);
+                    $end_date = jdate('Y-m-d', $project_timer_info->end_time);
+                    $end_time = jdate('H:i', $project_timer_info->end_time);
                 } else {
                     $start_date = '';
                     $start_time = '';

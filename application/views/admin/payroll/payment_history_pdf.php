@@ -112,8 +112,8 @@ if (!file_exists($img)) {
             if (!empty($payment_history)): foreach ($payment_history as $v_payment_history) :
                 ?>
                 <tr class="payment_history">
-                    <td><?php echo date('F-Y', strtotime($v_payment_history->payment_month)); ?></td>
-                    <td><?php echo date('d-M-y', strtotime($v_payment_history->paid_date)); ?></td>
+                    <td><?php echo jdate('F-Y', strtotime($v_payment_history->payment_month)); ?></td>
+                    <td><?php echo jdate('d-M-y', strtotime($v_payment_history->paid_date)); ?></td>
                     <td><?php echo display_money($total_paid_amount[$index], $currency->symbol); ?></td>
                     <td><?php echo display_money($total_deduction[$index], $currency->symbol); ?></td>
                     <td><?php echo display_money($net_salary = $gross - $deduction, $currency->symbol); ?></td>

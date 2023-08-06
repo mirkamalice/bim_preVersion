@@ -510,14 +510,15 @@ function slug_it($str, $options = array())
     return $options['lowercase'] ? mb_strtolower($str, 'UTF-8') : $str;
 }
 
-function display_money($value, $currency = false, $decimal = 2)
+function display_money($value, $currency = false, $decimal = 0)
 {
     if (!empty(config_item('decimal_separator'))) {
         $decimal = config_item('decimal_separator');
     }
     switch (config_item('money_format')) {
         case 1:
-            $value = number_format($value, $decimal, '.', ',');
+//            JX-Changer
+            $value = number_format($value, 0, '.', ',');
             break;
         case 2:
             $value = number_format($value, $decimal, ',', '.');
@@ -673,7 +674,7 @@ function custom_form_Fields($id, $edit_id = null, $col_sm = null)
                 <label class="' . $col . ' control-label">' . $v_fileds->field_label . ' ' . $l_required . '  ' . $help_text . '</label>
                 <div class="col-lg-5">
                 <div class="input-group">
-                <input type="text" name="' . $name . '" class="form-control datepicker" value="' . (!empty($value) ? $value : date('Y-m-d')) . '">
+                <input type="text" name="' . $name . '" class="form-control datepicker" value="' . (!empty($value) ? $value : jdate('Y-m-d')) . '">
                 <div class="input-group-addon">
                 <a href="#"><i class="fa fa-calendar"></i></a>
                 </div>
@@ -780,7 +781,7 @@ function custom_form_Fields($id, $edit_id = null, $col_sm = null)
                 <label class="' . $col . ' control-label">' . $v_fileds->field_label . ' ' . $l_required . '  ' . $help_text . '</label>
                 <div class="col-lg-5">
                 <div class="input-group">
-                <input type="text" name="' . $name . '" class="form-control datepicker" value="' . (!empty($value) ? $value : date('Y-m-d')) . '">
+                <input type="text" name="' . $name . '" class="form-control datepicker" value="' . (!empty($value) ? $value : jdate('Y-m-d')) . '">
                 <div class="input-group-addon">
                 <a href="#"><i class="fa fa-calendar"></i></a>
                 </div>
@@ -876,7 +877,7 @@ function custom_form_Fields($id, $edit_id = null, $col_sm = null)
                 <label class="' . $col . ' control-label">' . $v_fileds->field_label . ' ' . $l_required . '  ' . $help_text . '</label>
                 <div class="col-lg-5">
                 <div class="input-group">
-                <input type="text" name="' . $name . '" class="form-control datepicker" value="' . (!empty($value) ? $value : date('Y-m-d')) . '">
+                <input type="text" name="' . $name . '" class="form-control datepicker" value="' . (!empty($value) ? $value : jdate('Y-m-d')) . '">
                 <div class="input-group-addon">
                 <a href="#"><i class="fa fa-calendar"></i></a>
                 </div>
@@ -1577,7 +1578,7 @@ function add_notification($values)
             }
         }
     }
-    $data['date'] = date('Y-m-d H:i:s');
+    $data['date'] = jdate('Y-m-d H:i:s');
     $CI->db->insert('tbl_notifications', $data);
     return true;
 }
@@ -2360,7 +2361,7 @@ function read_more($str, $limit, $url, $attachment = null)
 if (!function_exists('cal_days_in_month')) {
     function cal_days_in_month($calendar, $month, $year)
     {
-        return date('t', mktime(0, 0, 0, $month, 1, $year));
+        return jdate('t', mktime(0, 0, 0, $month, 1, $year));
     }
 }
 if (!defined('CAL_GREGORIAN'))
@@ -2383,13 +2384,13 @@ function calculate_taken_leave($token_leave)
                 }
                 $allDates = $CI->common_model->GetDays($v_leave->leave_start_date, $v_leave->leave_end_date);
                 foreach ($allDates as $key => $value) {
-                    $dayName = date("l", strtotime($value));
+                    $dayName = jdate("l", strtotime($value));
                     if (!in_array($dayName, array_column($holidays, 'day'))) {
                         $total_taken++;
                     }
                 }
             } else {
-                $dayName = date("l", strtotime($v_leave->leave_start_date));
+                $dayName = jdate("l", strtotime($v_leave->leave_start_date));
                 if (!in_array($dayName, array_column($holidays, 'day'))) {
                     $total_hourly += ($v_leave->hours / $office_hours);
                 }
@@ -2423,9 +2424,9 @@ function leave_report($id = null)
     $result = array();
     foreach ($all_category as $v_category) {
         if (!empty($id)) {
-            $where = array('user_id' => $id, 'YEAR(`leave_start_date`)' => date('Y'), 'leave_category_id' => $v_category->leave_category_id, 'application_status' => 2);
+            $where = array('user_id' => $id, 'YEAR(`leave_start_date`)' => jdate('Y'), 'leave_category_id' => $v_category->leave_category_id, 'application_status' => 2);
         } else {
-            $where = array('YEAR(`leave_start_date`)' => date('Y'), 'leave_category_id' => $v_category->leave_category_id, 'application_status' => 2);
+            $where = array('YEAR(`leave_start_date`)' => jdate('Y'), 'leave_category_id' => $v_category->leave_category_id, 'application_status' => 2);
         }
         $all_leave_info = $CI->db->where($where)->get('tbl_leave_application')->result();
 

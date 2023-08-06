@@ -40,7 +40,7 @@ if (!empty($my_todo_list)):foreach ($my_todo_list as $tkey => $my_todo):
         if (!empty($my_todo->due_date)) {
             $due_date = $my_todo->due_date;
         } else {
-            $due_date = date('D-M-Y');
+            $due_date = jdate('D-M-Y');
         }
         ?>
         <tr class="sortable item" data-item-id="<?= $my_todo->todo_id ?>">
@@ -100,7 +100,7 @@ if (!empty($my_todo_list)):foreach ($my_todo_list as $tkey => $my_todo):
             </td>
             <td>
                 <strong data-toggle="tooltip" data-placement="top"
-                        title="<?= strftime(config_item('date_format'), strtotime($due_date)) ?>"><?= date("l", strtotime($due_date)) ?>
+                        title="<?= strftime(config_item('date_format'), strtotime($due_date)) ?>"><?= jdate("l", strtotime($due_date)) ?>
 
                     <span class="block"><?= daysleft($due_date) ?></span>
 

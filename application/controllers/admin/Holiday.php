@@ -43,11 +43,11 @@ class Holiday extends Admin_Controller
             $data['active_add_holiday'] = $flag;
         }
         // active check with current month
-        $data['current_month'] = date('m');
+        $data['current_month'] = jdate('m');
         if ($this->input->post('year', TRUE)) { // if input year
             $data['year'] = $this->input->post('year', TRUE);
         } else { // else current year
-            $data['year'] = date('Y'); // get current year
+            $data['year'] = jdate('Y'); // get current year
         }
         // get all holiday list by year and month
         $data['all_holiday_list'] = $this->get_holiday_list($data['year']);  // get current year
@@ -59,11 +59,11 @@ class Holiday extends Admin_Controller
     public function add_holiday($id = null)
     {
         // active check with current month
-        $data['current_month'] = date('m');
+        $data['current_month'] = jdate('m');
         if ($this->input->post('year', TRUE)) { // if input year
             $data['year'] = $this->input->post('year', TRUE);
         } else { // else current year
-            $data['year'] = date('Y'); // get current year
+            $data['year'] = jdate('Y'); // get current year
         }
         $edited = can_action('71', 'edited');
         if (!empty($id) && !empty($edited)) {

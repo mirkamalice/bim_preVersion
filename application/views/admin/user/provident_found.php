@@ -44,7 +44,7 @@
             ?>
             <?php if (!empty($provident_fund_info)) {
                 foreach ($provident_fund_info as $key => $v_provident_fund) {
-                    $month_name = date('F', strtotime($year . '-' . $key)); // get full name of month by date query
+                    $month_name = jdate('F', strtotime($year . '-' . $key)); // get full name of month by date query
 
                     $curency = $this->db->where('code', config_item('default_currency'))->get('tbl_currencies')->row();
                     if (!empty($v_provident_fund)) {

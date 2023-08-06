@@ -118,7 +118,7 @@
                                                                                                                             if (!empty($payment_info->payment_date)) {
                                                                                                                                 echo $payment_info->payment_date;
                                                                                                                             } else {
-                                                                                                                                echo date('Y-m-d');
+                                                                                                                                echo jdate('Y-m-d');
                                                                                                                             }
                                                                                                                             ?>"
                                     data-date-format="<?= config_item('date_picker_format'); ?>">

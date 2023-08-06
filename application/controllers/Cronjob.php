@@ -68,11 +68,11 @@ class Cronjob extends MY_Controller
                 $date = new DateTime(date('Y-m-d'));
                 // Check if is first recurring
                 if (!$last_recurring_date) {
-                    $last_recurring_date = date('Y-m-d', strtotime($expense_date));
+                    $last_recurring_date = jdate('Y-m-d', strtotime($expense_date));
                 } else {
-                    $last_recurring_date = date('Y-m-d', strtotime($last_recurring_date));
+                    $last_recurring_date = jdate('Y-m-d', strtotime($last_recurring_date));
                 }
-                $re_create_at = date('Y-m-d', strtotime('+' . $repeat_every . ' ' . strtoupper($type), strtotime($last_recurring_date)));
+                $re_create_at = jdate('Y-m-d', strtotime('+' . $repeat_every . ' ' . strtoupper($type), strtotime($last_recurring_date)));
 
                 if (date('Y-m-d') >= $re_create_at) {
                     // Ok we can repeat the expense now
@@ -84,7 +84,7 @@ class Cronjob extends MY_Controller
                     $new_expense['billable'] = $expense->billable;
                     $new_expense['client_visible'] = $expense->client_visible;
                     $new_expense['type'] = 'Expense';
-                    $new_expense['create_date'] = date('Y-m-d H:i:s');
+                    $new_expense['create_date'] = jdate('Y-m-d H:i:s');
                     $new_expense['date'] = $re_create_at;
                     $new_expense['recurring_from'] = $expense->transactions_id;
                     $new_expense['added_by'] = $expense->added_by;
@@ -444,9 +444,9 @@ class Cronjob extends MY_Controller
         // Auto Backup every 7 days
         if ((config_item('automatic_database_backup') == 'on') && time() > (config_item('last_autobackup') + 7 * 24 * 60 * 60)) {
             $this->load->dbutil();
-            $prefs = array('format' => 'zip', 'filename' => 'Database-auto-full-backup_' . date('Y-m-d_H-i'));
+            $prefs = array('format' => 'zip', 'filename' => 'Database-auto-full-backup_' . jdate('Y-m-d_H-i'));
             $backup = $this->dbutil->backup($prefs);
-            if (!write_file('./uploads/backup/BD-backup_' . date('Y-m-d_H-i') . '.zip', $backup)) {
+            if (!write_file('./uploads/backup/BD-backup_' . jdate('Y-m-d_H-i') . '.zip', $backup)) {
                 log_message('error', "Error while creating auto database backup!");
             } else {
                 $input_data['last_autobackup'] = time();
@@ -473,7 +473,7 @@ class Cronjob extends MY_Controller
         foreach ($all_employee_info as $v_employee) {
             //             set timezone to user timezone
 
-            $date = date('Y-m-d');
+            $date = jdate('Y-m-d');
             // get office houre info
 
             // get all attendance by date
@@ -483,7 +483,7 @@ class Cronjob extends MY_Controller
             // get working holiday
             $holidays = $this->common_model->get_holidays(); //tbl working Days Holiday
 
-            $day_name = date("l", strtotime(date('Y-m-d')));
+            $day_name = jdate("l", strtotime(date('Y-m-d')));
             if (!empty($holidays)) {
                 foreach ($holidays as $v_holiday) {
                     if ($v_holiday->day == $day_name) {
@@ -492,7 +492,7 @@ class Cronjob extends MY_Controller
                 }
             }
             // get public holiday
-            $public_holiday = $this->invoice_model->check_by(array('start_date' => date('Y-m-d')), 'tbl_holiday');
+            $public_holiday = $this->invoice_model->check_by(array('start_date' => jdate('Y-m-d')), 'tbl_holiday');
 
             if (empty($public_holiday) || empty($yes_holiday)) {
                 if (!empty($all_attendance_info)) {
@@ -513,7 +513,7 @@ class Cronjob extends MY_Controller
 
     function goal_tracking_cron()
     {
-        $mdate = date('Y-m-d');
+        $mdate = jdate('Y-m-d');
         $all_goal_tracking = $this->cron_model->get_permission('tbl_goal_tracking');
 
         if (!empty($all_goal_tracking)) {
@@ -575,7 +575,7 @@ class Cronjob extends MY_Controller
                         $merge_fields = array_merge($merge_fields, merge_proposal_template($v_proposal->proposals_id));
                         $this->sms->send(SMS_PROPOSAL_EXP_REMINDER, $mobile, $merge_fields);
                     }
-                    $data = array('alert_overdue' => '1', 'status' => 'sent', 'emailed' => 'Yes', 'date_sent' => date("Y-m-d H:i:s", time()));
+                    $data = array('alert_overdue' => '1', 'status' => 'sent', 'emailed' => 'Yes', 'date_sent' => jdate("Y-m-d H:i:s", time()));
 
                     $this->proposal_model->_table_name = 'tbl_proposals';
                     $this->proposal_model->_primary_key = 'proposals_id';
@@ -650,7 +650,7 @@ class Cronjob extends MY_Controller
                     $this->sms->send(SMS_ESTIMATE_EXP_REMINDER, $mobile, $merge_fields);
                 }
 
-                $data = array('alert_overdue' => '1', 'emailed' => 'Yes', 'date_sent' => date("Y-m-d H:i:s", time()));
+                $data = array('alert_overdue' => '1', 'emailed' => 'Yes', 'date_sent' => jdate("Y-m-d H:i:s", time()));
 
                 $this->estimates_model->_table_name = 'tbl_estimates';
                 $this->estimates_model->_primary_key = 'estimates_id';
@@ -773,8 +773,8 @@ class Cronjob extends MY_Controller
                     'client_id' => $v_r_invoice->client_id,
                     'project_id' => $v_r_invoice->project_id,
                     'invoice_date' => $v_r_invoice->recur_next_date,
-                    'invoice_year' => date('Y', strtotime($v_r_invoice->recur_next_date)),
-                    'invoice_month' => date('Y-m', strtotime($v_r_invoice->recur_next_date)),
+                    'invoice_year' => jdate('Y', strtotime($v_r_invoice->recur_next_date)),
+                    'invoice_month' => jdate('Y-m', strtotime($v_r_invoice->recur_next_date)),
                     'due_date' => $this->cron_model->get_date_due($v_r_invoice->recur_next_date),
                     'reference_no' => $this->invoice_model->generate_invoice_number(),
                     'discount_type' => $v_r_invoice->discount_type,
@@ -824,7 +824,7 @@ class Cronjob extends MY_Controller
                     $message = str_replace("{SITE_NAME}", config_item('company_name'), $link);
 
                     $this->send_email_invoice($new_invoice->invoices_id, $message, $subject); // Email Invoice
-                    $data = array('emailed' => 'Yes', 'date_sent' => date("Y-m-d H:i:s", time()));
+                    $data = array('emailed' => 'Yes', 'date_sent' => jdate("Y-m-d H:i:s", time()));
                     $this->db->where('invoices_id', $new_invoice->invoices_id)->update('tbl_invoices', $data);
 
                     if (!empty($client_info->primary_contact)) {

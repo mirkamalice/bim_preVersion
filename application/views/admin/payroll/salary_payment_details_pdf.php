@@ -87,7 +87,7 @@ if (!file_exists($img)) {
                         <tr>
                             <td style="width: 30%;text-align: right"><strong><?= lang('salary_month') ?> :</strong></td>
                             <td style="">
-                                &nbsp; <?php echo date('F Y', strtotime($salary_payment_info->payment_month)); ?></td>
+                                &nbsp; <?php echo jdate('F Y', strtotime($salary_payment_info->payment_month)); ?></td>
                         </tr>
                         <?php
                         $rate = 0;

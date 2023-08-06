@@ -1,6 +1,6 @@
 <?php
-$mdate = date('Y-m-d');
-$last_7_days = date('Y-m-d', strtotime('today - 7 days'));
+$mdate = jdate('Y-m-d');
+$last_7_days = jdate('Y-m-d', strtotime('today - 7 days'));
 $all_goal_tracking = $this->transactions_model->get_permission('tbl_goal_tracking');
 
 $all_goal = 0;
@@ -52,7 +52,7 @@ if (!empty($all_goal_tracking)) {
 // 30 days before
 
 for ($iDay = 7; $iDay >= 0; $iDay--) {
-    $date = date('Y-m-d', strtotime('today - ' . $iDay . 'days'));
+    $date = jdate('Y-m-d', strtotime('today - ' . $iDay . 'days'));
     $this_7_days_deposit[$date] = $this->db->select_sum('amount')->where(array('type' => 'Expense', 'date >=' => $date, 'date <=' => $date))->get('tbl_transactions')->result();
 }
 
@@ -125,7 +125,7 @@ if ($this->session->userdata('user_type') == 1) {
                             <?php
                             if (!empty($this_7_days_deposit)) {
                                 foreach ($this_7_days_deposit as $date => $v_last_deposit) {
-                                    echo date('d', strtotime($date)) . ' ';
+                                    echo jdate('d', strtotime($date)) . ' ';
                                 }
                             }
                             ?>

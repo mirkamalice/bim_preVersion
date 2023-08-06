@@ -77,7 +77,7 @@ if (!empty($payments_info)) {
                                                                                                                         if (!empty($payments_info->payment_date)) {
                                                                                                                             echo $payments_info->payment_date;
                                                                                                                         } else {
-                                                                                                                            echo date('Y-m-d');
+                                                                                                                            echo jdate('Y-m-d');
                                                                                                                         }
                                                                                                                         ?>" data-date-format="<?= config_item('date_picker_format'); ?>">
                             <div class="input-group-addon">

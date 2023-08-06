@@ -191,8 +191,8 @@ class PHPExcel_Shared_Date
 												   $dateValue->format('H'), $dateValue->format('i'), $dateValue->format('s')
 												 );
 		} elseif (is_numeric($dateValue)) {
-			$retValue = self::FormattedPHPToExcel( date('Y',$dateValue), date('m',$dateValue), date('d',$dateValue),
-												   date('H',$dateValue), date('i',$dateValue), date('s',$dateValue)
+			$retValue = self::FormattedPHPToExcel( jdate('Y',$dateValue), jdate('m',$dateValue), jdate('d',$dateValue),
+												   jdate('H',$dateValue), jdate('i',$dateValue), jdate('s',$dateValue)
 												 );
 		}
 		date_default_timezone_set($saveTimeZone);

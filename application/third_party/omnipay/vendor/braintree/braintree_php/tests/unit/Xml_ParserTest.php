@@ -497,7 +497,7 @@ END;
     {
         date_default_timezone_set('UTC');
         $array = ['root' => [
-           'aTimestamp' => date('D M d H:i:s e Y', mktime(1, 2, 3, 10, 28, 2009)),
+           'aTimestamp' => jdate('D M d H:i:s e Y', mktime(1, 2, 3, 10, 28, 2009)),
         ]];
         $array2 = $this->xmlAndBack($array);
         $this->assertEquals($array, $array2);

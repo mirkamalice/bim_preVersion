@@ -123,14 +123,14 @@ class Purchase extends Admin_Controller
     {
         $data = $this->purchase_model->array_from_post(array('reference_no', 'supplier_id', 'discount_type', 'tags', 'discount_percent', 'user_id', 'adjustment', 'discount_total', 'show_quantity_as'));
         $data['update_stock'] = ($this->input->post('update_stock') == 'Yes') ? 'Yes' : 'No';
-        $data['purchase_date'] = date('Y-m-d', strtotime($this->input->post('purchase_date', TRUE)));
+        $data['purchase_date'] = jdate('Y-m-d', strtotime($this->input->post('purchase_date', TRUE)));
         if (empty($data['purchase_date'])) {
-            $data['purchase_date'] = date('Y-m-d');
+            $data['purchase_date'] = jdate('Y-m-d');
         }
         if (empty($data['discount_type'])) {
             $data['discount_type'] = null;
         }
-        $data['due_date'] = date('Y-m-d', strtotime($this->input->post('due_date', TRUE)));
+        $data['due_date'] = jdate('Y-m-d', strtotime($this->input->post('due_date', TRUE)));
         $data['warehouse_id'] = $this->input->post('warehouse_id', TRUE);
         $data['notes'] = $this->input->post('notes', TRUE);
         $tax['tax_name'] = $this->input->post('total_tax_name', TRUE);
@@ -539,11 +539,11 @@ class Purchase extends Admin_Controller
                         'payment_method' => $this->input->post('payment_methods_id', TRUE),
                         'currency' => $this->input->post('currency', TRUE),
                         'amount' => $paid_amount,
-                        'payment_date' => date('Y-m-d', strtotime($this->input->post('payment_date', TRUE))),
+                        'payment_date' => jdate('Y-m-d', strtotime($this->input->post('payment_date', TRUE))),
                         'trans_id' => $this->input->post('trans_id'),
                         'notes' => $this->input->post('notes'),
-                        'month_paid' => date("m", strtotime($this->input->post('payment_date', TRUE))),
-                        'year_paid' => date("Y", strtotime($this->input->post('payment_date', TRUE))),
+                        'month_paid' => jdate("m", strtotime($this->input->post('payment_date', TRUE))),
+                        'year_paid' => jdate("Y", strtotime($this->input->post('payment_date', TRUE))),
                     );
                     $this->purchase_model->_table_name = 'tbl_purchase_payments';
                     $this->purchase_model->_primary_key = 'payments_id';
@@ -592,7 +592,7 @@ class Purchase extends Admin_Controller
                                 'amount' => $paid_amount,
                                 'debit' => $paid_amount,
                                 'credit' => 0,
-                                'date' => date('Y-m-d', strtotime($this->input->post('payment_date', TRUE))),
+                                'date' => jdate('Y-m-d', strtotime($this->input->post('payment_date', TRUE))),
                                 'paid_by' => $purchase_info->supplier_id,
                                 'payment_methods_id' => $this->input->post('payment_methods_id', TRUE),
                                 'reference' => $trans_id,
@@ -811,10 +811,10 @@ class Purchase extends Admin_Controller
         $data = array(
             'amount' => $this->input->post('amount', TRUE),
             'payment_method' => $this->input->post('payment_methods_id', TRUE),
-            'payment_date' => date('Y-m-d', strtotime($this->input->post('payment_date', TRUE))),
+            'payment_date' => jdate('Y-m-d', strtotime($this->input->post('payment_date', TRUE))),
             'notes' => $this->input->post('notes', TRUE),
-            'month_paid' => date("m", strtotime($this->input->post('payment_date', TRUE))),
-            'year_paid' => date("Y", strtotime($this->input->post('payment_date', TRUE))),
+            'month_paid' => jdate("m", strtotime($this->input->post('payment_date', TRUE))),
+            'year_paid' => jdate("Y", strtotime($this->input->post('payment_date', TRUE))),
         );
         
         $activity = array(
@@ -907,7 +907,7 @@ class Purchase extends Admin_Controller
         $purchase_info = $this->purchase_model->check_by(array('purchase_id' => $id), 'tbl_purchases');
         $purchase_items = $this->db->where('purchase_id', $id)->get('tbl_purchase_items')->result();
         if ($action == 'mark_as_sent') {
-            $data = array('emailed' => 'Yes', 'date_sent' => date("Y-m-d:s", time()));
+            $data = array('emailed' => 'Yes', 'date_sent' => jdate("Y-m-d:s", time()));
         } elseif ($action == 'mark_as_cancelled') {
             if ($purchase_info->update_stock == 'Yes') {
                 if (!empty($purchase_items)) {
@@ -972,7 +972,7 @@ The " . config_item('company_name') . " Team </p > ";
             unlink('uploads/' . slug_it(lang('purchase') . '_' . $purchase_info->reference_no) . '.pdf');
         }
         
-        $data = array('emailed' => 'Yes', 'date_sent' => date("Y-m-d H:i:s", time()));
+        $data = array('emailed' => 'Yes', 'date_sent' => jdate("Y-m-d H:i:s", time()));
         
         $this->purchase_model->_table_name = 'tbl_purchases';
         $this->purchase_model->_primary_key = 'purchase_id';

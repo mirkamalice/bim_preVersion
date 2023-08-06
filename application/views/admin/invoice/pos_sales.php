@@ -66,7 +66,7 @@ echo form_open(base_url('admin/invoice/save_invoice/' . $invoices_id), array('cl
                                     if (!empty($invoice_info->invoice_date)) {
                                         echo $invoice_info->invoice_date;
                                     } else {
-                                        echo date('Y-m-d H:i');
+                                        echo jdate('Y-m-d H:i');
                                     }
                                     ?>"
                                            data-date-format="<?= config_item('date_picker_format'); ?>">

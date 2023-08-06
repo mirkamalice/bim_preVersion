@@ -80,7 +80,7 @@ class Attendance_Model extends MY_Model
         $minutes = 0;
         foreach ($all_overtime_info as $overtime_info) {
             $hours += $overtime_info->overtime_hours;
-            $minutes += date('i', strtotime($overtime_info->overtime_hours));
+            $minutes += jdate('i', strtotime($overtime_info->overtime_hours));
         }
         $minutes = $minutes > 0 ? $minutes : 0;
         $total_seconds = ($hours * 60 * 60) + ($minutes * 60);

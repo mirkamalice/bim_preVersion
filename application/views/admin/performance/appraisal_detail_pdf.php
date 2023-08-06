@@ -68,7 +68,7 @@ if(!file_exists($img)){
                         </tr>
                         <tr>
                             <td style="width: 30%"><strong><?= lang('appraisal_month') ?>: </strong></td>
-                            <td><?php echo date('M Y', strtotime($get_appraisal_info->appraisal_month)); ?></td>
+                            <td><?php echo jdate('M Y', strtotime($get_appraisal_info->appraisal_month)); ?></td>
                         </tr>
                     </table>
                 </td>

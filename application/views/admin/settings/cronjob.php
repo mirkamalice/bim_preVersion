@@ -56,7 +56,7 @@
                             <p class="form-control-static"><?php
                                 $last_cronjob_run = config_item('last_cronjob_run');
                                 if (!empty($last_cronjob_run)) {
-                                    echo date("Y-m-d H:i", config_item('last_cronjob_run'));
+                                    echo jdate("Y-m-d H:i", config_item('last_cronjob_run'));
                                 } else {
                                     echo "-";
                                 } ?>

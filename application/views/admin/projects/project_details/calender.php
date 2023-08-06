@@ -69,13 +69,13 @@
                             $invoice_info = get_result('tbl_invoices', array('project_id' => $project_details->project_id));
                             if (!empty($invoice_info)) {
                             foreach ($invoice_info as $v_invoice) :
-                            $start_day = date('d', strtotime($v_invoice->due_date));
-                            $smonth = date('n', strtotime($v_invoice->due_date));
+                            $start_day = jdate('d', strtotime($v_invoice->due_date));
+                            $smonth = jdate('n', strtotime($v_invoice->due_date));
                             $start_month = $smonth - 1;
-                            $start_year = date('Y', strtotime($v_invoice->due_date));
-                            $end_year = date('Y', strtotime($v_invoice->due_date));
-                            $end_day = date('d', strtotime($v_invoice->due_date));
-                            $emonth = date('n', strtotime($v_invoice->due_date));
+                            $start_year = jdate('Y', strtotime($v_invoice->due_date));
+                            $end_year = jdate('Y', strtotime($v_invoice->due_date));
+                            $end_day = jdate('d', strtotime($v_invoice->due_date));
+                            $emonth = jdate('n', strtotime($v_invoice->due_date));
                             $end_month = $emonth - 1;
                             ?> {
                                 title: "<?php echo $v_invoice->reference_no ?>",
@@ -95,13 +95,13 @@
                             
                             if (!empty($estimates_info)) {
                             foreach ($estimates_info as $v_estimates) :
-                            $start_day = date('d', strtotime($v_estimates->due_date));
-                            $smonth = date('n', strtotime($v_estimates->due_date));
+                            $start_day = jdate('d', strtotime($v_estimates->due_date));
+                            $smonth = jdate('n', strtotime($v_estimates->due_date));
                             $start_month = $smonth - 1;
-                            $start_year = date('Y', strtotime($v_estimates->due_date));
-                            $end_year = date('Y', strtotime($v_estimates->due_date));
-                            $end_day = date('d', strtotime($v_estimates->due_date));
-                            $emonth = date('n', strtotime($v_estimates->due_date));
+                            $start_year = jdate('Y', strtotime($v_estimates->due_date));
+                            $end_year = jdate('Y', strtotime($v_estimates->due_date));
+                            $end_day = jdate('d', strtotime($v_estimates->due_date));
+                            $emonth = jdate('n', strtotime($v_estimates->due_date));
                             $end_month = $emonth - 1;
                             ?> {
                                 title: "<?php echo $v_estimates->reference_no ?>",
@@ -117,13 +117,13 @@
                             <?php
                             endforeach;
                             }
-                            $start_day = date('d', strtotime($project_details->end_date));
-                            $smonth = date('n', strtotime($project_details->end_date));
+                            $start_day = jdate('d', strtotime($project_details->end_date));
+                            $smonth = jdate('n', strtotime($project_details->end_date));
                             $start_month = $smonth - 1;
-                            $start_year = date('Y', strtotime($project_details->end_date));
-                            $end_year = date('Y', strtotime($project_details->end_date));
-                            $end_day = date('d', strtotime($project_details->end_date));
-                            $emonth = date('n', strtotime($project_details->end_date));
+                            $start_year = jdate('Y', strtotime($project_details->end_date));
+                            $end_year = jdate('Y', strtotime($project_details->end_date));
+                            $end_day = jdate('d', strtotime($project_details->end_date));
+                            $emonth = jdate('n', strtotime($project_details->end_date));
                             $end_month = $emonth - 1;
                             ?> {
                                 title: "<?php echo $project_details->project_name  ?>",
@@ -141,13 +141,13 @@
                             $milestone_info = get_result('tbl_milestones', array('project_id' => $project_details->project_id));
                             if (!empty($milestone_info)) {
                             foreach ($milestone_info as $v_milestone) :
-                            $start_day = date('d', strtotime($v_milestone->end_date));
-                            $smonth = date('n', strtotime($v_milestone->end_date));
+                            $start_day = jdate('d', strtotime($v_milestone->end_date));
+                            $smonth = jdate('n', strtotime($v_milestone->end_date));
                             $start_month = $smonth - 1;
-                            $start_year = date('Y', strtotime($v_milestone->end_date));
-                            $end_year = date('Y', strtotime($v_milestone->end_date));
-                            $end_day = date('d', strtotime($v_milestone->end_date));
-                            $emonth = date('n', strtotime($v_milestone->end_date));
+                            $start_year = jdate('Y', strtotime($v_milestone->end_date));
+                            $end_year = jdate('Y', strtotime($v_milestone->end_date));
+                            $end_day = jdate('d', strtotime($v_milestone->end_date));
+                            $emonth = jdate('n', strtotime($v_milestone->end_date));
                             $end_month = $emonth - 1;
                             ?> {
                                 title: '<?php echo $v_milestone->milestone_name ?>',
@@ -166,13 +166,13 @@
                             $task_info = get_result('tbl_task', array('project_id' => $project_details->project_id));
                             if (!empty($task_info)) {
                             foreach ($task_info as $v_task) :
-                            $start_day = date('d', strtotime($v_task->due_date));
-                            $smonth = date('n', strtotime($v_task->due_date));
+                            $start_day = jdate('d', strtotime($v_task->due_date));
+                            $smonth = jdate('n', strtotime($v_task->due_date));
                             $start_month = $smonth - 1;
-                            $start_year = date('Y', strtotime($v_task->due_date));
-                            $end_year = date('Y', strtotime($v_task->due_date));
-                            $end_day = date('d', strtotime($v_task->due_date));
-                            $emonth = date('n', strtotime($v_task->due_date));
+                            $start_year = jdate('Y', strtotime($v_task->due_date));
+                            $end_year = jdate('Y', strtotime($v_task->due_date));
+                            $end_day = jdate('d', strtotime($v_task->due_date));
+                            $emonth = jdate('n', strtotime($v_task->due_date));
                             $end_month = $emonth - 1;
                             ?> {
                                 title: "<?php echo $v_task->task_name ?>",
@@ -191,13 +191,13 @@
                             $bug_info = get_result('tbl_bug', array('project_id' => $project_details->project_id));
                             if (!empty($bug_info)) {
                             foreach ($bug_info as $v_bug) :
-                            $start_day = date('d', strtotime($v_bug->created_time));
-                            $smonth = date('n', strtotime($v_bug->created_time));
+                            $start_day = jdate('d', strtotime($v_bug->created_time));
+                            $smonth = jdate('n', strtotime($v_bug->created_time));
                             $start_month = $smonth - 1;
-                            $start_year = date('Y', strtotime($v_bug->created_time));
-                            $end_year = date('Y', strtotime($v_bug->created_time));
-                            $end_day = date('d', strtotime($v_bug->created_time));
-                            $emonth = date('n', strtotime($v_bug->created_time));
+                            $start_year = jdate('Y', strtotime($v_bug->created_time));
+                            $end_year = jdate('Y', strtotime($v_bug->created_time));
+                            $end_day = jdate('d', strtotime($v_bug->created_time));
+                            $emonth = jdate('n', strtotime($v_bug->created_time));
                             $end_month = $emonth - 1;
                             ?> {
                                 title: "<?php echo $v_bug->bug_title ?>",

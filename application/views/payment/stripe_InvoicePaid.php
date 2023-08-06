@@ -16,7 +16,7 @@
 
 <p>Regards <br>
     <?= $this->config->item('company_name') ?> Team <br>
-    Copyright &copy; <?= $this->config->item('company_name') ?> <?= date('Y') ?></p>
+    Copyright &copy; <?= $this->config->item('company_name') ?> <?= jdate('Y') ?></p>
 </body>
 </html>
 

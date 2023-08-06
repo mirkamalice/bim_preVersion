@@ -70,9 +70,9 @@
     public function get_goal_report($month)
     { // this function is to create get monthy recap report
 
-        //m = date('m', strtotime($month));
-        $m = date('m', strtotime($month));
-        $year = date('Y', strtotime($month));
+        //m = jdate('m', strtotime($month));
+        $m = jdate('m', strtotime($month));
+        $year = jdate('Y', strtotime($month));
         $date = new DateTime($year . '-' . $m . '-01');
         $start_date = $date->modify('first day of this month')->format('Y-m-d');
         $end_date = $date->modify('last day of this month')->format('Y-m-d');

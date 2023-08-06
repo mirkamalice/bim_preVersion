@@ -261,7 +261,7 @@ class Quotations extends Admin_Controller
             $subject = $email_template->subject;
             $client_name = str_replace("{CLIENT}", $client_info->name, $message);
 
-            $Date = str_replace("{DATE}", date('Y-m-d'), $client_name);
+            $Date = str_replace("{DATE}", jdate('Y-m-d'), $client_name);
             $Currency = str_replace("{CURRENCY}", client_currency($qtation_info->client_id), $Date);
             $Amount = str_replace("{AMOUNT}", $this->input->post('quotations_amount', true), $Currency);
             $Notes = str_replace("{NOTES}", $this->input->post('notes', true), $Amount);
@@ -318,7 +318,7 @@ class Quotations extends Admin_Controller
         $this->quotations_model->save($activities);
 
         $data['reviewer_id'] = $this->session->userdata('user_id');
-        $data['reviewed_date'] = date('Y-m-d H:i:s');
+        $data['reviewed_date'] = jdate('Y-m-d H:i:s');
         $data['quotations_status'] = 'completed';
 
         $this->quotations_model->_table_name = 'tbl_quotations';
@@ -446,16 +446,16 @@ class Quotations extends Admin_Controller
             }
         }
         $data['client_visible'] = ($this->input->post('client_visible') == 'Yes') ? 'Yes' : 'No';
-        $data['invoice_date'] = date('Y-m-d', strtotime($this->input->post('invoice_date', TRUE)));
+        $data['invoice_date'] = jdate('Y-m-d', strtotime($this->input->post('invoice_date', TRUE)));
         if (empty($data['invoice_date'])) {
-            $data['invoice_date'] = date('Y-m-d');
+            $data['invoice_date'] = jdate('Y-m-d');
         }
         if (empty($data['discount_total'])) {
             $data['discount_total'] = 0;
         }
-        $data['invoice_year'] = date('Y', strtotime($this->input->post('invoice_date', TRUE)));
-        $data['invoice_month'] = date('Y-m', strtotime($this->input->post('invoice_date', TRUE)));
-        $data['due_date'] = date('Y-m-d', strtotime($this->input->post('due_date', TRUE)));
+        $data['invoice_year'] = jdate('Y', strtotime($this->input->post('invoice_date', TRUE)));
+        $data['invoice_month'] = jdate('Y-m', strtotime($this->input->post('invoice_date', TRUE)));
+        $data['due_date'] = jdate('Y-m-d', strtotime($this->input->post('due_date', TRUE)));
         $data['notes'] = $this->input->post('notes', TRUE);
         $tax['tax_name'] = $this->input->post('total_tax_name', TRUE);
         $tax['total_tax'] = $this->input->post('total_tax', TRUE);
@@ -658,18 +658,18 @@ class Quotations extends Admin_Controller
         $recur_days = $this->get_calculate_recurring_days($recur_data['recuring_frequency']);
         $due_date = $this->quotations_model->get_table_field('tbl_invoices', array('invoices_id' => $invoices_id), 'due_date');
 
-        $next_date = date("Y-m-d", strtotime($due_date . "+ " . $recur_days . " days"));
+        $next_date = jdate("Y-m-d", strtotime($due_date . "+ " . $recur_days . " days"));
 
         if ($recur_data['recur_end_date'] == '') {
             $recur_end_date = '0000-00-00';
         } else {
-            $recur_end_date = date('Y-m-d', strtotime($recur_data['recur_end_date']));
+            $recur_end_date = jdate('Y-m-d', strtotime($recur_data['recur_end_date']));
         }
         $update_invoice = array(
             'recurring' => 'Yes',
             'recuring_frequency' => $recur_days,
             'recur_frequency' => $recur_data['recuring_frequency'],
-            'recur_start_date' => date('Y-m-d', strtotime($recur_data['recur_start_date'])),
+            'recur_start_date' => jdate('Y-m-d', strtotime($recur_data['recur_start_date'])),
             'recur_end_date' => $recur_end_date,
             'recur_next_date' => $next_date
         );
@@ -705,16 +705,16 @@ class Quotations extends Admin_Controller
         $data = $this->quotations_model->array_from_post(array('reference_no', 'client_id', 'project_id', 'discount_type', 'discount_percent', 'user_id', 'adjustment', 'discount_total', 'show_quantity_as'));
 
         $data['client_visible'] = ($this->input->post('client_visible') == 'Yes') ? 'Yes' : 'No';
-        $data['estimate_date'] = date('Y-m-d', strtotime($this->input->post('estimate_date', TRUE)));
+        $data['estimate_date'] = jdate('Y-m-d', strtotime($this->input->post('estimate_date', TRUE)));
         if (empty($data['estimate_date'])) {
-            $data['estimate_date'] = date('Y-m-d');
+            $data['estimate_date'] = jdate('Y-m-d');
         }
         if (empty($data['discount_total'])) {
             $data['discount_total'] = 0;
         }
-        $data['estimate_year'] = date('Y', strtotime($this->input->post('estimate_date', TRUE)));
-        $data['estimate_month'] = date('Y-m', strtotime($this->input->post('estimate_date', TRUE)));
-        $data['due_date'] = date('Y-m-d', strtotime($this->input->post('due_date', TRUE)));
+        $data['estimate_year'] = jdate('Y', strtotime($this->input->post('estimate_date', TRUE)));
+        $data['estimate_month'] = jdate('Y-m', strtotime($this->input->post('estimate_date', TRUE)));
+        $data['due_date'] = jdate('Y-m-d', strtotime($this->input->post('due_date', TRUE)));
         $data['notes'] = $this->input->post('notes', TRUE);
         $tax['tax_name'] = $this->input->post('total_tax_name', TRUE);
         $tax['total_tax'] = $this->input->post('total_tax', TRUE);

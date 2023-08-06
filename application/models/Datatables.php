@@ -284,9 +284,9 @@ class Datatables extends MY_Model
                 $where = array('UNIX_TIMESTAMP(due_date) <' => strtotime(date('Y-m-d')), 'status !=' => 'Paid');
             } else if ($filterBy == 'last_month' || $filterBy == 'this_months') {
                 if ($filterBy == 'last_month') {
-                    $month = date('Y-m', strtotime('-1 months'));
+                    $month = jdate('Y-m', strtotime('-1 months'));
                 } else {
-                    $month = date('Y-m');
+                    $month = jdate('Y-m');
                 }
                 $where = array('invoice_month' => $month);
             } else if (strstr($filterBy, '_')) {
@@ -322,9 +322,9 @@ class Datatables extends MY_Model
             $where_in = array('status', $status);
         } else if ($filterBy == 'last_month' || $filterBy == 'this_months') {
             if ($filterBy == 'last_month') {
-                $month = date('Y-m', strtotime('-1 months'));
+                $month = jdate('Y-m', strtotime('-1 months'));
             } else {
-                $month = date('Y-m');
+                $month = jdate('Y-m');
             }
             $where = array('show_client' => 'Yes', 'client_id' => $client_id, 'status !=' => 'draft', 'invoice_month' => $month);
         }
@@ -342,9 +342,9 @@ class Datatables extends MY_Model
         }
         if ($filterBy == 'last_month' || $filterBy == 'this_months') {
             if ($filterBy == 'last_month') {
-                $month = date('Y-m', strtotime('-1 months'));
+                $month = jdate('Y-m', strtotime('-1 months'));
             } else {
-                $month = date('Y-m');
+                $month = jdate('Y-m');
             }
             $where = array('client_id' => $client_id, 'status !=' => 'draft', 'estimate_month' => $month);
         } else if ($filterBy == 'expired') {
@@ -378,9 +378,9 @@ class Datatables extends MY_Model
             if ($filterBy == 'last_month' || $filterBy == 'this_months') {
                 
                 if ($filterBy == 'last_month') {
-                    $month = date('Y-m', strtotime('-1 months'));
+                    $month = jdate('Y-m', strtotime('-1 months'));
                 } else {
-                    $month = date('Y-m');
+                    $month = jdate('Y-m');
                 }
                 $where = array('estimate_month' => $month);
             } else if ($filterBy == 'expired') {
@@ -417,9 +417,9 @@ class Datatables extends MY_Model
             if ($filterBy == 'last_month' || $filterBy == 'this_months') {
                 
                 if ($filterBy == 'last_month') {
-                    $month = date('Y-m', strtotime('-1 months'));
+                    $month = jdate('Y-m', strtotime('-1 months'));
                 } else {
-                    $month = date('Y-m');
+                    $month = jdate('Y-m');
                 }
                 $where = array('credit_note_month' => $month);
             } else if ($filterBy == 'expired') {
@@ -454,11 +454,11 @@ class Datatables extends MY_Model
             if ($filterBy == 'last_month' || $filterBy == 'this_months') {
                 
                 if ($filterBy == 'last_month') {
-                    $month = date('m', strtotime('-1 months'));
-                    $year = date('Y', strtotime('-1 months'));
+                    $month = jdate('m', strtotime('-1 months'));
+                    $year = jdate('Y', strtotime('-1 months'));
                 } else {
-                    $month = date('m');
-                    $year = date('Y');
+                    $month = jdate('m');
+                    $year = jdate('Y');
                 }
                 $where = array('year_paid' => $year, 'month_paid' => $month);
             } else if ($filterBy == 'today') {
@@ -490,9 +490,9 @@ class Datatables extends MY_Model
         } else {
             if ($filterBy == 'last_month' || $filterBy == 'this_months') {
                 if ($filterBy == 'last_month') {
-                    $month = date('Y-m', strtotime('-1 months'));
+                    $month = jdate('Y-m', strtotime('-1 months'));
                 } else {
-                    $month = date('Y-m');
+                    $month = jdate('Y-m');
                 }
                 $where = array('proposal_month' => $month);
             } else if ($filterBy == 'expired') {
@@ -518,9 +518,9 @@ class Datatables extends MY_Model
         // get all invoice
         if ($filterBy == 'last_month' || $filterBy == 'this_months') {
             if ($filterBy == 'last_month') {
-                $month = date('Y-m', strtotime('-1 months'));
+                $month = jdate('Y-m', strtotime('-1 months'));
             } else {
-                $month = date('Y-m');
+                $month = jdate('Y-m');
             }
             $where = array('status !=' => 'draft', 'module' => 'client', 'module_id' => $this->session->userdata('client_id'), 'proposal_month' => $month);
         } else if ($filterBy == 'expired') {

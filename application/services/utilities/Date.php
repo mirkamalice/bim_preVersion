@@ -31,33 +31,33 @@ class Date
         $key      = key($weeks[$week]);
         $week_end = $weeks[$week][$key];
 
-        $week_start_year = date('Y', strtotime($week_start));
-        $week_end_year   = date('Y', strtotime($week_end));
+        $week_start_year = jdate('Y', strtotime($week_start));
+        $week_end_year   = jdate('Y', strtotime($week_end));
 
-        $week_start_month = date('m', strtotime($week_start));
-        $week_end_month   = date('m', strtotime($week_end));
+        $week_start_month = jdate('m', strtotime($week_start));
+        $week_end_month   = jdate('m', strtotime($week_end));
 
         $label = '';
 
-        $label .= date('d', strtotime($week_start));
+        $label .= jdate('d', strtotime($week_start));
 
         if ($week_start_month != $week_end_month && $week_start_year == $week_end_year) {
             $label .= ' ' . _l(date('F', mktime(0, 0, 0, $week_start_month, 1)));
         }
 
         if ($week_start_year != $week_end_year) {
-            $label .= ' ' . _l(date('F', mktime(0, 0, 0, date('m', strtotime($week_start)), 1))) . ' ' . date('Y', strtotime($week_start));
+            $label .= ' ' . _l(date('F', mktime(0, 0, 0, jdate('m', strtotime($week_start)), 1))) . ' ' . jdate('Y', strtotime($week_start));
         }
 
         $label .= ' - ';
-        $label .= date('d', strtotime($week_end));
+        $label .= jdate('d', strtotime($week_end));
         if ($week_start_year != $week_end_year) {
-            $label .= ' ' . _l(date('F', mktime(0, 0, 0, date('m', strtotime($week_end)), 1))) . ' ' . date('Y', strtotime($week_end));
+            $label .= ' ' . _l(date('F', mktime(0, 0, 0, jdate('m', strtotime($week_end)), 1))) . ' ' . jdate('Y', strtotime($week_end));
         }
 
         if ($week_start_year == $week_end_year) {
-            $label .= ' ' . _l(date('F', mktime(0, 0, 0, date('m', strtotime($week_end)), 1)));
-            $label .= ' ' . date('Y', strtotime($week_start));
+            $label .= ' ' . _l(date('F', mktime(0, 0, 0, jdate('m', strtotime($week_end)), 1)));
+            $label .= ' ' . jdate('Y', strtotime($week_start));
         }
 
         return $label;

@@ -83,9 +83,9 @@ class Checkout extends Client_Controller
                             'notes' => 'Paid by ' . $user_info->username,
                             'amount' => $charge['response']['total'],
                             'trans_id' => $charge['response']['transactionId'],
-                            'month_paid' => date('m'),
-                            'year_paid' => date('Y'),
-                            'payment_date' => date('Y-m-d')
+                            'month_paid' => jdate('m'),
+                            'year_paid' => jdate('Y'),
+                            'payment_date' => jdate('Y-m-d')
                         );
 
                         $this->invoice_model->_table_name = 'tbl_payments';

@@ -809,11 +809,11 @@ class Payroll extends Admin_Controller
     public function add_advance_salary($id = null)
     {
         // active check with current month
-        $data['current_month'] = date('m');
+        $data['current_month'] = jdate('m');
         if ($this->input->post('year', TRUE)) { // if input year
             $data['year'] = $this->input->post('year', TRUE);
         } else { // else current year
-            $data['year'] = date('Y'); // get current year
+            $data['year'] = jdate('Y'); // get current year
         }
         $data['all_employee'] = $this->payroll_model->get_all_employee();
         if ($id == 'true') {
@@ -953,11 +953,11 @@ class Payroll extends Admin_Controller
         }
         $data['title'] = lang('advance_salary');
         // active check with current month
-        $data['current_month'] = date('m');
+        $data['current_month'] = jdate('m');
         if ($this->input->post('year', TRUE)) { // if input year
             $data['year'] = $this->input->post('year', TRUE);
         } else { // else current year
-            $data['year'] = date('Y'); // get current year
+            $data['year'] = jdate('Y'); // get current year
         }
         // get all expense list by year and month
         $data['advance_salary_info'] = $this->get_advance_salary_info($data['year']);
@@ -987,7 +987,7 @@ class Payroll extends Admin_Controller
                 $sub_array[] = $staff_details->fullname;
                 $sub_array[] = display_money($my_salary->advance_amount, default_currency());
                 $sub_array[] = display_date($my_salary->request_date);
-                $sub_array[] = date('M,Y', strtotime($my_salary->deduct_month));
+                $sub_array[] = jdate('M,Y', strtotime($my_salary->deduct_month));
                 if ($my_salary->status == '0') {
                     $status = '<span class="label label-warning">' . lang('pending') . '</span>';
                 } elseif ($my_salary->status == '1') {
@@ -1033,7 +1033,7 @@ class Payroll extends Admin_Controller
                 $sub_array[] = $my_salary->fullname;
                 $sub_array[] = display_money($my_salary->advance_amount, default_currency());
                 $sub_array[] = display_date($my_salary->request_date);
-                $sub_array[] = date('M,Y', strtotime($my_salary->deduct_month));
+                $sub_array[] = jdate('M,Y', strtotime($my_salary->deduct_month));
                 if ($my_salary->status == '0') {
                     $status = '<span class="label label-warning">' . lang('pending') . '</span>';
                 } elseif ($my_salary->status == '1') {
@@ -1085,7 +1085,7 @@ class Payroll extends Admin_Controller
         }
         $data['advance_salary_info'] = $this->get_advance_salary_info($year, $month);
 
-        $month_name = date('F', strtotime($year . '-' . $month)); // get full name of month by date query
+        $month_name = jdate('F', strtotime($year . '-' . $month)); // get full name of month by date query
         $data['monthyaer'] = $month_name . '  ' . $year;
 
         $this->load->helper('dompdf');
@@ -1194,7 +1194,7 @@ class Payroll extends Admin_Controller
             $message = $email_template->template_body;
             $subject = $email_template->subject;
             $advance_amount = str_replace("{AMOUNT}", display_money($advance_salary_info->advance_amount, $curency->symbol), $message);
-            $deduct_month = str_replace("{DEDUCT_MOTNH}", date('Y M', strtotime('deduct_month')), $advance_amount);
+            $deduct_month = str_replace("{DEDUCT_MOTNH}", jdate('Y M', strtotime('deduct_month')), $advance_amount);
             $message = str_replace("{SITE_NAME}", config_item('company_name'), $deduct_month);
             $data['message'] = $message;
             $message = $this->load->view('email_template', $data, TRUE);
@@ -1255,7 +1255,7 @@ class Payroll extends Admin_Controller
                 $total_holiday += count(array($p_hday));
             }
             $data['total_holiday'] = $total_holiday;
-            $data['total_days'] = cal_days_in_month(CAL_GREGORIAN, date('m', strtotime($payment_month)), date('Y', strtotime($payment_month)));
+            $data['total_days'] = cal_days_in_month(CAL_GREGORIAN, jdate('m', strtotime($payment_month)), jdate('Y', strtotime($payment_month)));
             $data['total_working_days'] = $data['total_days'] - $total_holiday;
             $data['total_present'] = $this->get_total_attendance_info_by_id($user_id, $payment_month);
             $data['total_absent'] = $data['total_working_days'] - $data['total_present'];
@@ -1404,7 +1404,7 @@ class Payroll extends Admin_Controller
                     $total_holiday += count(array($p_hday));
                 }
                 $data['total_holiday'] = $total_holiday;
-                $data['total_days'] = cal_days_in_month(CAL_GREGORIAN, date('m', strtotime($data['payment_month'])), date('Y', strtotime($data['payment_month'])));
+                $data['total_days'] = cal_days_in_month(CAL_GREGORIAN, jdate('m', strtotime($data['payment_month'])), jdate('Y', strtotime($data['payment_month'])));
                 $data['total_working_days'] = $data['total_days'] - $total_holiday;
             }
         }
@@ -1524,7 +1524,7 @@ class Payroll extends Admin_Controller
         $mm = 0;
         foreach ($all_overtime_info as $overtime_info) {
             $hh += $overtime_info->overtime_hours;
-            $mm += date('i', strtotime($overtime_info->overtime_hours));
+            $mm += jdate('i', strtotime($overtime_info->overtime_hours));
         }
         if ($hh > 1 && $hh < 10 || $mm > 1 && $mm < 10) {
             $total_mm = '0' . $mm;
@@ -1601,7 +1601,7 @@ class Payroll extends Admin_Controller
             $total_holiday += count(array($p_hday));
         }
         $data['total_holiday'] = $total_holiday;
-        $data['total_days'] = cal_days_in_month(CAL_GREGORIAN, date('m', strtotime($payment_month)), date('Y', strtotime($payment_month)));
+        $data['total_days'] = cal_days_in_month(CAL_GREGORIAN, jdate('m', strtotime($payment_month)), jdate('Y', strtotime($payment_month)));
         $data['total_working_days'] = $data['total_days'] - $total_holiday;
         $data['total_absent'] = $data['total_working_days'] - $data['total_present'];
 
@@ -1783,14 +1783,14 @@ class Payroll extends Admin_Controller
                     $account_id = config_item('default_account');
                 }
                 if (!empty($account_id)) {
-                    $reference = lang('salary_month') . ' : ' . date('F Y', strtotime($data['payment_month'])) . ' ' . lang('salary_payment') . ' ' . lang('for') . ' ' . $employee_info->fullname . ' ' . lang('and') . ' ' . lang('comments') . ': ' . $data['comments'];
+                    $reference = lang('salary_month') . ' : ' . jdate('F Y', strtotime($data['payment_month'])) . ' ' . lang('salary_payment') . ' ' . lang('for') . ' ' . $employee_info->fullname . ' ' . lang('and') . ' ' . lang('comments') . ': ' . $data['comments'];
                     // save into tbl_transaction
                     $tr_data = array(
                         'name' => lang('salary_payment') . ' ' . lang('for') . ' ' . $employee_info->fullname,
                         'type' => 'Expense',
                         'amount' => $this->input->post('payment_amount', TRUE),
                         'debit' => $this->input->post('payment_amount', TRUE),
-                        'date' => date('Y-m-d'),
+                        'date' => jdate('Y-m-d'),
                         'paid_by' => '0',
                         'payment_methods_id' => $this->input->post('payment_type', TRUE),
                         'reference' => lang('salary_month') . ' ' . $this->input->post('payment_month'),
@@ -1843,7 +1843,7 @@ class Payroll extends Admin_Controller
                 'activity' => 'activity_make_payment',
                 'icon' => 'fa-list-ul',
                 'value1' => $employee_info->fullname,
-                'value2' => date('F Y', strtotime($data['payment_month'])),
+                'value2' => jdate('F Y', strtotime($data['payment_month'])),
             );
             // Update into tbl_project
             $this->payroll_model->_table_name = "tbl_activities"; //table name
@@ -1964,7 +1964,7 @@ class Payroll extends Admin_Controller
             $this->payroll_model->_primary_key = "payslip_id";
             $payslip_id = $this->payroll_model->save($where);
 
-            $pdata['payslip_number'] = date('Ym') . $payslip_id;
+            $pdata['payslip_number'] = jdate('Ym') . $payslip_id;
             $this->payroll_model->save($pdata, $payslip_id);
 
             $payslip_email = config_item('payslip_email');
@@ -2020,7 +2020,7 @@ class Payroll extends Admin_Controller
         $subject = $email_template->subject;
 
         $NAME = str_replace("{NAME}", $data['employee_salary_info']->fullname, $message);
-        $month_year = str_replace("{MONTH_YEAR}", date('F  Y', strtotime($data['employee_salary_info']->payment_month)), $NAME);
+        $month_year = str_replace("{MONTH_YEAR}", jdate('F  Y', strtotime($data['employee_salary_info']->payment_month)), $NAME);
         $message = str_replace("{SITE_NAME}", config_item('company_name'), $month_year);
 
         $data['message'] = $message;
@@ -2044,7 +2044,7 @@ class Payroll extends Admin_Controller
                 'activity' => 'activity_payslip_send',
                 'icon' => 'fa-list-ul',
                 'value1' => $data['employee_salary_info']->fullname,
-                'value2' => date('F Y', strtotime($data['employee_salary_info']->payment_month)),
+                'value2' => jdate('F Y', strtotime($data['employee_salary_info']->payment_month)),
             );
             // Update into tbl_project
             $this->payroll_model->_table_name = "tbl_activities"; //table name
@@ -2069,12 +2069,12 @@ class Payroll extends Admin_Controller
     {
         $data['title'] = "Provident Found Details";
         // active check with current month
-        $data['current_month'] = date('m');
+        $data['current_month'] = jdate('m');
 
         if ($this->input->post('year', TRUE)) { // if input year
             $data['year'] = $this->input->post('year', TRUE);
         } else { // else current year
-            $data['year'] = date('Y'); // get current year
+            $data['year'] = jdate('Y'); // get current year
         }
         // get all expense list by year and month
         $data['provident_fund_info'] = $this->get_provident_fund_info($data['year']);
@@ -2115,7 +2115,7 @@ class Payroll extends Admin_Controller
 
         $data['provident_fund_info'] = $this->get_provident_fund_info($year, $month);
 
-        $month_name = date('F', strtotime($year . '-' . $month)); // get full name of month by date query
+        $month_name = jdate('F', strtotime($year . '-' . $month)); // get full name of month by date query
         $data['monthyaer'] = $month_name . '  ' . $year;
 
         $this->load->helper('dompdf');
@@ -2197,7 +2197,7 @@ class Payroll extends Admin_Controller
 
                     $action = null;
                     $psub_array = array();
-                    $psub_array[] = date('F-Y', strtotime($v_history->payment_month));
+                    $psub_array[] = jdate('F-Y', strtotime($v_history->payment_month));
                     $psub_array[] = display_date($v_history->paid_date);
                     $psub_array[] = display_money($total_paid_amount, default_currency());
                     $psub_array[] = display_money($total_deduction, default_currency());
@@ -2276,7 +2276,7 @@ class Payroll extends Admin_Controller
 
                 $action = null;
                 $sub_array = array();
-                $sub_array[] = date('F-Y', strtotime($v_payroll->payment_month));
+                $sub_array[] = jdate('F-Y', strtotime($v_payroll->payment_month));
                 $sub_array[] = display_date($v_payroll->paid_date);
                 $sub_array[] = display_money($total_paid_amount, default_currency());
                 $sub_array[] = display_money($total_deduction, default_currency());
@@ -2356,7 +2356,7 @@ class Payroll extends Admin_Controller
 
                 $action = null;
                 $sub_array = array();
-                $sub_array[] = date('F-Y', strtotime($v_payroll->payment_month));
+                $sub_array[] = jdate('F-Y', strtotime($v_payroll->payment_month));
                 $sub_array[] = display_date($v_payroll->paid_date);
                 $sub_array[] = display_money($total_paid_amount, default_currency());
                 $sub_array[] = display_money($total_deduction, default_currency());
@@ -2394,7 +2394,7 @@ class Payroll extends Admin_Controller
             }
             if ($search_type == 'month') {
                 $data['by_month'] = $pdf;
-                $data['by'] = ' - ' . ' ' . date('F-Y', strtotime($pdf));
+                $data['by'] = ' - ' . ' ' . jdate('F-Y', strtotime($pdf));
                 $data['employee_payroll'] = $this->payroll_model->get_salary_payment_info($data['by_month'], true, 'month');
             }
             if ($search_type == 'period') {
@@ -2402,7 +2402,7 @@ class Payroll extends Admin_Controller
                 $data['start_month'] = $date[0];
                 $data['end_month'] = $date[1];
                 $data['employee_payroll'] = $this->payroll_model->get_salary_payment_info($data, true, 'period');
-                $data['by'] = ' - ' . ' ' . date('F-Y', strtotime($date[0])) . ' ' . lang('TO') . ' ' . date('F-Y', strtotime($date[1]));
+                $data['by'] = ' - ' . ' ' . jdate('F-Y', strtotime($date[0])) . ' ' . lang('TO') . ' ' . jdate('F-Y', strtotime($date[1]));
             }
         }
         $this->load->helper('dompdf');

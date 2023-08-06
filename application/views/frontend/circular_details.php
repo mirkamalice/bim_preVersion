@@ -12,8 +12,8 @@ if ($current_time > $last_date) {
     $ribon = 'info';
     $text = lang('last_date');
 } else {
-    $lastdate = date('Y-m-d', strtotime($circular_details->last_date));
-    $today = date('Y-m-d');
+    $lastdate = jdate('Y-m-d', strtotime($circular_details->last_date));
+    $today = jdate('Y-m-d');
     $datetime1 = new DateTime($today);
     $datetime2 = new DateTime($lastdate);
     $interval = $datetime1->diff($datetime2);

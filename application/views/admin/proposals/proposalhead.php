@@ -21,7 +21,7 @@
     $type = $this->uri->segment(5);
 
     if (empty($type)) {
-        $type = '_' . date('Y');
+        $type = '_' . jdate('Y');
     }
     ?>
     <div class="btn-group mb-lg pull-left mr">

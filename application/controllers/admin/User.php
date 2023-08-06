@@ -201,7 +201,7 @@ class User extends Admin_Controller
             if (!empty($date)) {
                 $data['date'] = $date;
             } else {
-                $data['date'] = date('Y-m');
+                $data['date'] = jdate('Y-m');
             }
             $data['attendace_info'] = $this->get_report($id, $data['date']);
             $data['my_leave_report'] = leave_report($id);
@@ -209,7 +209,7 @@ class User extends Admin_Controller
             if ($this->input->post('year', TRUE)) { // if input year
                 $data['year'] = $this->input->post('year', TRUE);
             } else { // else current year
-                $data['year'] = date('Y'); // get current year
+                $data['year'] = jdate('Y'); // get current year
             }
             // get all expense list by year and month
             $data['provident_fund_info'] = $this->get_provident_fund_info($data['year'], $id);
@@ -217,7 +217,7 @@ class User extends Admin_Controller
             if ($this->input->post('overtime_year', TRUE)) { // if input year
                 $data['overtime_year'] = $this->input->post('overtime_year', TRUE);
             } else { // else current year
-                $data['overtime_year'] = date('Y'); // get current year
+                $data['overtime_year'] = jdate('Y'); // get current year
             }
             // get all expense list by year and month
             $data['all_overtime_info'] = $this->get_overtime_info($data['overtime_year'], $id);
@@ -257,10 +257,10 @@ class User extends Admin_Controller
             // get working days holiday
             $holidays = $this->common_model->get_holidays(); //tbl working Days Holiday
             
-            $num = cal_days_in_month(CAL_GREGORIAN, date('n'), date('Y'));
+            $num = cal_days_in_month(CAL_GREGORIAN, jdate('n'), jdate('Y'));
             $working_holiday = 0;
             for ($i = 1; $i <= $num; $i++) {
-                $day_name = date('l', strtotime("+0 days", strtotime(date('Y') . '-' . date('n') . '-' . $i)));
+                $day_name = jdate('l', strtotime("+0 days", strtotime(date('Y') . '-' . jdate('n') . '-' . $i)));
                 
                 if (!empty($holidays)) {
                     foreach ($holidays as $v_holiday) {
@@ -279,8 +279,8 @@ class User extends Admin_Controller
             }
             
             // get total days in a month
-            $month = date('m');
-            $year = date('Y');
+            $month = jdate('m');
+            $year = jdate('Y');
             $days = cal_days_in_month(CAL_GREGORIAN, $month, $year);
             // total attend days in a month without public holiday and working days
             $data['total_days'] = $days - $working_holiday - $public_holiday;
@@ -311,8 +311,8 @@ class User extends Admin_Controller
             }
         } else {
             
-            $month = date('n');
-            $year = date('Y');
+            $month = jdate('n');
+            $year = jdate('Y');
             if ($month >= 1 && $month <= 9) {
                 $yymm = $year . '-' . '0' . $month;
             } else {
@@ -340,8 +340,8 @@ class User extends Admin_Controller
     
     public function total_attendace_in_month($user_id, $flag = NULL)
     {
-        $month = date('m');
-        $year = date('Y');
+        $month = jdate('m');
+        $year = jdate('Y');
         $date = new DateTime($year . '-' . $month . '-01');
         $start_date = $date->modify('first day of this month')->format('Y-m-d');
         $end_date = $date->modify('last day of this month')->format('Y-m-d');
@@ -438,8 +438,8 @@ class User extends Admin_Controller
     
     public function get_report($user_id, $date)
     {
-        $month = date('n', strtotime($date));
-        $year = date('Y', strtotime($date));
+        $month = jdate('n', strtotime($date));
+        $year = jdate('Y', strtotime($date));
         $num = cal_days_in_month(CAL_GREGORIAN, $month, $year);
         
         $holidays = $this->common_model->get_holidays(); //tbl working Days Holiday
@@ -468,7 +468,7 @@ class User extends Admin_Controller
             } else {
                 $sdate = $yymm . '-' . $i;
             }
-            $day_name = date('l', strtotime("+$x days", strtotime($year . '-' . $month . '-' . $key)));
+            $day_name = jdate('l', strtotime("+$x days", strtotime($year . '-' . $month . '-' . $key)));
             
             $data['week_info'][date('W', strtotime($sdate))][$sdate] = $sdate;
             

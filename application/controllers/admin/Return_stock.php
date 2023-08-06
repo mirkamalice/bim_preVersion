@@ -127,11 +127,11 @@ class Return_stock extends Admin_Controller
             $data['discount_type'] = null;
         }
         $data['update_stock'] = ($this->input->post('update_stock') == 'Yes') ? 'Yes' : 'No';
-        $data['return_stock_date'] = date('Y-m-d', strtotime($this->input->post('return_stock_date', TRUE)));
+        $data['return_stock_date'] = jdate('Y-m-d', strtotime($this->input->post('return_stock_date', TRUE)));
         if (empty($data['return_stock_date'])) {
-            $data['return_stock_date'] = date('Y-m-d');
+            $data['return_stock_date'] = jdate('Y-m-d');
         }
-        $data['due_date'] = date('Y-m-d', strtotime($this->input->post('due_date', TRUE)));
+        $data['due_date'] = jdate('Y-m-d', strtotime($this->input->post('due_date', TRUE)));
         $data['warehouse_id'] = $this->input->post('warehouse_id', TRUE);
         $data['notes'] = $this->input->post('notes', TRUE);
         $tax['tax_name'] = $this->input->post('total_tax_name', TRUE);
@@ -528,11 +528,11 @@ class Return_stock extends Admin_Controller
                         'payment_method' => $this->input->post('payment_methods_id', TRUE),
                         'currency' => $this->input->post('currency', TRUE),
                         'amount' => $paid_amount,
-                        'payment_date' => date('Y-m-d', strtotime($this->input->post('payment_date', TRUE))),
+                        'payment_date' => jdate('Y-m-d', strtotime($this->input->post('payment_date', TRUE))),
                         'trans_id' => $this->input->post('trans_id'),
                         'notes' => $this->input->post('notes'),
-                        'month_paid' => date("m", strtotime($this->input->post('payment_date', TRUE))),
-                        'year_paid' => date("Y", strtotime($this->input->post('payment_date', TRUE))),
+                        'month_paid' => jdate("m", strtotime($this->input->post('payment_date', TRUE))),
+                        'year_paid' => jdate("Y", strtotime($this->input->post('payment_date', TRUE))),
                     );
                     $this->return_stock_model->_table_name = 'tbl_return_stock_payments';
                     $this->return_stock_model->_primary_key = 'payments_id';
@@ -577,7 +577,7 @@ class Return_stock extends Admin_Controller
                                 'amount' => $paid_amount,
                                 'debit' => $paid_amount,
                                 'credit' => 0,
-                                'date' => date('Y-m-d', strtotime($this->input->post('payment_date', TRUE))),
+                                'date' => jdate('Y-m-d', strtotime($this->input->post('payment_date', TRUE))),
                                 'paid_by' => (!empty($return_stock_info->module_id) ? $return_stock_info->module_id : ''),
                                 'payment_methods_id' => $this->input->post('payment_methods_id', TRUE),
                                 'reference' => $trans_id,
@@ -754,10 +754,10 @@ class Return_stock extends Admin_Controller
         $data = array(
             'amount' => $this->input->post('amount', TRUE),
             'payment_method' => $this->input->post('payment_methods_id', TRUE),
-            'payment_date' => date('Y-m-d', strtotime($this->input->post('payment_date', TRUE))),
+            'payment_date' => jdate('Y-m-d', strtotime($this->input->post('payment_date', TRUE))),
             'notes' => $this->input->post('notes', TRUE),
-            'month_paid' => date("m", strtotime($this->input->post('payment_date', TRUE))),
-            'year_paid' => date("Y", strtotime($this->input->post('payment_date', TRUE))),
+            'month_paid' => jdate("m", strtotime($this->input->post('payment_date', TRUE))),
+            'year_paid' => jdate("Y", strtotime($this->input->post('payment_date', TRUE))),
         );
         
         $activity = array(
@@ -850,7 +850,7 @@ class Return_stock extends Admin_Controller
         $return_stock_info = $this->return_stock_model->check_by(array('return_stock_id' => $id), 'tbl_return_stock');
         $return_stock_items = $this->db->where('return_stock_id', $id)->get('tbl_return_stock_items')->result();
         if ($action == 'mark_as_sent') {
-            $data = array('emailed' => 'Yes', 'date_sent' => date("Y-m-d:s", time()));
+            $data = array('emailed' => 'Yes', 'date_sent' => jdate("Y-m-d:s", time()));
         } elseif ($action == 'unmark_as_cancelled') {
             $payment_status = $this->return_stock_model->get_payment_status($return_stock_info->return_stock_id, true);
             $data = array('main_status' => 'Pending', 'status' => lang($payment_status));
@@ -971,7 +971,7 @@ The " . config_item('company_name') . " Team </p > ";
             unlink('uploads/' . slug_it(lang('return_stock') . '_' . $return_stock_info->reference_no) . '.pdf');
         }
         
-        $data = array('emailed' => 'Yes', 'date_sent' => date("Y-m-d H:i:s", time()));
+        $data = array('emailed' => 'Yes', 'date_sent' => jdate("Y-m-d H:i:s", time()));
         
         $this->return_stock_model->_table_name = 'tbl_return_stock';
         $this->return_stock_model->_primary_key = 'return_stock_id';

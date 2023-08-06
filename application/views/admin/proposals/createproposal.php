@@ -20,7 +20,7 @@
     $type = $this->uri->segment(5);
 
     if (empty($type)) {
-        $type = '_' . date('Y');
+        $type = '_' . jdate('Y');
     }
     ?>
 
@@ -323,7 +323,7 @@
                                                                                                                                             if (!empty($proposals_info->proposal_date)) {
                                                                                                                                                 echo $proposals_info->proposal_date;
                                                                                                                                             } else {
-                                                                                                                                                echo date('Y-m-d');
+                                                                                                                                                echo jdate('Y-m-d');
                                                                                                                                             }
                                                                                                                                             ?>" data-date-format="<?= config_item('date_picker_format'); ?>">
                                                             <div class="input-group-addon">
@@ -340,7 +340,7 @@
                                                                                                                                         if (!empty($proposals_info->due_date)) {
                                                                                                                                             echo $proposals_info->due_date;
                                                                                                                                         } else {
-                                                                                                                                            echo date('Y-m-d');
+                                                                                                                                            echo jdate('Y-m-d');
                                                                                                                                         }
                                                                                                                                         ?>" data-date-format="<?= config_item('date_picker_format'); ?>">
                                                             <div class="input-group-addon">

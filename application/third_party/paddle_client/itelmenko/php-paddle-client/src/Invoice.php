@@ -82,7 +82,7 @@ class Invoice {
      * @return $this
      */
     public function setExpires(int $timestamp) {
-        $this->data['expires'] = date("Y-m-d", $timestamp);
+        $this->data['expires'] = jdate("Y-m-d", $timestamp);
         return $this;
     }
 

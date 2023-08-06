@@ -12,8 +12,8 @@ $partially_paid = $this->admin_model->get_permission('tbl_invoices', array('tbl_
 $overdue = $this->admin_model->get_permission('tbl_invoices', array('tbl_invoices.due_date < ' => strtotime(date("Y-m-d")), 'tbl_invoices.status != ' => 'Paid'), 'count(tbl_invoices.invoices_id) as num_of_inv')[0]->num_of_inv;
 
 
-$mdate = date('Y-m-d');
-$last_7_days = date('Y-m-d', strtotime('today - 7 days'));
+$mdate = jdate('Y-m-d');
+$last_7_days = jdate('Y-m-d', strtotime('today - 7 days'));
 $all_goal_tracking = $this->invoice_model->get_permission('tbl_goal_tracking', array('goal_type_id' => 5));
 
 $all_goal = 0;
@@ -29,7 +29,7 @@ if (!empty($all_goal_tracking)) {
 // 30 days before
 
 for ($iDay = 7; $iDay >= 0; $iDay--) {
-    $date = date('Y-m-d', strtotime('today - ' . $iDay . 'days'));
+    $date = jdate('Y-m-d', strtotime('today - ' . $iDay . 'days'));
     $where = array('date_saved >=' => $date . " 00:00:00", 'date_saved <=' => $date . " 23:59:59");
     $invoice_result[$date] = count($this->db->where($where)->get('tbl_invoices')->result());
 }
@@ -91,7 +91,7 @@ if ($this->session->userdata('user_type') == 1) {
                                 <?php
                                 if (!empty($invoice_result)) {
                                     foreach ($invoice_result as $date => $v_invoice_result) {
-                                        echo date('d', strtotime($date)) . ' ';
+                                        echo jdate('d', strtotime($date)) . ' ';
                                     }
                                 }
                                 ?>

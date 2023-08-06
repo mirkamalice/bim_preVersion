@@ -41,7 +41,7 @@
                     <span>&copy;</span>
                     <span><a href="<?= config_item('copyright_url') ?>"> <?= config_item('copyright_name') ?></a></span>
                     <br/>
-                    <span>2016-<?= date('Y') ?></span>
+                    <span>2016-<?= jdate('Y') ?></span>
                     <span>-</span>
                     <span><?= lang('version') . ' ' . config_item('version') ?></span>
                 </div>

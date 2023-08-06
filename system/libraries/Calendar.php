@@ -181,7 +181,7 @@ class CI_Calendar
 
         // Set and validate the supplied month/year
         if (empty($year)) {
-            $year = date('Y', $local_time);
+            $year = jdate('Y', $local_time);
         } elseif (strlen($year) === 1) {
             $year = '200' . $year;
         } elseif (strlen($year) === 2) {
@@ -189,7 +189,7 @@ class CI_Calendar
         }
 
         if (empty($month)) {
-            $month = date('m', $local_time);
+            $month = jdate('m', $local_time);
         } elseif (strlen($month) === 1) {
             $month = '0' . $month;
         }
@@ -217,9 +217,9 @@ class CI_Calendar
 
         // Set the current month/year/day
         // We use this to determine the "today" date
-        $cur_year = date('Y', $local_time);
-        $cur_month = date('m', $local_time);
-        $cur_day = date('j', $local_time);
+        $cur_year = jdate('Y', $local_time);
+        $cur_month = jdate('m', $local_time);
+        $cur_day = jdate('j', $local_time);
 
         $is_current_month = ($cur_year == $year && $cur_month == $month);
 

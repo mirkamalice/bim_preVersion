@@ -150,7 +150,7 @@ class BinaryFileResponseTest extends ResponseTestCase
 
         // prepare a request for a range of the testing file
         $request = Request::create('/');
-        $request->headers->set('If-Range', date('D, d M Y H:i:s').' GMT');
+        $request->headers->set('If-Range', jdate('D, d M Y H:i:s').' GMT');
         $request->headers->set('Range', 'bytes=1-4');
 
         $this->expectOutputString(file_get_contents(__DIR__.'/File/Fixtures/test.gif'));

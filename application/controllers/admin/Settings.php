@@ -2404,11 +2404,11 @@ class Settings extends Admin_Controller
             // NNN1q2w3e4r56
             $this->load->helper('file');
             $this->load->dbutil();
-            $prefs = array('format' => 'zip', 'filename' => 'BD-backup_' . date('Y-m-d_H-i'));
+            $prefs = array('format' => 'zip', 'filename' => 'BD-backup_' . jdate('Y-m-d_H-i'));
 
             $backup = $this->dbutil->backup($prefs);
 
-            if (!write_file('./uploads/backup/BD-backup_' . date('Y-m-d_H-i') . '.zip', $backup)) {
+            if (!write_file('./uploads/backup/BD-backup_' . jdate('Y-m-d_H-i') . '.zip', $backup)) {
                 $type = 'error';
                 $message = lang('backup_error');
             } else {
@@ -2594,7 +2594,7 @@ class Settings extends Admin_Controller
             'module' => 'settings',
             'module_field_id' => $this->session->userdata('user_id'),
             'activity' => 'activity_deleted',
-            'value1' => lang('all_activity') . ' ' . date('Y-m-d')
+            'value1' => lang('all_activity') . ' ' . jdate('Y-m-d')
         );
         $this->settings_model->_table_name = 'tbl_activities';
         $this->settings_model->_primary_key = 'activities_id';
@@ -4121,7 +4121,7 @@ class Settings extends Admin_Controller
         if (!empty($can_do)) {
             $input_data = $this->settings_model->array_from_post(array('rule_name', 'client_id', 'card', 'award_point_to', 'award_point_from', 'description'));
 
-            $input_data['date_create'] = date('Y-m-d');
+            $input_data['date_create'] = jdate('Y-m-d');
 
             $this->settings_model->_table_name = 'tbl_award_rule';
             $this->settings_model->_primary_key = 'award_rule_id';

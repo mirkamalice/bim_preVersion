@@ -9,9 +9,9 @@
         <div class="notice-calendar-list panel-body">
             <div class="notice-calendar">
     <span
-        class="month"><?php echo date('M', strtotime($v_announcements->created_date)) ?></span>
+        class="month"><?php echo jdate('M', strtotime($v_announcements->created_date)) ?></span>
                 <span
-                    class="date"><?php echo date('d', strtotime($v_announcements->created_date)) ?></span>
+                    class="date"><?php echo jdate('d', strtotime($v_announcements->created_date)) ?></span>
             </div>
 
             <div class="notice-calendar-heading">

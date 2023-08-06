@@ -133,7 +133,7 @@ class Bugs extends Client_Controller
         $data['client_visible'] = 'Yes';
         $data['bug_status'] = 'unconfirmed';
         $data['severity'] = 'minor';
-        $data['created_time'] = date("Y-m-d H:i:s");
+        $data['created_time'] = jdate("Y-m-d H:i:s");
         $data['permission'] = 'all';
 
         //save data into table.

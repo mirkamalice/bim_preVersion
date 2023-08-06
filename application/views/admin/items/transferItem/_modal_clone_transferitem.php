@@ -45,7 +45,7 @@
                            if (!empty($item_info->date_saved)) {
                                echo $item_info->date_saved;
                            } else {
-                               echo date('Y-m-d H:i');
+                               echo jdate('Y-m-d H:i');
                            }
                            ?>"
                            data-date-format="<?= config_item('date_picker_format'); ?>">

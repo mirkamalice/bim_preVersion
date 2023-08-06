@@ -580,11 +580,11 @@ class elFinderVolumeDropbox extends elFinderVolumeDriver {
 				if ($praw = $this->getDBdat($_p)) {
 					$_update = false;
 					if (isset($praw['client_mtime']) && $_t > strtotime($praw['client_mtime'])) {
-						$praw['client_mtime'] = date('r', $_t);
+						$praw['client_mtime'] = jdate('r', $_t);
 						$_update = true;
 					}
 					if (isset($praw['modified']) && $_t > strtotime($praw['modified'])) {
-						$praw['modified'] = date('r', $_t);
+						$praw['modified'] = jdate('r', $_t);
 						$_update = true;
 					}
 					if ($_update) {

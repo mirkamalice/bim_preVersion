@@ -8,7 +8,7 @@
     if (!empty($all_job_circular)):foreach ($all_job_circular as $v_job_circular):
 
         $last_date = $v_job_circular->last_date;
-        $current_time = date('Y-m-d');
+        $current_time = jdate('Y-m-d');
         if ($current_time > $last_date) {
             $ribon = 'danger';
             $text = lang('expired');
@@ -16,8 +16,8 @@
             $ribon = 'info';
             $text = lang('last_date');
         } else {
-            $lastdate = date('Y-m-d', strtotime($v_job_circular->last_date));
-            $today = date('Y-m-d');
+            $lastdate = jdate('Y-m-d', strtotime($v_job_circular->last_date));
+            $today = jdate('Y-m-d');
             $datetime1 = new DateTime($today);
             $datetime2 = new DateTime($lastdate);
             $interval = $datetime1->diff($datetime2);

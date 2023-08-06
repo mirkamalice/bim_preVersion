@@ -65,7 +65,7 @@ if (!empty($files_info)) {
                                                 echo $fileName;
                                                 ?>
                                             </a>
-                                            <p class="time m0 p0"> <?= date('Y-m-d' . "<br/> h:m A", strtotime($v_files_info[0]->upload_time)); ?></p>
+                                            <p class="time m0 p0"> <?= jdate('Y-m-d' . "<br/> h:m A", strtotime($v_files_info[0]->upload_time)); ?></p>
                                             <span class="size"> <?= $v_files->size ?> <?= lang('kb') ?>
                                                 <a href="<?= base_url() ?>admin/common/download_files/<?= $v_files->uploaded_files_id ?>"
                                                    class="pull-right"><i class="fa fa-cloud-download"></i></a></span>

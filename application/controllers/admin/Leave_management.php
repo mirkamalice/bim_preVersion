@@ -180,7 +180,7 @@ class Leave_Management extends Admin_Controller
         if ($allow_weekend_excluded_from_leave == 'TRUE') {
             $holidays = $this->common_model->get_holidays(); // get weekends column day
             if ($leave->leave_type == 'single_day') {
-                $dayName = date('l', strtotime($leave->leave_start_date));
+                $dayName = jdate('l', strtotime($leave->leave_start_date));
                 if (!in_array($dayName, array_column($holidays, 'day'))) {
                     return ' 1 ' . lang('day') . ' (<span class="text-danger">' . $office_hours . '.00' . lang('hours') . '</span>)';
                 } else {
@@ -190,14 +190,14 @@ class Leave_Management extends Admin_Controller
                 $allDates = $this->common_model->GetDays($leave->leave_start_date, $leave->leave_end_date);
                 $total_days = 0;
                 foreach ($allDates as $date) {
-                    $dayName = date('l', strtotime($date));
+                    $dayName = jdate('l', strtotime($date));
                     if (!in_array($dayName, array_column($holidays, 'day'))) {
                         $total_days++;
                     }
                 }
                 return $total_days . ' ' . lang('day') . ' (<span class="text-danger">' . $total_days * $office_hours . '.00' . lang('hours') . '</span>)';
             } else {
-                $dayName = date('l', strtotime($leave->leave_start_date));
+                $dayName = jdate('l', strtotime($leave->leave_start_date));
                 if (!in_array($dayName, array_column($holidays, 'day'))) {
                     $total_hours = ($leave->hours / $office_hours);
                     return number_format($total_hours, 2) . ' ' . lang('days') . ' (<span class="text-danger">' . $leave->hours . '.00' . lang('hours') . '</span>)';
@@ -438,7 +438,7 @@ class Leave_Management extends Admin_Controller
         $allow_weekend_excluded_from_leave = config_item('allow_weekend_excluded_from_leave');
         if ($allow_weekend_excluded_from_leave == 'TRUE') {
             $holidays = $this->common_model->get_holidays(); // tbl working Days Holiday
-            $day = date('l', strtotime($date));
+            $day = jdate('l', strtotime($date));
             if (in_array($day, array_column($holidays, 'day'))) {
                 set_message('error', lang('you_cannot_apply_leave_on_holiday'));
                 redirect('admin/leave_management');
@@ -683,7 +683,7 @@ class Leave_Management extends Admin_Controller
                 }
             }
 
-            $token_leave = $this->db->where(array('user_id' => $user_id, 'leave_category_id' => $leave_category_id, 'YEAR(`leave_start_date`)' => date('Y'), 'application_status' => '2'))->get('tbl_leave_application')->result();
+            $token_leave = $this->db->where(array('user_id' => $user_id, 'leave_category_id' => $leave_category_id, 'YEAR(`leave_start_date`)' => jdate('Y'), 'application_status' => '2'))->get('tbl_leave_application')->result();
 
             $total_taken = 0;
             $total_hourly = 0;
@@ -704,7 +704,7 @@ class Leave_Management extends Admin_Controller
             $input_ge_days = 0;
             $input_m_days = 0;
             if (!empty($end_date) && $end_date != 'null') {
-                $input_month = cal_days_in_month(CAL_GREGORIAN, date('m', strtotime($start_date)), date('Y', strtotime($end_date)));
+                $input_month = cal_days_in_month(CAL_GREGORIAN, jdate('m', strtotime($start_date)), jdate('Y', strtotime($end_date)));
 
                 $input_datetime1 = new DateTime($start_date);
                 $input_datetime2 = new DateTime($end_date);

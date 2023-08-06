@@ -36,9 +36,9 @@
                                        echo config_item('purchase_number_format');
                                    } ?>">
                             <small>ex [<?= config_item('purchase_prefix') ?>] = <?= lang('purchase_prefix') ?>,[yyyy] =
-                                'Current Year (<?= date('Y') ?>)'[yy] ='Current Year (<?= date('y') ?>)',[mm] =
-                                'Current Month(<?= date('M') ?>)',[m] =
-                                'Current Month(<?= date('m') ?>)',[dd] = 'Current Date (<?= date('d') ?>)',[number] =
+                                'Current Year (<?= jdate('Y') ?>)'[yy] ='Current Year (<?= jdate('y') ?>)',[mm] =
+                                'Current Month(<?= jdate('M') ?>)',[m] =
+                                'Current Month(<?= jdate('m') ?>)',[dd] = 'Current Date (<?= jdate('d') ?>)',[number] =
                                 'Invoice Number (<?= sprintf('%04d', config_item('purchase_start_no')) ?>)'
                             </small>
                         </div>
@@ -86,9 +86,9 @@
                                        echo config_item('return_stock_number_format');
                                    } ?>">
                             <small>ex [<?= config_item('return_stock_prefix') ?>] = <?= lang('return_stock_prefix') ?>
-                                ,[yyyy] ='Current Year (<?= date('Y') ?>)'[yy] ='Current Year (<?= date('y') ?>)',[mm] =
-                                'Current Month(<?= date('M') ?>)',[m] =
-                                'Current Month(<?= date('m') ?>)',[dd] = 'Current Date (<?= date('d') ?>)',[number] =
+                                ,[yyyy] ='Current Year (<?= jdate('Y') ?>)'[yy] ='Current Year (<?= jdate('y') ?>)',[mm] =
+                                'Current Month(<?= jdate('M') ?>)',[m] =
+                                'Current Month(<?= jdate('m') ?>)',[dd] = 'Current Date (<?= jdate('d') ?>)',[number] =
                                 'Invoice Number (<?= sprintf('%04d', config_item('return_stock_start_no')) ?>)'
                             </small>
                         </div>

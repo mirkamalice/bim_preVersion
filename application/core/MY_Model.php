@@ -52,7 +52,7 @@
 
         // Set timestamps
         if ($this->_timestamps == TRUE) {
-            $now = date('Y-m-d H:i:s');
+            $now = jdate('Y-m-d H:i:s');
             $id || $data['created'] = $now;
             $data['modified'] = $now;
         }
@@ -643,11 +643,11 @@
         if (!empty(config_item('invoice_number_format'))) {
             $invoice_format = config_item('invoice_number_format');
             $invoice_prefix = str_replace("[" . config_item('invoice_prefix') . "]", config_item('invoice_prefix'), $invoice_format);
-            $yyyy = str_replace("[yyyy]", date('Y'), $invoice_prefix);
-            $yy = str_replace("[yy]", date('y'), $yyyy);
-            $mm = str_replace("[mm]", date('M'), $yy);
-            $m = str_replace("[m]", date('m'), $mm);
-            $dd = str_replace("[dd]", date('d'), $m);
+            $yyyy = str_replace("[yyyy]", jdate('Y'), $invoice_prefix);
+            $yy = str_replace("[yy]", jdate('y'), $yyyy);
+            $mm = str_replace("[mm]", jdate('M'), $yy);
+            $m = str_replace("[m]", jdate('m'), $mm);
+            $dd = str_replace("[dd]", jdate('d'), $m);
             $next_number = str_replace("[number]", $next_number, $dd);
         }
         return $next_number;
@@ -659,11 +659,11 @@
         if (!empty(config_item('invoice_number_format'))) {
             $invoice_format = config_item('invoice_number_format');
             $invoice_prefix = str_replace("[" . config_item('invoice_prefix') . "]", config_item('invoice_prefix'), $invoice_format);
-            $yyyy = str_replace("[yyyy]", date('Y'), $invoice_prefix);
-            $yy = str_replace("[yy]", date('y'), $yyyy);
-            $mm = str_replace("[mm]", date('M'), $yy);
-            $m = str_replace("[m]", date('m'), $mm);
-            $dd = str_replace("[dd]", date('d'), $m);
+            $yyyy = str_replace("[yyyy]", jdate('Y'), $invoice_prefix);
+            $yy = str_replace("[yy]", jdate('y'), $yyyy);
+            $mm = str_replace("[mm]", jdate('M'), $yy);
+            $m = str_replace("[m]", jdate('m'), $mm);
+            $dd = str_replace("[dd]", jdate('d'), $m);
             $enext_number = str_replace("[number]", $next_number, $dd);
         }
         $records = $this->db->where('reference_no', $enext_number)->get('tbl_invoices')->num_rows();
@@ -698,11 +698,11 @@
         if (!empty(config_item('transfer_number_format'))) {
             $invoice_format = config_item('transfer_number_format');
             $invoice_prefix = str_replace("[" . config_item('transfer_prefix') . "]", config_item('transfer_prefix'), $invoice_format);
-            $yyyy = str_replace("[yyyy]", date('Y'), $invoice_prefix);
-            $yy = str_replace("[yy]", date('y'), $yyyy);
-            $mm = str_replace("[mm]", date('M'), $yy);
-            $m = str_replace("[m]", date('m'), $mm);
-            $dd = str_replace("[dd]", date('d'), $m);
+            $yyyy = str_replace("[yyyy]", jdate('Y'), $invoice_prefix);
+            $yy = str_replace("[yy]", jdate('y'), $yyyy);
+            $mm = str_replace("[mm]", jdate('M'), $yy);
+            $m = str_replace("[m]", jdate('m'), $mm);
+            $dd = str_replace("[dd]", jdate('d'), $m);
             $next_number = str_replace("[number]", $next_number, $dd);
         }
         return $next_number;
@@ -714,11 +714,11 @@
         if (!empty(config_item('transfer_number_format'))) {
             $invoice_format = config_item('transfer_number_format');
             $invoice_prefix = str_replace("[" . config_item('transfer_prefix') . "]", config_item('transfer_prefix'), $invoice_format);
-            $yyyy = str_replace("[yyyy]", date('Y'), $invoice_prefix);
-            $yy = str_replace("[yy]", date('y'), $yyyy);
-            $mm = str_replace("[mm]", date('M'), $yy);
-            $m = str_replace("[m]", date('m'), $mm);
-            $dd = str_replace("[dd]", date('d'), $m);
+            $yyyy = str_replace("[yyyy]", jdate('Y'), $invoice_prefix);
+            $yy = str_replace("[yy]", jdate('y'), $yyyy);
+            $mm = str_replace("[mm]", jdate('M'), $yy);
+            $m = str_replace("[m]", jdate('m'), $mm);
+            $dd = str_replace("[dd]", jdate('d'), $m);
             $enext_number = str_replace("[number]", $next_number, $dd);
         }
         $records = $this->db->where('reference_no', $enext_number)->get('tbl_transfer_item')->num_rows();
@@ -751,11 +751,11 @@
         if (!empty(config_item('estimate_number_format'))) {
             $invoice_format = config_item('estimate_number_format');
             $invoice_prefix = str_replace("[" . config_item('estimate_prefix') . "]", config_item('estimate_prefix'), $invoice_format);
-            $yyyy = str_replace("[yyyy]", date('Y'), $invoice_prefix);
-            $yy = str_replace("[yy]", date('y'), $yyyy);
-            $mm = str_replace("[mm]", date('M'), $yy);
-            $m = str_replace("[m]", date('m'), $mm);
-            $dd = str_replace("[dd]", date('d'), $m);
+            $yyyy = str_replace("[yyyy]", jdate('Y'), $invoice_prefix);
+            $yy = str_replace("[yy]", jdate('y'), $yyyy);
+            $mm = str_replace("[mm]", jdate('M'), $yy);
+            $m = str_replace("[m]", jdate('m'), $mm);
+            $dd = str_replace("[dd]", jdate('d'), $m);
             $next_number = str_replace("[number]", $next_number, $dd);
         }
         return $next_number;
@@ -767,11 +767,11 @@
         if (!empty(config_item('estimate_number_format'))) {
             $invoice_format = config_item('estimate_number_format');
             $invoice_prefix = str_replace("[" . config_item('estimate_prefix') . "]", config_item('estimate_prefix'), $invoice_format);
-            $yyyy = str_replace("[yyyy]", date('Y'), $invoice_prefix);
-            $yy = str_replace("[yy]", date('y'), $yyyy);
-            $mm = str_replace("[mm]", date('M'), $yy);
-            $m = str_replace("[m]", date('m'), $mm);
-            $dd = str_replace("[dd]", date('d'), $m);
+            $yyyy = str_replace("[yyyy]", jdate('Y'), $invoice_prefix);
+            $yy = str_replace("[yy]", jdate('y'), $yyyy);
+            $mm = str_replace("[mm]", jdate('M'), $yy);
+            $m = str_replace("[m]", jdate('m'), $mm);
+            $dd = str_replace("[dd]", jdate('d'), $m);
             $enext_number = str_replace("[number]", $next_number, $dd);
         }
         $records = $this->db->where('reference_no', $enext_number)->get('tbl_estimates')->num_rows();
@@ -818,11 +818,11 @@
         if (!empty($number_format)) {
             $invoice_format = $number_format;
             $invoice_prefix = str_replace("[" . $prefix . "]", $prefix, $invoice_format);
-            $yyyy = str_replace("[yyyy]", date('Y'), $invoice_prefix);
-            $yy = str_replace("[yy]", date('y'), $yyyy);
-            $mm = str_replace("[mm]", date('M'), $yy);
-            $m = str_replace("[m]", date('m'), $mm);
-            $dd = str_replace("[dd]", date('d'), $m);
+            $yyyy = str_replace("[yyyy]", jdate('Y'), $invoice_prefix);
+            $yy = str_replace("[yy]", jdate('y'), $yyyy);
+            $mm = str_replace("[mm]", jdate('M'), $yy);
+            $m = str_replace("[m]", jdate('m'), $mm);
+            $dd = str_replace("[dd]", jdate('d'), $m);
             $next_number = str_replace("[number]", $next_number, $dd);
         }
         return $next_number;
@@ -842,11 +842,11 @@
         if (!empty($number_format)) {
             $invoice_format = $number_format;
             $invoice_prefix = str_replace("[" . $prefix . "]", $prefix, $invoice_format);
-            $yyyy = str_replace("[yyyy]", date('Y'), $invoice_prefix);
-            $yy = str_replace("[yy]", date('y'), $yyyy);
-            $mm = str_replace("[mm]", date('M'), $yy);
-            $m = str_replace("[m]", date('m'), $mm);
-            $dd = str_replace("[dd]", date('d'), $m);
+            $yyyy = str_replace("[yyyy]", jdate('Y'), $invoice_prefix);
+            $yy = str_replace("[yy]", jdate('y'), $yyyy);
+            $mm = str_replace("[mm]", jdate('M'), $yy);
+            $m = str_replace("[m]", jdate('m'), $mm);
+            $dd = str_replace("[dd]", jdate('d'), $m);
             $enext_number = str_replace("[number]", $next_number, $dd);
         }
         $records = $this->db->where('transaction_prefix', $enext_number)->get('tbl_transactions')->num_rows();
@@ -880,11 +880,11 @@
         if (!empty(config_item('credit_note_number_format'))) {
             $invoice_format = config_item('credit_note_number_format');
             $invoice_prefix = str_replace("[" . config_item('credit_note_prefix') . "]", config_item('credit_note_prefix'), $invoice_format);
-            $yyyy = str_replace("[yyyy]", date('Y'), $invoice_prefix);
-            $yy = str_replace("[yy]", date('y'), $yyyy);
-            $mm = str_replace("[mm]", date('M'), $yy);
-            $m = str_replace("[m]", date('m'), $mm);
-            $dd = str_replace("[dd]", date('d'), $m);
+            $yyyy = str_replace("[yyyy]", jdate('Y'), $invoice_prefix);
+            $yy = str_replace("[yy]", jdate('y'), $yyyy);
+            $mm = str_replace("[mm]", jdate('M'), $yy);
+            $m = str_replace("[m]", jdate('m'), $mm);
+            $dd = str_replace("[dd]", jdate('d'), $m);
             $next_number = str_replace("[number]", $next_number, $dd);
         }
         return $next_number;
@@ -896,11 +896,11 @@
         if (!empty(config_item('credit_note_number_format'))) {
             $invoice_format = config_item('credit_note_number_format');
             $invoice_prefix = str_replace("[" . config_item('credit_note_prefix') . "]", config_item('credit_note_prefix'), $invoice_format);
-            $yyyy = str_replace("[yyyy]", date('Y'), $invoice_prefix);
-            $yy = str_replace("[yy]", date('y'), $yyyy);
-            $mm = str_replace("[mm]", date('M'), $yy);
-            $m = str_replace("[m]", date('m'), $mm);
-            $dd = str_replace("[dd]", date('d'), $m);
+            $yyyy = str_replace("[yyyy]", jdate('Y'), $invoice_prefix);
+            $yy = str_replace("[yy]", jdate('y'), $yyyy);
+            $mm = str_replace("[mm]", jdate('M'), $yy);
+            $m = str_replace("[m]", jdate('m'), $mm);
+            $dd = str_replace("[dd]", jdate('d'), $m);
             $enext_number = str_replace("[number]", $next_number, $dd);
         }
         $records = $this->db->where('reference_no', $enext_number)->get('tbl_credit_note')->num_rows();
@@ -933,11 +933,11 @@
         if (!empty(config_item('proposal_number_format'))) {
             $invoice_format = config_item('proposal_number_format');
             $invoice_prefix = str_replace("[" . config_item('proposal_prefix') . "]", config_item('proposal_prefix'), $invoice_format);
-            $yyyy = str_replace("[yyyy]", date('Y'), $invoice_prefix);
-            $yy = str_replace("[yy]", date('y'), $yyyy);
-            $mm = str_replace("[mm]", date('M'), $yy);
-            $m = str_replace("[m]", date('m'), $mm);
-            $dd = str_replace("[dd]", date('d'), $m);
+            $yyyy = str_replace("[yyyy]", jdate('Y'), $invoice_prefix);
+            $yy = str_replace("[yy]", jdate('y'), $yyyy);
+            $mm = str_replace("[mm]", jdate('M'), $yy);
+            $m = str_replace("[m]", jdate('m'), $mm);
+            $dd = str_replace("[dd]", jdate('d'), $m);
             $next_number = str_replace("[number]", $next_number, $dd);
         }
         return $next_number;
@@ -949,11 +949,11 @@
         if (!empty(config_item('proposal_number_format'))) {
             $invoice_format = config_item('proposal_number_format');
             $invoice_prefix = str_replace("[" . config_item('proposal_prefix') . "]", config_item('proposal_prefix'), $invoice_format);
-            $yyyy = str_replace("[yyyy]", date('Y'), $invoice_prefix);
-            $yy = str_replace("[yy]", date('y'), $yyyy);
-            $mm = str_replace("[mm]", date('M'), $yy);
-            $m = str_replace("[m]", date('m'), $mm);
-            $dd = str_replace("[dd]", date('d'), $m);
+            $yyyy = str_replace("[yyyy]", jdate('Y'), $invoice_prefix);
+            $yy = str_replace("[yy]", jdate('y'), $yyyy);
+            $mm = str_replace("[mm]", jdate('M'), $yy);
+            $m = str_replace("[m]", jdate('m'), $mm);
+            $dd = str_replace("[dd]", jdate('d'), $m);
             $enext_number = str_replace("[number]", $next_number, $dd);
         }
         $records = $this->db->where('reference_no', $enext_number)->get('tbl_proposals')->num_rows();
@@ -986,11 +986,11 @@
         if (!empty(config_item('purchase_number_format'))) {
             $invoice_format = config_item('purchase_number_format');
             $invoice_prefix = str_replace("[" . config_item('purchase_prefix') . "]", config_item('purchase_prefix'), $invoice_format);
-            $yyyy = str_replace("[yyyy]", date('Y'), $invoice_prefix);
-            $yy = str_replace("[yy]", date('y'), $yyyy);
-            $mm = str_replace("[mm]", date('M'), $yy);
-            $m = str_replace("[m]", date('m'), $mm);
-            $dd = str_replace("[dd]", date('d'), $m);
+            $yyyy = str_replace("[yyyy]", jdate('Y'), $invoice_prefix);
+            $yy = str_replace("[yy]", jdate('y'), $yyyy);
+            $mm = str_replace("[mm]", jdate('M'), $yy);
+            $m = str_replace("[m]", jdate('m'), $mm);
+            $dd = str_replace("[dd]", jdate('d'), $m);
             $next_number = str_replace("[number]", $next_number, $dd);
         }
         return $next_number;
@@ -1002,11 +1002,11 @@
         if (!empty(config_item('purchase_number_format'))) {
             $invoice_format = config_item('purchase_number_format');
             $invoice_prefix = str_replace("[" . config_item('purchase_prefix') . "]", config_item('purchase_prefix'), $invoice_format);
-            $yyyy = str_replace("[yyyy]", date('Y'), $invoice_prefix);
-            $yy = str_replace("[yy]", date('y'), $yyyy);
-            $mm = str_replace("[mm]", date('M'), $yy);
-            $m = str_replace("[m]", date('m'), $mm);
-            $dd = str_replace("[dd]", date('d'), $m);
+            $yyyy = str_replace("[yyyy]", jdate('Y'), $invoice_prefix);
+            $yy = str_replace("[yy]", jdate('y'), $yyyy);
+            $mm = str_replace("[mm]", jdate('M'), $yy);
+            $m = str_replace("[m]", jdate('m'), $mm);
+            $dd = str_replace("[dd]", jdate('d'), $m);
             $enext_number = str_replace("[number]", $next_number, $dd);
         }
         $records = $this->db->where('reference_no', $enext_number)->get('tbl_purchases')->num_rows();
@@ -1039,11 +1039,11 @@
         if (!empty(config_item('return_stock_number_format'))) {
             $invoice_format = config_item('return_stock_number_format');
             $invoice_prefix = str_replace("[" . config_item('return_stock_prefix') . "]", config_item('return_stock_prefix'), $invoice_format);
-            $yyyy = str_replace("[yyyy]", date('Y'), $invoice_prefix);
-            $yy = str_replace("[yy]", date('y'), $yyyy);
-            $mm = str_replace("[mm]", date('M'), $yy);
-            $m = str_replace("[m]", date('m'), $mm);
-            $dd = str_replace("[dd]", date('d'), $m);
+            $yyyy = str_replace("[yyyy]", jdate('Y'), $invoice_prefix);
+            $yy = str_replace("[yy]", jdate('y'), $yyyy);
+            $mm = str_replace("[mm]", jdate('M'), $yy);
+            $m = str_replace("[m]", jdate('m'), $mm);
+            $dd = str_replace("[dd]", jdate('d'), $m);
             $next_number = str_replace("[number]", $next_number, $dd);
         }
         return $next_number;
@@ -1055,11 +1055,11 @@
         if (!empty(config_item('return_stock_number_format'))) {
             $invoice_format = config_item('return_stock_number_format');
             $invoice_prefix = str_replace("[" . config_item('return_stock_prefix') . "]", config_item('return_stock_prefix'), $invoice_format);
-            $yyyy = str_replace("[yyyy]", date('Y'), $invoice_prefix);
-            $yy = str_replace("[yy]", date('y'), $yyyy);
-            $mm = str_replace("[mm]", date('M'), $yy);
-            $m = str_replace("[m]", date('m'), $mm);
-            $dd = str_replace("[dd]", date('d'), $m);
+            $yyyy = str_replace("[yyyy]", jdate('Y'), $invoice_prefix);
+            $yy = str_replace("[yy]", jdate('y'), $yyyy);
+            $mm = str_replace("[mm]", jdate('M'), $yy);
+            $m = str_replace("[m]", jdate('m'), $mm);
+            $dd = str_replace("[dd]", jdate('d'), $m);
             $enext_number = str_replace("[number]", $next_number, $dd);
         }
         $records = $this->db->where('reference_no', $enext_number)->get('tbl_return_stock')->num_rows();

@@ -110,7 +110,7 @@ if (!empty($created) || !empty($edited)) {
                                                                                                                             if (!empty($purchase_info->purchase_date)) {
                                                                                                                                 echo $purchase_info->purchase_date;
                                                                                                                             } else {
-                                                                                                                                echo date('Y-m-d');
+                                                                                                                                echo jdate('Y-m-d');
                                                                                                                             }
                                                                                                                             ?>"
                                             data-date-format="<?= config_item('date_picker_format'); ?>">
@@ -129,7 +129,7 @@ if (!empty($created) || !empty($edited)) {
                                                                                                                         if (!empty($purchase_info->due_date)) {
                                                                                                                             echo $purchase_info->due_date;
                                                                                                                         } else {
-                                                                                                                            echo date('Y-m-d');
+                                                                                                                            echo jdate('Y-m-d');
                                                                                                                         }
                                                                                                                         ?>"
                                             data-date-format="<?= config_item('date_picker_format'); ?>">

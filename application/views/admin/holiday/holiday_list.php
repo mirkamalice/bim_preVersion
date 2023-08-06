@@ -34,8 +34,8 @@ $deleted = can_action('71', 'deleted');
         <ul class="mt nav nav-pills nav-stacked navbar-custom-nav">
             <?php
             foreach ($all_holiday_list as $key => $v_holiday_list):
-                $year = date('Y');
-                $month_name = date('F', strtotime($year . '-' . $key)); // get full name of month by date query
+                $year = jdate('Y');
+                $month_name = jdate('F', strtotime($year . '-' . $key)); // get full name of month by date query
                 ?>
                 <li class="<?php
                 if ($current_month == $key) {
@@ -58,8 +58,8 @@ $deleted = can_action('71', 'deleted');
         <div class="tab-content pl0">
             <?php
             foreach ($all_holiday_list as $key => $v_holiday_list):
-                $year = date('Y');
-                $month_name = date('F', strtotime($year . '-' . $key)); // get full name of month by date query
+                $year = jdate('Y');
+                $month_name = jdate('F', strtotime($year . '-' . $key)); // get full name of month by date query
                 ?>
                 <div id="<?php echo $month_name ?>" class="tab-pane <?php
                 if ($current_month == $key) {

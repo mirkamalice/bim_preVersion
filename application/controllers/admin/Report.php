@@ -191,8 +191,8 @@ class Report extends Admin_Controller
     
     public function get_transactions_report()
     { // this function is to create get monthy recap report
-        $m = date('n');
-        $year = date('Y');
+        $m = jdate('n');
+        $year = jdate('Y');
         $num = cal_days_in_month(CAL_GREGORIAN, $m, $year);
         for ($i = 1; $i <= $num; $i++) {
             if ($m >= 1 && $m <= 9) { // if i<=9 concate with Mysql.becuase on Mysql query fast in two digit like 01.
@@ -265,12 +265,12 @@ class Report extends Admin_Controller
     public function report_by_month()
     {
         $data['title'] = lang('report_by_month');
-        $data['current_month'] = date('m');
+        $data['current_month'] = jdate('m');
         
         if ($this->input->post('year', TRUE)) { // if input year 
             $data['year'] = $this->input->post('year', TRUE);
         } else { // else current year
-            $data['year'] = date('Y'); // get current year
+            $data['year'] = jdate('Y'); // get current year
         }
         // get all expense list by year and month
         $data['report_by_month'] = $this->get_report_by_month($data['year']);
@@ -313,7 +313,7 @@ class Report extends Admin_Controller
         $this->report_model->save($activity);
         
         $data['report_list'] = $this->get_report_by_month($year, $month);
-        $month_name = date('F', strtotime($year . '-' . $month)); // get full name of month by date query                
+        $month_name = jdate('F', strtotime($year . '-' . $month)); // get full name of month by date query                
         $data['monthyaer'] = $month_name . '  ' . $year;
         $this->load->helper('dompdf');
         $viewfile = $this->load->view('admin/report/report_by_month_pdf', $data, TRUE);
@@ -713,8 +713,8 @@ class Report extends Admin_Controller
                 if ($this->input->post()) {
                     $range = explode('-', $this->input->post('range', true));
                     if (!empty($range[0])) {
-                        $start_date = date('Y-m-d', strtotime($range[0]));
-                        $end_date = date('Y-m-d', strtotime($range[1]));
+                        $start_date = jdate('Y-m-d', strtotime($range[0]));
+                        $end_date = jdate('Y-m-d', strtotime($range[1]));
                         $data['range'] = array($start_date, $end_date);
                     }
                     $status = $this->input->post('status', true);
@@ -729,8 +729,8 @@ class Report extends Admin_Controller
                 if ($this->input->post()) {
                     $range = explode('-', $this->input->post('range', true));
                     if (!empty($range[0])) {
-                        $start_date = date('Y-m-d', strtotime($range[0]));
-                        $end_date = date('Y-m-d', strtotime($range[1]));
+                        $start_date = jdate('Y-m-d', strtotime($range[0]));
+                        $end_date = jdate('Y-m-d', strtotime($range[1]));
                         $data['range'] = array($start_date, $end_date);
                     }
                     $client_id = $this->input->post('client_id', true);
@@ -750,8 +750,8 @@ class Report extends Admin_Controller
                 if ($this->input->post()) {
                     $range = explode('-', $this->input->post('range', true));
                     if (!empty($range[0])) {
-                        $start_date = date('Y-m-d', strtotime($range[0]));
-                        $end_date = date('Y-m-d', strtotime($range[1]));
+                        $start_date = jdate('Y-m-d', strtotime($range[0]));
+                        $end_date = jdate('Y-m-d', strtotime($range[1]));
                         $data['range'] = array($start_date, $end_date);
                     }
                     $status = $this->input->post('status', true);
@@ -771,8 +771,8 @@ class Report extends Admin_Controller
                 if ($this->input->post()) {
                     $range = explode('-', $this->input->post('range', true));
                     if (!empty($range[0])) {
-                        $start_date = date('Y-m-d', strtotime($range[0]));
-                        $end_date = date('Y-m-d', strtotime($range[1]));
+                        $start_date = jdate('Y-m-d', strtotime($range[0]));
+                        $end_date = jdate('Y-m-d', strtotime($range[1]));
                         $data['range'] = array($start_date, $end_date);
                     }
                     $status = $this->input->post('status', true);
@@ -857,8 +857,8 @@ class Report extends Admin_Controller
                 if ($this->input->post()) {
                     $range = explode('-', $this->input->post('range', true));
                     if (!empty($range[0])) {
-                        $start_date = date('Y-m-d', strtotime($range[0]));
-                        $end_date = date('Y-m-d', strtotime($range[1]));
+                        $start_date = jdate('Y-m-d', strtotime($range[0]));
+                        $end_date = jdate('Y-m-d', strtotime($range[1]));
                         $data['range'] = array($start_date, $end_date);
                     }
                     $status = $this->input->post('status', true);

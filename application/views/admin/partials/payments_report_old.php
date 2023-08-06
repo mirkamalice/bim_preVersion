@@ -48,7 +48,7 @@ if (!empty($payments_report_order)) {
                 labels: [
                     <?php
                     for ($i = 1; $i <= 12; $i++) {
-                        $month_name = date('F', strtotime($yearly . '-' . $i));
+                        $month_name = jdate('F', strtotime($yearly . '-' . $i));
                     ?> "<?php echo $month_name; ?>", <?php }; ?>
                 ],
                 datasets: [{

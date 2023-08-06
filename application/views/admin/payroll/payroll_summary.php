@@ -145,11 +145,11 @@
 </div>
 <?php if (!empty($search_type) && $search_type != 'activities') {
 if ($search_type == 'period') {
-    $by = ' - ' . ' ' . date('F-Y', strtotime($start_month)) . ' ' . lang('TO') . ' ' . date('F-Y', strtotime($end_month));
+    $by = ' - ' . ' ' . jdate('F-Y', strtotime($start_month)) . ' ' . lang('TO') . ' ' . jdate('F-Y', strtotime($end_month));
     $pdf = $start_month . 'n' . $end_month;
 }
 if ($search_type == 'month') {
-    $by = ' - ' . ' ' . date('F-Y', strtotime($by_month));
+    $by = ' - ' . ' ' . jdate('F-Y', strtotime($by_month));
     $pdf = $by_month;
 }
 if ($search_type == 'employee') {
@@ -265,7 +265,7 @@ if ($search_type == 'employee') {
                     $deduction = 0;
                     ?>
                     <tr>
-                        <td><?php echo date('F-Y', strtotime($v_payroll->payment_month)); ?></td>
+                        <td><?php echo jdate('F-Y', strtotime($v_payroll->payment_month)); ?></td>
                         <td><?php echo strftime(config_item('date_format'), strtotime($v_payroll->paid_date)); ?></td>
                         <td><?php echo display_money($total_paid_amount, $currency->symbol); ?></td>
                         <td><?php echo display_money($total_deduction, $currency->symbol); ?></td>

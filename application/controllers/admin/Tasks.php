@@ -385,8 +385,8 @@ class Tasks extends Admin_Controller
                 }
                 for ($x = 2; $x <= count(array($sheetData)); $x++) {
                     $data['task_name'] = trim($sheetData[$x]["A"]);
-                    $data['task_start_date'] = date('Y-m-d', strtotime($sheetData[$x]["B"]));
-                    $data['due_date'] = date('Y-m-d', strtotime($sheetData[$x]["C"]));
+                    $data['task_start_date'] = jdate('Y-m-d', strtotime($sheetData[$x]["B"]));
+                    $data['due_date'] = jdate('Y-m-d', strtotime($sheetData[$x]["C"]));
                     $data['task_hour'] = trim($sheetData[$x]["D"]);
                     $data['task_progress'] = trim($sheetData[$x]["E"]);
                     $data['task_description'] = trim($sheetData[$x]["F"]);
@@ -1651,16 +1651,16 @@ class Tasks extends Admin_Controller
 
             $t_data = $this->tasks_model->array_from_post(array('task_id', 'start_date', 'start_time', 'end_date', 'end_time'));
             if (empty($t_data['start_date'])) {
-                $t_data['start_date'] = date('Y-m-d');
+                $t_data['start_date'] = jdate('Y-m-d');
             }
             if (empty($t_data['end_date'])) {
-                $t_data['end_date'] = date('Y-m-d');
+                $t_data['end_date'] = jdate('Y-m-d');
             }
             if (empty($t_data['start_time'])) {
-                $t_data['start_time'] = date('H:i');
+                $t_data['start_time'] = jdate('H:i');
             }
             if (empty($t_data['end_time'])) {
-                $t_data['end_time'] = date('H:i');
+                $t_data['end_time'] = jdate('H:i');
             }
 
             $data['start_time'] = strtotime($t_data['start_date'] . ' ' . $t_data['start_time']);
@@ -2174,7 +2174,7 @@ class Tasks extends Admin_Controller
         $data['description'] = $this->input->post('description', true);
         $data['module'] = 'tasks';
         $data['module_id'] = $task_id;
-        $data['create_datetime'] = date('Y-m-d H:i:s');
+        $data['create_datetime'] = jdate('Y-m-d H:i:s');
         $data['added_from'] = my_id();
         $data['list_order'] = 0;
 

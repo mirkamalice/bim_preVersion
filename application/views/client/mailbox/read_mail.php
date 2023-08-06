@@ -99,7 +99,7 @@
                             <h5>To: <?php echo $read_mail->to; ?></h5>
                         <?php } ?>
                         <h5><span
-                                class="mailbox-read-time"><?php echo date('d M , Y h:i:A', strtotime($read_mail->message_time)) ?></span>
+                                class="mailbox-read-time"><?php echo jdate('d M , Y h:i:A', strtotime($read_mail->message_time)) ?></span>
                         </h5>
                     </div><!-- /.mailbox-read-info -->
                     <div class="mailbox-read-message text-justify margin">

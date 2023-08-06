@@ -71,9 +71,9 @@ class Payments_model extends MY_Model
                 'amount' => $amount,
                 'currency' => $invoice_info->currency,
                 'trans_id' => (!empty($trans_id) ? $trans_id : $invoice_info->reference_no),
-                'month_paid' => date('m'),
-                'year_paid' => date('Y'),
-                'payment_date' => date('d-m-Y')
+                'month_paid' => jdate('m'),
+                'year_paid' => jdate('Y'),
+                'payment_date' => jdate('d-m-Y')
             );
             $this->invoice_model->_table_name = 'tbl_payments';
             $this->invoice_model->_primary_key = 'payments_id';
@@ -114,7 +114,7 @@ class Payments_model extends MY_Model
                         'type' => 'Income',
                         'amount' => $amount,
                         'credit' => $amount,
-                        'date' => date('Y-m-d'),
+                        'date' => jdate('Y-m-d'),
                         'paid_by' => $invoice_info->client_id,
                         'payment_methods_id' => (!empty($gateway) ? $gateway : 'Online'),
                         'reference' => $trans_id,

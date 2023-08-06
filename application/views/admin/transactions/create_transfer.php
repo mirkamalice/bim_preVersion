@@ -92,7 +92,7 @@ if (!empty($created) || !empty($edited)) {
                                                                                                         if (!empty($transfer_info->date)) {
                                                                                                             echo $transfer_info->date;
                                                                                                         } else {
-                                                                                                            echo date('Y-m-d');
+                                                                                                            echo jdate('Y-m-d');
                                                                                                         }
                                                                                                         ?>"
                                 data-date-format="<?= config_item('date_picker_format'); ?>">

@@ -77,11 +77,11 @@ if (!empty($created) || !empty($edited)) {
                             <label class="col-lg-2 control-label"><?= lang('close_date') ?></label>
                             <?php
                                 if (!empty($opportunity_info)) {
-                                    $close_date = date('Y-m-d', strtotime($opportunity_info->close_date));
-                                    $next_action_date = date('Y-m-d', strtotime($opportunity_info->next_action_date));
+                                    $close_date = jdate('Y-m-d', strtotime($opportunity_info->close_date));
+                                    $next_action_date = jdate('Y-m-d', strtotime($opportunity_info->next_action_date));
                                 } else {
-                                    $close_date = date('Y-m-d');
-                                    $next_action_date = date('Y-m-d');
+                                    $close_date = jdate('Y-m-d');
+                                    $next_action_date = jdate('Y-m-d');
                                 }
                                 ?>
                             <div class="col-lg-4">

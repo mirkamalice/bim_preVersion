@@ -51,7 +51,7 @@
                                 <div class="input-group">
                                     <input type="text" class="form-control monthyear" value="<?php
                                     if (!empty($date)) {
-                                        echo date('Y-n', strtotime($date));
+                                        echo jdate('Y-n', strtotime($date));
                                     }
                                     ?>" name="date">
                                     <div class="input-group-addon">
@@ -71,7 +71,7 @@
                                     <input type="text" name="start_date" class="form-control start_date"
                                            value="<?php
                                            if (!empty($start_date)) {
-                                               echo date('Y-m-d', strtotime($start_date));
+                                               echo jdate('Y-m-d', strtotime($start_date));
                                            }
                                            ?>"
                                            data-date-format="<?= config_item('date_picker_format'); ?>">
@@ -89,7 +89,7 @@
                                     <input type="text" name="end_date" class="form-control end_date"
                                            value="<?php
                                            if (!empty($end_date)) {
-                                               echo date('Y-m-d', strtotime($end_date));
+                                               echo jdate('Y-m-d', strtotime($end_date));
                                            }
                                            ?>"
                                            data-date-format="<?= config_item('date_picker_format'); ?>">

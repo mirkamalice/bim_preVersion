@@ -55,7 +55,7 @@
                     <div class="col-sm-8">
                         <div class="input-group">
                             <input type="text" name="date_in" class="form-control start_date"
-                                   value="<?= date('Y-m-d') ?>" required>
+                                   value="<?= jdate('Y-m-d') ?>" required>
                             <div class="input-group-addon">
                                 <a href="#"><i class="fa fa-calendar"></i></a>
                             </div>
@@ -81,7 +81,7 @@
                     <div class="col-sm-8">
                         <div class="input-group">
                             <input type="text" name="date_out" class="form-control end_date"
-                                   value="<?= date('Y-m-d') ?>" required>
+                                   value="<?= jdate('Y-m-d') ?>" required>
                             <div class="input-group-addon">
                                 <a href="#"><i class="fa fa-calendar"></i></a>
                             </div>

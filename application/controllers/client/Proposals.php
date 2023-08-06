@@ -114,9 +114,9 @@ class Proposals extends Client_Controller
             // get all invoice
             if ($filterBy == 'last_month' || $filterBy == 'this_months') {
                 if ($filterBy == 'last_month') {
-                    $month = date('Y-m', strtotime('-1 months'));
+                    $month = jdate('Y-m', strtotime('-1 months'));
                 } else {
-                    $month = date('Y-m');
+                    $month = jdate('Y-m');
                 }
                 $where = array('status !=' => 'draft', 'module' => 'client', 'module_id' => $this->session->userdata('client_id'), 'proposal_month' => $month);
 
@@ -202,7 +202,7 @@ class Proposals extends Client_Controller
         } elseif ($action == 'show') {
             $data = array('show_client' => 'Yes');
         } elseif ($action == 'sent') {
-            $data = array('emailed' => 'Yes', 'date_sent' => date("Y-m-d H:i:s", time()), 'status' => 'sent');
+            $data = array('emailed' => 'Yes', 'date_sent' => jdate("Y-m-d H:i:s", time()), 'status' => 'sent');
         } elseif (!empty($action)) {
             $data = array('status' => $action);
         } else {
@@ -260,7 +260,7 @@ class Proposals extends Client_Controller
 
         $this->send_email_proposals($proposals_id, $message, $subject); // Email proposals
 
-        $data = array('status' => 'sent', 'emailed' => 'Yes', 'date_sent' => date("Y-m-d H:i:s", time()));
+        $data = array('status' => 'sent', 'emailed' => 'Yes', 'date_sent' => jdate("Y-m-d H:i:s", time()));
 
         $this->proposal_model->_table_name = 'tbl_proposals';
         $this->proposal_model->_primary_key = 'proposals_id';
@@ -360,7 +360,7 @@ class Proposals extends Client_Controller
 
         $this->proposal_model->send_email($params);
 
-        $data = array('status' => 'sent', 'emailed' => 'Yes', 'date_sent' => date("Y-m-d H:i:s", time()));
+        $data = array('status' => 'sent', 'emailed' => 'Yes', 'date_sent' => jdate("Y-m-d H:i:s", time()));
 
         $this->proposal_model->_table_name = 'tbl_proposals';
         $this->proposal_model->_primary_key = 'proposals_id';

@@ -148,7 +148,7 @@ class Login extends MY_Controller
             $user_data['new_email_key'] = md5(rand() . microtime());
             $user_data['role_id'] = 2;
             $user_data['last_ip'] = $this->input->ip_address;
-            $user_data['created'] = date('Y-m-d H:i:s');
+            $user_data['created'] = jdate('Y-m-d H:i:s');
             $this->login_model->_table_name = 'tbl_users';
             $this->login_model->_primary_key = 'user_id';
             $user_data['user_id'] = $this->login_model->save($user_data);

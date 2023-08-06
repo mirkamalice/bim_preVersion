@@ -514,7 +514,7 @@ $activities_info = $this->db->where(array('module' => 'bugs', 'module_field_id' 
                                                                     </td>
 
                                                                     <td class=""><?= $v_files->size ?>Kb</td>
-                                                                    <td class="col-date"><?= date('Y-m-d' . "<br/> h:m A", strtotime($files_info[$key]->upload_time)); ?></td>
+                                                                    <td class="col-date"><?= jdate('Y-m-d' . "<br/> h:m A", strtotime($files_info[$key]->upload_time)); ?></td>
                                                                     <td class=""><?= $total_file_comment ?></td>
                                                                     <td>
                                                                         <?= $user_info->username ?>

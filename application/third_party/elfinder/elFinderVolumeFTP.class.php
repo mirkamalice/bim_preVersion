@@ -381,7 +381,7 @@ class elFinderVolumeFTP extends elFinderVolumeDriver
 
         if (!$now) {
             $now = time();
-            $lastyear = date('Y') - 1;
+            $lastyear = jdate('Y') - 1;
         }
 
         $info = preg_split("/\s+/", $raw, 8);

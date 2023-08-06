@@ -42,11 +42,11 @@
         $ex = explode('_', $type);
         if ($ex[0] == 'c') {
             $c_id = $ex[1];
-            $type = '_' . date('Y');
+            $type = '_' . jdate('Y');
         }
     }
     if (empty($type)) {
-        $type = '_' . date('Y');
+        $type = '_' . jdate('Y');
     }
     ?>
 
@@ -129,7 +129,7 @@
                                                                                                                                                 if (!empty($credit_note_info->credit_note_date)) {
                                                                                                                                                     echo $credit_note_info->credit_note_date;
                                                                                                                                                 } else {
-                                                                                                                                                    echo date('Y-m-d');
+                                                                                                                                                    echo jdate('Y-m-d');
                                                                                                                                                 }
                                                                                                                                                 ?>" data-date-format="<?= config_item('date_picker_format'); ?>">
                                                     <div class="input-group-addon">
@@ -146,7 +146,7 @@
                                                                                                                                         if (!empty($credit_note_info->due_date)) {
                                                                                                                                             echo $credit_note_info->due_date;
                                                                                                                                         } else {
-                                                                                                                                            echo date('Y-m-d');
+                                                                                                                                            echo jdate('Y-m-d');
                                                                                                                                         }
                                                                                                                                         ?>" data-date-format="<?= config_item('date_picker_format'); ?>">
                                                     <div class="input-group-addon">

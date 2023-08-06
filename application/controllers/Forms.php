@@ -128,7 +128,7 @@ class Forms extends MY_Controller
                     $regular_fields['lead_source_id'] = $form->lead_source_id;
                     $regular_fields['last_contact'] = null;
                     $regular_fields['permission'] = $form->permission;
-                    $regular_fields['created_time'] = date('Y-m-d H:i:s');
+                    $regular_fields['created_time'] = jdate('Y-m-d H:i:s');
                     $regular_fields['from_form_id'] = $form->lead_form_id;
 
                     $this->items_model->_table_name = 'tbl_leads';

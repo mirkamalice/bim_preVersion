@@ -9,8 +9,8 @@
 <?php
 $cur = $this->report_model->check_by(array('code' => config_item('default_currency')), 'tbl_currencies');
 if (!empty($range[0])) {
-    $start_date = date('F d, Y', strtotime($range[0]));
-    $end_date = date('F d, Y', strtotime($range[1]));
+    $start_date = jdate('F d, Y', strtotime($range[0]));
+    $end_date = jdate('F d, Y', strtotime($range[1]));
 }
 $status = (isset($status)) ? $status : 'all';
 ?>

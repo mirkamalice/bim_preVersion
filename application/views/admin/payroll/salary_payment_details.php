@@ -92,7 +92,7 @@
                         <label for="field-1" class="col-sm-5 control-label"><strong><?= lang('salary_month') ?>
                                 :</strong></label>
                         <p class="form-control-static">
-                            <?php echo date('F Y', strtotime($salary_payment_info->payment_month)); ?></p>
+                            <?php echo jdate('F Y', strtotime($salary_payment_info->payment_month)); ?></p>
                     </div>
                     <?php
                     $curency = $this->db->where('code', config_item('default_currency'))->get('tbl_currencies')->row();

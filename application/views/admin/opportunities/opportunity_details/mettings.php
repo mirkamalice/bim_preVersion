@@ -83,9 +83,9 @@ if ($task_timer_id) {
                         <div class="input-group">
                             <input type="text" required="" name="start_date" class="form-control datepicker" value="<?php
                                                                                                                     if (!empty($mettings_info->start_date)) {
-                                                                                                                        echo date('Y-m-d', strftime($mettings_info->start_date));
+                                                                                                                        echo jdate('Y-m-d', strftime($mettings_info->start_date));
                                                                                                                     } else {
-                                                                                                                        echo date('Y-m-d');
+                                                                                                                        echo jdate('Y-m-d');
                                                                                                                     }
                                                                                                                     ?>" data-date-format="<?= config_item('date_picker_format'); ?>">
                             <div class="input-group-addon">
@@ -114,9 +114,9 @@ if ($task_timer_id) {
                         <div class="input-group">
                             <input type="text" required="" name="end_date" class="form-control datepicker" value="<?php
                                                                                                                     if (!empty($mettings_info->end_date)) {
-                                                                                                                        echo date('Y-m-d', strftime($mettings_info->end_date));
+                                                                                                                        echo jdate('Y-m-d', strftime($mettings_info->end_date));
                                                                                                                     } else {
-                                                                                                                        echo date('Y-m-d');
+                                                                                                                        echo jdate('Y-m-d');
                                                                                                                     }
                                                                                                                     ?>" data-date-format="<?= config_item('date_picker_format'); ?>">
                             <div class="input-group-addon">

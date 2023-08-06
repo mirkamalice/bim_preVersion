@@ -115,7 +115,7 @@ if(!file_exists($img)){
                     ?>
 
                     <tr style="width: 100%;">
-                        <td><?php echo date('F-Y', strtotime($v_payroll->payment_month)); ?></td>
+                        <td><?php echo jdate('F-Y', strtotime($v_payroll->payment_month)); ?></td>
                         <td><?php echo strftime(config_item('date_format'), strtotime($v_payroll->paid_date)); ?></td>
                         <td><?php echo display_money($total_paid_amount, $currency->symbol); ?></td>
                         <td><?php echo display_money($total_deduction, $currency->symbol); ?></td>

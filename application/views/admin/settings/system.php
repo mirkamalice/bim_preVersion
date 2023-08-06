@@ -239,9 +239,9 @@
                             <div class="col-lg-3">
                                 <?php
                                 $options = array(
-                                    'g:i a' => date("g:i a"),
-                                    'g:i A' => date("g:i A"),
-                                    'H:i' => date("H:i"),
+                                    'g:i a' => jdate("g:i a"),
+                                    'g:i A' => jdate("g:i A"),
+                                    'H:i' => jdate("H:i"),
                                 );
                                 echo form_dropdown('time_format', $options, config_item('time_format'), ' class="form-control"'); ?>
                             </div>

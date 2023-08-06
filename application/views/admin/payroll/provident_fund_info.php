@@ -42,7 +42,7 @@
             <ul class="mt nav nav-pills nav-stacked navbar-custom-nav">
                 <?php
                 foreach ($provident_fund_info as $key => $v_provident_fund):
-                    $month_name = date('F', strtotime($year . '-' . $key)); // get full name of month by date query
+                    $month_name = jdate('F', strtotime($year . '-' . $key)); // get full name of month by date query
                     ?>
                     <li class="<?php
                     if ($current_month == $key) {
@@ -66,7 +66,7 @@
                 <?php
                 foreach ($provident_fund_info as $key => $v_provident_fund):
 
-                    $month_name = date('F', strtotime($year . '-' . $key)); // get full name of month by date query
+                    $month_name = jdate('F', strtotime($year . '-' . $key)); // get full name of month by date query
                     ?>
                     <div id="<?php echo $month_name ?>" class="tab-pane <?php
                     if ($current_month == $key) {

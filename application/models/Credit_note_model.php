@@ -241,9 +241,9 @@ class Credit_note_model extends MY_Model
                 foreach ($all_invoice as $v_invoices) {
                     if ($filterBy == 'last_month' || $filterBy == 'this_months') {
                         if ($filterBy == 'last_month') {
-                            $month = date('Y-m', strtotime('-1 months'));
+                            $month = jdate('Y-m', strtotime('-1 months'));
                         } else {
-                            $month = date('Y-m');
+                            $month = jdate('Y-m');
                         }
                         if (strtotime($v_invoices->credit_note_month) == strtotime($month)) {
                             $invoice[] = $v_invoices;
@@ -281,9 +281,9 @@ class Credit_note_model extends MY_Model
                 foreach ($all_invoice as $v_invoices) {
                     if ($filterBy == 'last_month' || $filterBy == 'this_months') {
                         if ($filterBy == 'last_month') {
-                            $month = date('Y-m', strtotime('-1 months'));
+                            $month = jdate('Y-m', strtotime('-1 months'));
                         } else {
-                            $month = date('Y-m');
+                            $month = jdate('Y-m');
                         }
                         if (strtotime($v_invoices->credit_note_month) == strtotime($month)) {
                             $invoice[] = $v_invoices;
@@ -321,9 +321,9 @@ class Credit_note_model extends MY_Model
                 foreach ($all_credit_notes as $v_credit_note) {
                     if ($filterBy == 'last_month' || $filterBy == 'this_months') {
                         if ($filterBy == 'last_month') {
-                            $month = date('Y-m', strtotime('-1 months'));
+                            $month = jdate('Y-m', strtotime('-1 months'));
                         } else {
-                            $month = date('Y-m');
+                            $month = jdate('Y-m');
                         }
                         if (strtotime($v_credit_note->credit_note_month) == strtotime($month)) {
                             $credit_notes[] = $v_credit_note;
@@ -362,8 +362,8 @@ class Credit_note_model extends MY_Model
             'invoices_id' => $input_post['invoices_id'],
             'credit_note_id' => $credit_note_id,
             'user_id' => my_id(),
-            'date' => date('Y-m-d'),
-            'date_applied' => date('Y-m-d H:i'),
+            'date' => jdate('Y-m-d'),
+            'date_applied' => jdate('Y-m-d H:i'),
             'amount' => $input_post['amount'],
         );
         $this->_table_name = 'tbl_credit_used';
@@ -397,11 +397,11 @@ class Credit_note_model extends MY_Model
                 'payment_method' => config_item('default_payment_method'),
                 'currency' => client_currency($inv_info->client_id),
                 'amount' => $paid_amount,
-                'payment_date' => date('Y-m-d'),
+                'payment_date' => jdate('Y-m-d'),
                 'trans_id' => $trans_id,
                 'notes' => 'This Payment from Credit notes <a href="' . base_url('admin/credit_note/index/credit_note_details/' . $input_post['credit_note_id']) . '">' . $credit_notes->reference_no . '</a>',
-                'month_paid' => date("m"),
-                'year_paid' => date("Y"),
+                'month_paid' => jdate("m"),
+                'year_paid' => jdate("Y"),
             );
             $this->_table_name = 'tbl_payments';
             $this->_primary_key = 'payments_id';
@@ -460,7 +460,7 @@ class Credit_note_model extends MY_Model
                         'type' => 'Income',
                         'amount' => $paid_amount,
                         'credit' => $paid_amount,
-                        'date' => date('Y-m-d'),
+                        'date' => jdate('Y-m-d'),
                         'paid_by' => $inv_info->client_id,
                         'payment_methods_id' => config_item('default_payment_method'),
                         'reference' => $trans_id,

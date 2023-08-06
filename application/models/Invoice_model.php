@@ -399,9 +399,9 @@ class Invoice_Model extends MY_Model
                         }
                     } else if ($filterBy == 'last_month' || $filterBy == 'this_months') {
                         if ($filterBy == 'last_month') {
-                            $month = date('Y-m', strtotime('-1 months'));
+                            $month = jdate('Y-m', strtotime('-1 months'));
                         } else {
-                            $month = date('Y-m');
+                            $month = jdate('Y-m');
                         }
                         if (strtotime($v_invoices->invoice_month) == strtotime($month)) {
                             $invoice[] = $v_invoices;
@@ -464,9 +464,9 @@ class Invoice_Model extends MY_Model
                             }
                         } else if ($filterBy == 'last_month' || $filterBy == 'this_months') {
                             if ($filterBy == 'last_month') {
-                                $month = date('Y-m', strtotime('-1 months'));
+                                $month = jdate('Y-m', strtotime('-1 months'));
                             } else {
-                                $month = date('Y-m');
+                                $month = jdate('Y-m');
                             }
                             if (strtotime($v_invoices->invoice_month) == strtotime($month)) {
                                 $invoice[] = $v_invoices;
@@ -530,9 +530,9 @@ class Invoice_Model extends MY_Model
                         }
                     } else if ($filterBy == 'last_month' || $filterBy == 'this_months') {
                         if ($filterBy == 'last_month') {
-                            $month = date('Y-m', strtotime('-1 months'));
+                            $month = jdate('Y-m', strtotime('-1 months'));
                         } else {
-                            $month = date('Y-m');
+                            $month = jdate('Y-m');
                         }
                         if (strtotime($v_invoices->invoice_month) == strtotime($month)) {
                             $invoice[] = $v_invoices;
@@ -648,9 +648,9 @@ class Invoice_Model extends MY_Model
                         }
                     } else if ($filterBy == 'last_month' || $filterBy == 'this_months') {
                         if ($filterBy == 'last_month') {
-                            $month = date('Y-m', strtotime('-1 months'));
+                            $month = jdate('Y-m', strtotime('-1 months'));
                         } else {
-                            $month = date('Y-m');
+                            $month = jdate('Y-m');
                         }
                         $month_paid = $v_payments->month_paid . '-' . $v_payments->year_paid;
                         if ($month_paid == $month) {
@@ -751,9 +751,9 @@ class Invoice_Model extends MY_Model
                         }
                     } else if ($filterBy == 'last_month' || $filterBy == 'this_months') {
                         if ($filterBy == 'last_month') {
-                            $month = date('Y-m', strtotime('-1 months'));
+                            $month = jdate('Y-m', strtotime('-1 months'));
                         } else {
-                            $month = date('Y-m');
+                            $month = jdate('Y-m');
                         }
                         if (strtotime($v_invoices->invoice_month) == strtotime($month)) {
                             $invoice[] = $v_invoices;

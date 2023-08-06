@@ -45,7 +45,7 @@
                                if (!empty($estimate_info->estimate_date)) {
                                    echo $estimate_info->estimate_date;
                                } else {
-                                   echo date('Y-m-d');
+                                   echo jdate('Y-m-d');
                                }
                                ?>"
                                data-date-format="<?= config_item('date_picker_format'); ?>">
@@ -65,7 +65,7 @@
                                if (!empty($estimate_info->due_date)) {
                                    echo $estimate_info->due_date;
                                } else {
-                                   echo date('Y-m-d');
+                                   echo jdate('Y-m-d');
                                }
                                ?>"
                                data-date-format="<?= config_item('date_picker_format'); ?>">

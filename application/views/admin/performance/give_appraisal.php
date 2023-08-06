@@ -81,7 +81,7 @@ $edited = can_action('88', 'edited');
     <div class="row">
         <?php if (!empty($appraisal_once_given)) { ?>
             <h6 class="text-center"><span
-                    style="color: red;"><?= lang('appraisal_already_provided') ?></span> <?= date('F Y', strtotime($appraisal_month)) ?>
+                    style="color: red;"><?= lang('appraisal_already_provided') ?></span> <?= jdate('F Y', strtotime($appraisal_month)) ?>
             </h6>
         <?php } ?>
 

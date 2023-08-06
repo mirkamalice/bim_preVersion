@@ -37,9 +37,9 @@
                                    } ?>">
                             <small>ex [<?= config_item('credit_note_prefix') ?>] = <?= lang('credit_note_prefix') ?>
                                 ,[yyyy] =
-                                'Current Year (<?= date('Y') ?>)'[yy] ='Current Year (<?= date('y') ?>)',[mm] =
-                                'Current Month(<?= date('M') ?>)',[m] =
-                                'Current Month(<?= date('m') ?>)',[dd] = 'Current Date (<?= date('d') ?>)',[number] =
+                                'Current Year (<?= jdate('Y') ?>)'[yy] ='Current Year (<?= jdate('y') ?>)',[mm] =
+                                'Current Month(<?= jdate('M') ?>)',[m] =
+                                'Current Month(<?= jdate('m') ?>)',[dd] = 'Current Date (<?= jdate('d') ?>)',[number] =
                                 'Invoice Number (<?= sprintf('%04d', config_item('credit_note_start_no')) ?>)'
                             </small>
                         </div>

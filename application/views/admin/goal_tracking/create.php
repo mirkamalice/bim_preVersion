@@ -142,7 +142,7 @@ if (!empty($created) || !empty($edited)) {
                                                                                                             if (!empty($goal_info->start_date)) {
                                                                                                                 echo $goal_info->start_date;
                                                                                                             } else {
-                                                                                                                echo date('Y-m-d');
+                                                                                                                echo jdate('Y-m-d');
                                                                                                             }
                                                                                                             ?>"
                                 data-date-format="<?= config_item('date_picker_format'); ?>">
@@ -162,7 +162,7 @@ if (!empty($created) || !empty($edited)) {
                                                                                                         if (!empty($goal_info->end_date)) {
                                                                                                             echo $goal_info->end_date;
                                                                                                         } else {
-                                                                                                            echo date('Y-m-d', strtotime("+1 days"));
+                                                                                                            echo jdate('Y-m-d', strtotime("+1 days"));
                                                                                                         }
                                                                                                         ?>"
                                 data-date-format="<?= config_item('date_picker_format'); ?>">

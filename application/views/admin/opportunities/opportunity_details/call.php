@@ -75,7 +75,7 @@ if ($task_timer_id) {
                                                                                                                 if (!empty($call_info->date)) {
                                                                                                                     echo $call_info->date;
                                                                                                                 } else {
-                                                                                                                    echo date('Y-m-d');
+                                                                                                                    echo jdate('Y-m-d');
                                                                                                                 }
                                                                                                                 ?>" data-date-format="<?= config_item('date_picker_format'); ?>">
                             <div class="input-group-addon">

@@ -89,7 +89,7 @@ $finance_overview_order = get_row('tbl_dashboard', array('name' => 'finance_over
                     labels: [
                         <?php
                         foreach ($finance_overview_by_year as $m_name => $v_finance_overview) :
-                            $overview_month = date('F', strtotime($finance_year . '-' . $m_name));
+                            $overview_month = jdate('F', strtotime($finance_year . '-' . $m_name));
                         ?> "<?php echo $overview_month; ?>",
                         <?php endforeach; ?>
                     ],

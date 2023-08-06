@@ -45,7 +45,7 @@ $expense_report_order = get_row('tbl_dashboard', array('name' => 'expense_report
             labels: [
                 <?php
                 foreach ($all_expense as $name => $v_expense) :
-                    $month_name = date('F', strtotime($year . '-' . $name));
+                    $month_name = jdate('F', strtotime($year . '-' . $name));
                 ?> "<?php echo $month_name; ?>",
                 <?php endforeach; ?>
             ],

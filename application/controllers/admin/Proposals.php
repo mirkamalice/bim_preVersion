@@ -58,7 +58,7 @@ class Proposals extends Admin_Controller
         $data['permission_user'] = $this->proposal_model->all_permission_user('140');
         $type = $this->uri->segment(5);
         if (empty($type)) {
-            $type = '_' . date('Y');
+            $type = '_' . jdate('Y');
         }
 
         if (!empty($type) && !is_numeric($type)) {
@@ -115,7 +115,7 @@ class Proposals extends Admin_Controller
 
             if (!empty($edited) && !empty($deleted)) {
                 if (empty($filterBy)) {
-                    $filterBy = '_' . date('Y');
+                    $filterBy = '_' . jdate('Y');
                 }
             }
             if (!empty($filterBy) && !is_numeric($filterBy)) {
@@ -139,9 +139,9 @@ class Proposals extends Admin_Controller
             } else {
                 if ($filterBy == 'last_month' || $filterBy == 'this_months') {
                     if ($filterBy == 'last_month') {
-                        $month = date('Y-m', strtotime('-1 months'));
+                        $month = jdate('Y-m', strtotime('-1 months'));
                     } else {
-                        $month = date('Y-m');
+                        $month = jdate('Y-m');
                     }
                     $where = array('proposal_month' => $month);
                 } else if ($filterBy == 'expired') {
@@ -346,9 +346,9 @@ class Proposals extends Admin_Controller
             if (empty($data['discount_type'])) {
                 $data['discount_type'] = 'none';
             }
-            $data['proposal_date'] = date('Y-m-d', strtotime($this->input->post('proposal_date', TRUE)));
+            $data['proposal_date'] = jdate('Y-m-d', strtotime($this->input->post('proposal_date', TRUE)));
             if (empty($data['proposal_date'])) {
-                $data['proposal_date'] = date('Y-m-d');
+                $data['proposal_date'] = jdate('Y-m-d');
             }
             if (empty($data['discount_percent'])) {
                 $data['discount_percent'] = 0;
@@ -357,9 +357,9 @@ class Proposals extends Admin_Controller
                 $data['discount_total'] = 0;
             }
             $data['warehouse_id'] = $this->input->post('warehouse_id', TRUE);
-            $data['proposal_year'] = date('Y', strtotime($this->input->post('proposal_date', TRUE)));
-            $data['proposal_month'] = date('Y-m', strtotime($this->input->post('proposal_date', TRUE)));
-            $data['due_date'] = date('Y-m-d', strtotime($this->input->post('due_date', TRUE)));
+            $data['proposal_year'] = jdate('Y', strtotime($this->input->post('proposal_date', TRUE)));
+            $data['proposal_month'] = jdate('Y-m', strtotime($this->input->post('proposal_date', TRUE)));
+            $data['due_date'] = jdate('Y-m-d', strtotime($this->input->post('due_date', TRUE)));
             $data['notes'] = $this->input->post('notes', TRUE);
 
             $tax['tax_name'] = $this->input->post('total_tax_name', TRUE);
@@ -575,7 +575,7 @@ class Proposals extends Admin_Controller
         $data['permission_user'] = $this->proposal_model->all_permission_user('140');
         $type = $this->uri->segment(5);
         if (empty($type)) {
-            $type = '_' . date('Y');
+            $type = '_' . jdate('Y');
         }
 
         if (!empty($type) && !is_numeric($type)) {
@@ -855,10 +855,10 @@ class Proposals extends Admin_Controller
                 'subject' => $invoice_info->subject,
                 'module' => $module,
                 'module_id' => $module_id,
-                'proposal_date' => date('Y-m-d', strtotime($this->input->post('proposal_date', TRUE))),
-                'proposal_month' => date('Y-m', strtotime($this->input->post('proposal_date', TRUE))),
-                'proposal_year' => date('Y', strtotime($this->input->post('proposal_date', TRUE))),
-                'due_date' => date('Y-m-d', strtotime($this->input->post('due_date', TRUE))),
+                'proposal_date' => jdate('Y-m-d', strtotime($this->input->post('proposal_date', TRUE))),
+                'proposal_month' => jdate('Y-m', strtotime($this->input->post('proposal_date', TRUE))),
+                'proposal_year' => jdate('Y', strtotime($this->input->post('proposal_date', TRUE))),
+                'due_date' => jdate('Y-m-d', strtotime($this->input->post('due_date', TRUE))),
                 'notes' => $invoice_info->notes,
                 'tags' => $invoice_info->tags,
                 'total_tax' => $invoice_info->total_tax,
@@ -947,7 +947,7 @@ class Proposals extends Admin_Controller
             } elseif ($action == 'show') {
                 $data = array('show_client' => 'Yes');
             } elseif ($action == 'sent') {
-                $data = array('emailed' => 'Yes', 'date_sent' => date("Y-m-d H:i:s", time()), 'status' => 'sent');
+                $data = array('emailed' => 'Yes', 'date_sent' => jdate("Y-m-d H:i:s", time()), 'status' => 'sent');
             } elseif (!empty($action)) {
                 $data = array('status' => $action);
             } else {
@@ -1063,7 +1063,7 @@ class Proposals extends Admin_Controller
 
         $this->send_email_proposals($proposals_id, $message, $subject); // Email proposals
 
-        $data = array('status' => 'sent', 'emailed' => 'Yes', 'date_sent' => date("Y-m-d H:i:s", time()));
+        $data = array('status' => 'sent', 'emailed' => 'Yes', 'date_sent' => jdate("Y-m-d H:i:s", time()));
 
         $this->proposal_model->_table_name = 'tbl_proposals';
         $this->proposal_model->_primary_key = 'proposals_id';
@@ -1175,7 +1175,7 @@ class Proposals extends Admin_Controller
 
         $this->proposal_model->send_email($params);
 
-        $data = array('status' => 'sent', 'emailed' => 'Yes', 'date_sent' => date("Y-m-d H:i:s", time()));
+        $data = array('status' => 'sent', 'emailed' => 'Yes', 'date_sent' => jdate("Y-m-d H:i:s", time()));
 
         $this->proposal_model->_table_name = 'tbl_proposals';
         $this->proposal_model->_primary_key = 'proposals_id';
@@ -1268,16 +1268,16 @@ class Proposals extends Admin_Controller
         }
 
         $data['client_visible'] = ($this->input->post('client_visible') == 'Yes') ? 'Yes' : 'No';
-        $data['invoice_date'] = date('Y-m-d', strtotime($this->input->post('invoice_date', TRUE)));
+        $data['invoice_date'] = jdate('Y-m-d', strtotime($this->input->post('invoice_date', TRUE)));
         if (empty($data['invoice_date'])) {
-            $data['invoice_date'] = date('Y-m-d');
+            $data['invoice_date'] = jdate('Y-m-d');
         }
         if (empty($data['discount_total'])) {
             $data['discount_total'] = 0;
         }
-        $data['invoice_year'] = date('Y', strtotime($this->input->post('invoice_date', TRUE)));
-        $data['invoice_month'] = date('Y-m', strtotime($this->input->post('invoice_date', TRUE)));
-        $data['due_date'] = date('Y-m-d', strtotime($this->input->post('due_date', TRUE)));
+        $data['invoice_year'] = jdate('Y', strtotime($this->input->post('invoice_date', TRUE)));
+        $data['invoice_month'] = jdate('Y-m', strtotime($this->input->post('invoice_date', TRUE)));
+        $data['due_date'] = jdate('Y-m-d', strtotime($this->input->post('due_date', TRUE)));
         $data['notes'] = $this->input->post('notes', TRUE);
         $tax['tax_name'] = $this->input->post('total_tax_name', TRUE);
         $tax['total_tax'] = $this->input->post('total_tax', TRUE);
@@ -1480,18 +1480,18 @@ class Proposals extends Admin_Controller
         $recur_days = $this->get_calculate_recurring_days($recur_data['recuring_frequency']);
         $due_date = $this->proposal_model->get_table_field('tbl_invoices', array('invoices_id' => $invoices_id), 'due_date');
 
-        $next_date = date("Y-m-d", strtotime($due_date . "+ " . $recur_days . " days"));
+        $next_date = jdate("Y-m-d", strtotime($due_date . "+ " . $recur_days . " days"));
 
         if ($recur_data['recur_end_date'] == '') {
             $recur_end_date = '0000-00-00';
         } else {
-            $recur_end_date = date('Y-m-d', strtotime($recur_data['recur_end_date']));
+            $recur_end_date = jdate('Y-m-d', strtotime($recur_data['recur_end_date']));
         }
         $update_invoice = array(
             'recurring' => 'Yes',
             'recuring_frequency' => $recur_days,
             'recur_frequency' => $recur_data['recuring_frequency'],
-            'recur_start_date' => date('Y-m-d', strtotime($recur_data['recur_start_date'])),
+            'recur_start_date' => jdate('Y-m-d', strtotime($recur_data['recur_start_date'])),
             'recur_end_date' => $recur_end_date,
             'recur_next_date' => $next_date
         );
@@ -1527,16 +1527,16 @@ class Proposals extends Admin_Controller
         $data = $this->proposal_model->array_from_post(array('reference_no', 'client_id', 'project_id', 'discount_type', 'discount_percent', 'user_id', 'adjustment', 'discount_total', 'show_quantity_as'));
 
         $data['client_visible'] = ($this->input->post('client_visible') == 'Yes') ? 'Yes' : 'No';
-        $data['estimate_date'] = date('Y-m-d', strtotime($this->input->post('estimate_date', TRUE)));
+        $data['estimate_date'] = jdate('Y-m-d', strtotime($this->input->post('estimate_date', TRUE)));
         if (empty($data['estimate_date'])) {
-            $data['estimate_date'] = date('Y-m-d');
+            $data['estimate_date'] = jdate('Y-m-d');
         }
         if (empty($data['discount_total'])) {
             $data['discount_total'] = 0;
         }
-        $data['estimate_year'] = date('Y', strtotime($this->input->post('estimate_date', TRUE)));
-        $data['estimate_month'] = date('Y-m', strtotime($this->input->post('estimate_date', TRUE)));
-        $data['due_date'] = date('Y-m-d', strtotime($this->input->post('due_date', TRUE)));
+        $data['estimate_year'] = jdate('Y', strtotime($this->input->post('estimate_date', TRUE)));
+        $data['estimate_month'] = jdate('Y-m', strtotime($this->input->post('estimate_date', TRUE)));
+        $data['due_date'] = jdate('Y-m-d', strtotime($this->input->post('due_date', TRUE)));
         $data['notes'] = $this->input->post('notes', TRUE);
         $tax['tax_name'] = $this->input->post('total_tax_name', TRUE);
         $tax['total_tax'] = $this->input->post('total_tax', TRUE);

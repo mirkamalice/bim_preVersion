@@ -48,9 +48,9 @@ include_once 'assets/admin-ajax.php'; ?>
                                 <div class="col-lg-7">
                                     <?php
                                     if (!empty($items_info)) {
-                                        $date = date('Y-m-d', strtotime($items_info->date));
+                                        $date = jdate('Y-m-d', strtotime($items_info->date));
                                     } else {
-                                        $date = date('Y-m-d');
+                                        $date = jdate('Y-m-d');
                                     }
                                     ?>
                                     <div class="input-group">

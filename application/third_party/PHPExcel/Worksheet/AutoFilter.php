@@ -325,15 +325,15 @@ class PHPExcel_Worksheet_AutoFilter
 			$dateValue = PHPExcel_Shared_Date::ExcelToPHP($cellValue);
 			if ($cellValue < 1) {
 				//	Just the time part
-				$dtVal = date('His',$dateValue);
+				$dtVal = jdate('His',$dateValue);
 				$dateSet = $dateSet['time'];
 			} elseif($cellValue == floor($cellValue)) {
 				//	Just the date part
-				$dtVal = date('Ymd',$dateValue);
+				$dtVal = jdate('Ymd',$dateValue);
 				$dateSet = $dateSet['date'];
 			} else {
 				//	date and time parts
-				$dtVal = date('YmdHis',$dateValue);
+				$dtVal = jdate('YmdHis',$dateValue);
 				$dateSet = $dateSet['dateTime'];
 			}
 			foreach($dateSet as $dateValue) {
@@ -438,7 +438,7 @@ class PHPExcel_Worksheet_AutoFilter
 		}
 
 		if (is_numeric($cellValue)) {
-			$dateValue = date('m',PHPExcel_Shared_Date::ExcelToPHP($cellValue));
+			$dateValue = jdate('m',PHPExcel_Shared_Date::ExcelToPHP($cellValue));
 			if (in_array($dateValue,$monthSet)) {
 				return TRUE;
 			}
@@ -520,7 +520,7 @@ class PHPExcel_Worksheet_AutoFilter
 			case PHPExcel_Worksheet_AutoFilter_Column_Rule::AUTOFILTER_RULETYPE_DYNAMIC_THISQUARTER :
 			case PHPExcel_Worksheet_AutoFilter_Column_Rule::AUTOFILTER_RULETYPE_DYNAMIC_LASTQUARTER :
 			case PHPExcel_Worksheet_AutoFilter_Column_Rule::AUTOFILTER_RULETYPE_DYNAMIC_NEXTQUARTER :
-				$thisMonth = date('m',$baseDate);
+				$thisMonth = jdate('m',$baseDate);
 				$thisQuarter = floor(--$thisMonth / 3);
 				$maxVal = (int) PHPExcel_Shared_Date::PHPtoExcel(gmmktime(0,0,0,date('t',$baseDate),(1+$thisQuarter)*3,date('Y',$baseDate)));
 				++$maxVal;
@@ -536,7 +536,7 @@ class PHPExcel_Worksheet_AutoFilter
 			case PHPExcel_Worksheet_AutoFilter_Column_Rule::AUTOFILTER_RULETYPE_DYNAMIC_THISWEEK :
 			case PHPExcel_Worksheet_AutoFilter_Column_Rule::AUTOFILTER_RULETYPE_DYNAMIC_LASTWEEK :
 			case PHPExcel_Worksheet_AutoFilter_Column_Rule::AUTOFILTER_RULETYPE_DYNAMIC_NEXTWEEK :
-				$dayOfWeek = date('w',$baseDate);
+				$dayOfWeek = jdate('w',$baseDate);
 				$val = (int) PHPExcel_Shared_Date::PHPToExcel($baseDate) - $dayOfWeek;
 				$maxVal = $val + 7;
 				break;

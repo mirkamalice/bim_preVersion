@@ -51,7 +51,7 @@ function overdue_projects($total_rows = FALSE)
         
         END AS final_progress ";
 
-    $today = date('Y-m-d h:i:s');
+    $today = jdate('Y-m-d h:i:s');
 
     $where = array('tbl_project.project_status !=' => 'completed', 'tbl_project.end_date <' => $today);
     //$where = array('tbl_project.project_status !=' => 'completed', 'tbl_project.end_date <' => 'CURDATE()');

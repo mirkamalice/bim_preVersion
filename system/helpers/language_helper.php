@@ -1,4 +1,6 @@
 <?php
+include('./plugins/jdate/jdf.php');
+
 /**
  * CodeIgniter
  *
@@ -84,3 +86,4 @@ if (!function_exists('lang')) {
         return ForceUTF8\Encoding::toUTF8($line);
     }
 }
+

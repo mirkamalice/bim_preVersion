@@ -35,7 +35,7 @@
         <ul class="mt nav nav-pills nav-stacked navbar-custom-nav">
             <?php
             foreach ($all_performance_info as $key => $v_performance_info):
-                $month_name = date('F', strtotime($year . '-' . $key)); // get full name of month by date query
+                $month_name = jdate('F', strtotime($year . '-' . $key)); // get full name of month by date query
                 ?>
                 <li class="<?php
                 if ($current_month == $key) {
@@ -59,7 +59,7 @@
         <div class="tab-content pl0">
             <?php
             foreach ($all_performance_info as $key => $v_performance_info):
-                $month_name = date('F', strtotime($year . '-' . $key)); // get full name of month by date query
+                $month_name = jdate('F', strtotime($year . '-' . $key)); // get full name of month by date query
                 ?>
                 <div id="<?php echo $month_name ?>" class="tab-pane <?php
                 if ($current_month == $key) {

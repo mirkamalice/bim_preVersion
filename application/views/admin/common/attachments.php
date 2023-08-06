@@ -124,7 +124,7 @@ $files_info = $this->common_model->get_attach_file($id, $module);
                                                     
                                                     <td class=""><?= $v_files->size ?>Kb</td>
                                                     <td class="col-date">
-                                                        <?= date('Y-m-d' . "<br/> h:m A", strtotime($v_files->upload_time)); ?>
+                                                        <?= jdate('Y-m-d' . "<br/> h:m A", strtotime($v_files->upload_time)); ?>
                                                     </td>
                                                     <td class=""><?= $total_file_comment ?></td>
                                                     <td>

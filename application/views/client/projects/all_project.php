@@ -144,7 +144,7 @@
                                         <input type="text" required name="start_date" class="form-control datepicker"
                                                value="<?php
                                                if (!empty($project_info->start_date)) {
-                                                   echo date('Y-m-d', strtotime($project_info->start_date));
+                                                   echo jdate('Y-m-d', strtotime($project_info->start_date));
                                                }
                                                ?>" data-date-format="<?= config_item('date_picker_format'); ?>">
                                         <div class="input-group-addon">
@@ -161,7 +161,7 @@
                                         <input type="text" required name="end_date" class="form-control datepicker"
                                                value="<?php
                                                if (!empty($project_info->end_date)) {
-                                                   echo date('Y-m-d', strtotime($project_info->end_date));
+                                                   echo jdate('Y-m-d', strtotime($project_info->end_date));
                                                }
                                                ?>" data-date-format="<?= config_item('date_picker_format'); ?>">
                                         <div class="input-group-addon">

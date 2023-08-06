@@ -175,11 +175,11 @@
                                             <div class="col-lg-7">
                                                 <?php
                                                 if (!empty($invoice_info) && $invoice_info->recurring == 'Yes') {
-                                                    $recur_start_date = date('Y-m-d', strtotime($invoice_info->recur_start_date));
-                                                    $recur_end_date = date('Y-m-d', strtotime($invoice_info->recur_end_date));
+                                                    $recur_start_date = jdate('Y-m-d', strtotime($invoice_info->recur_start_date));
+                                                    $recur_end_date = jdate('Y-m-d', strtotime($invoice_info->recur_end_date));
                                                 } else {
-                                                    $recur_start_date = date('Y-m-d');
-                                                    $recur_end_date = date('Y-m-d');
+                                                    $recur_start_date = jdate('Y-m-d');
+                                                    $recur_end_date = jdate('Y-m-d');
                                                 }
                                                 ?>
                                                 <div class="input-group">
@@ -301,7 +301,7 @@
                                                        if (!empty($invoice_info->invoice_date)) {
                                                            echo $invoice_info->invoice_date;
                                                        } else {
-                                                           echo date('Y-m-d');
+                                                           echo jdate('Y-m-d');
                                                        }
                                                        ?>" data-date-format="<?= config_item('date_picker_format'); ?>">
                                                 <div class="input-group-addon">

@@ -74,7 +74,7 @@
                                     ?>
                                 </td>
                                 <?php $hh += $v_overtime->overtime_hours; ?>
-                                <?php $mm += date('i', strtotime($v_overtime->overtime_hours)); ?>
+                                <?php $mm += jdate('i', strtotime($v_overtime->overtime_hours)); ?>
 
                             </tr>
             <?php

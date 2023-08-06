@@ -347,7 +347,7 @@ class Postmaster extends MY_Controller
                             if ($to == $from) {
                                 $mailstatus = 'block_potential_email';
                             } else {
-                                $filterdate = date('YmdHis', mktime(date('H'), date('i') - 15, date('s'), date('m'), date('d'), date('Y')));
+                                $filterdate = jdate('YmdHis', mktime(date('H'), jdate('i') - 15, jdate('s'), jdate('m'), jdate('d'), jdate('Y')));
                                 $query = 'SELECT count(*) as total FROM tbl_tickets WHERE created > "' . $filterdate . '" AND (email="' . $this->db->escape($from) . '"';
                                 $query .= ')';
                                 $result = $this->db->query($query)->row();
@@ -694,7 +694,7 @@ class Postmaster extends MY_Controller
                             if ($to == $from) {
                                 $mailstatus = 'block_potential_email';
                             } else {
-                                $filterdate = date('Y-m-d H:i:s', strtotime('-15 minutes'));
+                                $filterdate = jdate('Y-m-d H:i:s', strtotime('-15 minutes'));
 
                                 // save into inbox table procees
                                 $idata[$uid]['from_user_id'] = 0;
@@ -704,7 +704,7 @@ class Postmaster extends MY_Controller
                                 $idata[$uid]['from'] = $from;
                                 $idata[$uid]['subject'] = $subject;
                                 $idata[$uid]['message_body'] = fix_encoding_chars($body);
-                                $idata[$uid]['message_time'] = date('Y-m-d H:i:s');
+                                $idata[$uid]['message_time'] = jdate('Y-m-d H:i:s');
 
                                 $up_data = [];
                                 if (isset($email['attachments'])) {

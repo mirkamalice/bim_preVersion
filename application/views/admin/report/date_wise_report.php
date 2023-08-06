@@ -9,7 +9,7 @@
                 if (!empty($start_date)) {
                     echo $start_date;
                 } else {
-                    echo date('Y-m-d');
+                    echo jdate('Y-m-d');
                 }
                 ?>" data-date-format="<?= config_item('date_picker_format'); ?>">
                 <div class="input-group-addon">
@@ -26,7 +26,7 @@
                 if (!empty($end_date)) {
                     echo $end_date;
                 } else {
-                    echo date('Y-m-d');
+                    echo jdate('Y-m-d');
                 }
                 ?>" data-date-format="<?= config_item('date_picker_format'); ?>">
                 <div class="input-group-addon">
@@ -73,7 +73,7 @@
                     if (!empty($all_transaction_info)):
                         ?>
                         <div class="pull-right hidden-print">
-                            <a href="<?php echo base_url() ?>admin/report/date_wise_report_pdf/<?= date('Y-m-d', strtotime($start_date)) . '/' . date('Y-m-d', strtotime($end_date)) ?>"
+                            <a href="<?php echo base_url() ?>admin/report/date_wise_report_pdf/<?= jdate('Y-m-d', strtotime($start_date)) . '/' . jdate('Y-m-d', strtotime($end_date)) ?>"
                                class="btn btn-xs btn-success" data-toggle="tooltip" data-placement="top"
                                title="<?= lang('pdf') ?>"><?= lang('pdf') ?></a>
                             <a onclick="print_sales_report('printReport')" class="btn btn-xs btn-danger"

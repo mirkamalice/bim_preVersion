@@ -27,7 +27,7 @@ class Dashboard extends Admin_Controller
 
     public function rendering($param, $filter_by = null)
     {
-        $today = date('Y-m-d h:i:s');
+        $today = jdate('Y-m-d h:i:s');
         //if($_POST) {
         if ($this->input->is_ajax_request()) {
             $this->load->model('datatables');
@@ -85,7 +85,7 @@ class Dashboard extends Admin_Controller
     {
 
         if ($this->input->is_ajax_request()) {
-            $today = date('Y-m-d h:i:s');
+            $today = jdate('Y-m-d h:i:s');
 
             $this->load->model('projects_model');
             $overdue_projects_total = $this->projects_model->overdue_projects(true);
@@ -250,16 +250,16 @@ class Dashboard extends Admin_Controller
         $data['page'] = lang('dashboard');
 
         $data['role'] = $this->session->userdata('user_type');
-        $data['year'] = date('Y'); // get current year
+        $data['year'] = jdate('Y'); // get current year
         if (!empty($action) && $action == 'Income') {
             $data['Income'] = $this->input->post('Income', TRUE);
         } else {
-            $data['Income'] = date('Y'); // get current year
+            $data['Income'] = jdate('Y'); // get current year
         }
         if ($this->input->post('year', TRUE)) { // if input year 
             $data['year'] = $this->input->post('year', TRUE);
         }
-        $data['month'] = date('Y-m'); // get current year
+        $data['month'] = jdate('Y-m'); // get current year
         if ($this->input->post('month', TRUE)) { // if input year 
             $data['month'] = $this->input->post('month', TRUE);
         }
@@ -267,7 +267,7 @@ class Dashboard extends Admin_Controller
         if ($this->input->post('finance_overview', TRUE)) { // if input year
             $data['finance_year'] = $this->input->post('finance_overview', TRUE);
         } else { // else current year
-            $data['finance_year'] = date('Y'); // get current year
+            $data['finance_year'] = jdate('Y'); // get current year
         }
 
         $data['subview'] = $this->load->view('admin/main_content', $data, TRUE);
@@ -281,7 +281,7 @@ class Dashboard extends Admin_Controller
             if ($this->input->post('finance_overview', TRUE)) { // if input year
                 $data['finance_year'] = $this->input->post('finance_overview', TRUE);
             } else { // else current year
-                $data['finance_year'] = date('Y'); // get current year
+                $data['finance_year'] = jdate('Y'); // get current year
             }
             // get all income/expense list by year and month
             $data['finance_overview_by_year'] = $this->finance_overview_by_year($data['finance_year']);
@@ -316,7 +316,7 @@ class Dashboard extends Admin_Controller
             if ($this->input->post('goal_month', TRUE)) { // if input year
                 $data['goal_month'] = $this->input->post('goal_month', TRUE);
             } else { // else current year
-                $data['goal_month'] = date('Y-m'); // get current year
+                $data['goal_month'] = jdate('Y-m'); // get current year
             }
             $pathonor_jonno['goal_report_div'] = $this->load->view("admin/partials/goal_report", $data, true);
             echo json_encode($pathonor_jonno);
@@ -370,7 +370,7 @@ class Dashboard extends Admin_Controller
             if ($this->input->post('yearly', TRUE)) {
                 $data['yearly'] = $this->input->post('yearly', TRUE);
             } else {
-                $data['yearly'] = date('Y'); // get current year
+                $data['yearly'] = jdate('Y'); // get current year
             }
             $pathonor_jonno['payments_report_div'] = $this->load->view("admin/partials/payments_report_old", $data, true);
             echo json_encode($pathonor_jonno);
@@ -387,7 +387,7 @@ class Dashboard extends Admin_Controller
             if ($this->input->post('month', TRUE)) { // if input year
                 $data['month'] = $this->input->post('month', TRUE);
             } else { // else current year
-                $data['month'] = date('Y-m'); // get current year
+                $data['month'] = jdate('Y-m'); // get current year
             }
             $data['income_expense'] = $this->get_income_expense($data['month']);
             $pathonor_jonno['income_vs_expense_div'] = $this->load->view("admin/dashboard/income_expense_old", $data, true);
@@ -403,12 +403,12 @@ class Dashboard extends Admin_Controller
     {
         if ($this->input->is_ajax_request()) {
             $data = array();
-            $data['year'] = date('Y'); // get current year
+            $data['year'] = jdate('Y'); // get current year
             if (!empty($this->input->post('Income', TRUE))) {
                 $data['Income'] = $this->input->post('Income', TRUE);
                 $data['year'] = $this->input->post('Income', TRUE);
             } else {
-                $data['Income'] = date('Y'); // get current year
+                $data['Income'] = jdate('Y'); // get current year
             }
             $data['all_income'] = $this->get_transactions_list($data['Income'], 'Income');
             $pathonor_jonno['income_report_div'] = $this->load->view("admin/dashboard/income_report_old", $data, true);
@@ -427,7 +427,7 @@ class Dashboard extends Admin_Controller
             if (!empty($this->input->post('year', TRUE))) {
                 $data['year'] = $this->input->post('year', TRUE);
             } else {
-                $data['year'] = date('Y'); // get current year
+                $data['year'] = jdate('Y'); // get current year
             }
             $data['all_income'] = $data['all_expense'] = $this->get_transactions_list($data['year'], 'Expense');
             $pathonor_jonno['expense_report_div'] = $this->load->view("admin/dashboard/expense_report_old", $data, true);
@@ -534,14 +534,14 @@ class Dashboard extends Admin_Controller
     public function get_income_expense($month, $year = null)
     {
         // this function is to create get monthy recap report
-        //m = date('m', strtotime($month));
+        //m = jdate('m', strtotime($month));
         //2020-12
 
-        $m = date('m', strtotime($month));
+        $m = jdate('m', strtotime($month));
         if ($year) {
             $date = new DateTime($year . '-' . $m . '-01');
         } else {
-            $year = date('Y', strtotime($month));
+            $year = jdate('Y', strtotime($month));
             $date = new DateTime($year . '-' . $m . '-01');
         }
         // first and last date of the year
@@ -613,10 +613,10 @@ class Dashboard extends Admin_Controller
 
     public function set_clocking($id = NULL, $user_id = null, $row = null, $redirect = null, $long = null)
     {
-        $date = date('Y-m-d');
+        $date = jdate('Y-m-d');
         // get all month by date
-        $month = date('m', strtotime($date));
-        $year = date('Y', strtotime($date));
+        $month = jdate('m', strtotime($date));
+        $year = jdate('Y', strtotime($date));
         $date = new DateTime($year . '-' . $month . '-01');
         $start_date = $date->modify('first day of this month')->format('Y-m-d');
         $end_date = $date->modify('last day of this month')->format('Y-m-d');
@@ -671,11 +671,11 @@ class Dashboard extends Admin_Controller
             }
             $date = $this->input->post('clock_date', TRUE);
             if (empty($date)) {
-                $date = date('Y-m-d');
+                $date = jdate('Y-m-d');
             }
             $time = $this->input->post('clock_time', TRUE);
             if (empty($time)) {
-                $time = date('h:i:s');;
+                $time = jdate('h:i:s');;
             }
             //        $already_clocking = $this->admin_model->check_by(array('user_id' => $adata['user_id'], 'clocking_status' => 1), 'tbl_attendance');
 
@@ -800,13 +800,13 @@ class Dashboard extends Admin_Controller
         $date = $this->input->post('attend_date', TRUE);
 
         if (empty($date)) {
-            $date = date('Y-m-d');
+            $date = jdate('Y-m-d');
         }
         $data['date'] = $date;
 
-        $month = date('n', strtotime($date));
-        $year = date('Y', strtotime($date));
-        $day = date('d', strtotime($date));
+        $month = jdate('n', strtotime($date));
+        $year = jdate('Y', strtotime($date));
+        $day = jdate('d', strtotime($date));
 
         $data['users'] = get_staff_details();
 //        echo "<pre>";
@@ -837,7 +837,7 @@ class Dashboard extends Admin_Controller
             } else {
                 $sdate = $yymm . '-' . $day;
             }
-            $day_name = date('l', strtotime("+$x days", strtotime($year . '-' . $month . '-' . $day)));
+            $day_name = jdate('l', strtotime("+$x days", strtotime($year . '-' . $month . '-' . $day)));
 
             // get leave info
 

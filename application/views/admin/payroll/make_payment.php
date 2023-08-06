@@ -79,7 +79,7 @@ $deleted = can_action('92', 'deleted');
                     <span>
                         <strong><?= lang('payment_info_for') ?><?php
                             if (!empty($payment_month)) {
-                                echo ' <span class="text-danger">' . date('F Y', strtotime($payment_month)) . '</span>';
+                                echo ' <span class="text-danger">' . jdate('F Y', strtotime($payment_month)) . '</span>';
                             }
                             ?></strong>
                     </span>
@@ -393,7 +393,7 @@ $deleted = can_action('92', 'deleted');
                         <div class="panel-heading">
                             <div class="panel-title">
                                 <strong><?= lang('payment_for') ?><?php
-                                    echo ' <span class="text-danger">' . date('F Y', strtotime($payment_month)) . '</span>';
+                                    echo ' <span class="text-danger">' . jdate('F Y', strtotime($payment_month)) . '</span>';
                                     ?></strong>
                             </div>
                         </div>

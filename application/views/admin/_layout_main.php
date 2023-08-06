@@ -2,7 +2,7 @@
 $this->load->view('admin/components/htmlheader');
 $opened = $this->session->userdata('opened');
 $this->session->unset_userdata('opened');
-$time = date('h:i:s');
+$time = jdate('h:i:s');
 $r = display_time($time);
 $time1 = explode(' ', $r);
 $timezone = config_item('timezone');
@@ -125,7 +125,7 @@ if (empty($timezone)) {
                 
                 <div class="pull-right">
                     <small class="text-sm">
-                        &nbsp;<?php echo lang(date('l')) . ' ' . lang(date('jS')) . ' ' . lang(date('F')) . ' ' . date('\- Y,'); ?>
+                        <?php echo lang(jdate('l')) . ' ' . lang(jdate('jS')) . ' ' . lang(jdate('F')) . ' ' . jdate('\- Y,'); ?>
                         &nbsp;<?= lang('time') ?>
                         &nbsp;<span id="txt"></span></small>
                     <?php if (!empty($clocking->clock_id)) : ?>

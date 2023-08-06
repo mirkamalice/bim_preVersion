@@ -36,13 +36,13 @@
             <h5><strong><?= lang('income_expense') ?></strong></h5>
             <?php
             $curency = $this->report_model->check_by(array('code' => config_item('default_currency')), 'tbl_currencies');
-            $mdate = date('Y-m-d');
+            $mdate = jdate('Y-m-d');
             //first day of month
-            $first_day_month = date('Y-m-01');
+            $first_day_month = jdate('Y-m-01');
             //first day of Weeks
-            $this_week_start = date('Y-m-d', strtotime('previous sunday'));
+            $this_week_start = jdate('Y-m-d', strtotime('previous sunday'));
             // 30 days before
-            $before_30_days = date('Y-m-d', strtotime('today - 30 days'));
+            $before_30_days = jdate('Y-m-d', strtotime('today - 30 days'));
 
             $total_income = $this->db->select_sum('credit')->get('tbl_transactions')->row();
             $total_expense = $this->db->select_sum('debit')->get('tbl_transactions')->row();

@@ -142,7 +142,7 @@
 <div class="panel panel-custom ">
     <div class="panel-heading">
         <div class="panel-title">
-            <strong><?= lang('transactions_report') . ' ' . lang('graph') . ' ' . date('F-Y') ?></strong>
+            <strong><?= lang('transactions_report') . ' ' . lang('graph') . ' ' . jdate('F-Y') ?></strong>
         </div>
     </div>
     <div class="panel-body">

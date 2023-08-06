@@ -205,7 +205,7 @@ class Transactions extends Admin_Controller
 
                     $data = $this->transactions_model->array_from_post(array('name', 'account_id', 'type', 'category_id', 'paid_by', 'payment_methods_id'));
 
-                    $date = date('Y-m-d', strtotime($sheetData[$x]["A"]));
+                    $date = jdate('Y-m-d', strtotime($sheetData[$x]["A"]));
 
                     $data['date'] = trim($date);
                     $data['amount'] = trim($sheetData[$x]["B"]);
@@ -1811,8 +1811,8 @@ class Transactions extends Admin_Controller
 
     public function get_transactions_report()
     { // this function is to create get monthy recap report
-        $m = date('n');
-        $year = date('Y');
+        $m = jdate('n');
+        $year = jdate('Y');
         $num = cal_days_in_month(CAL_GREGORIAN, $m, $year);
         for ($i = 1; $i <= $num; $i++) {
             if ($m >= 1 && $m <= 9) { // if i<=9 concate with Mysql.becuase on Mysql query fast in two digit like 01.

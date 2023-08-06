@@ -46,7 +46,7 @@
                                if (!empty($invoice_info->invoice_date)) {
                                    echo $invoice_info->invoice_date;
                                } else {
-                                   echo date('Y-m-d');
+                                   echo jdate('Y-m-d');
                                }
                                ?>"
                                data-date-format="<?= config_item('date_picker_format'); ?>">

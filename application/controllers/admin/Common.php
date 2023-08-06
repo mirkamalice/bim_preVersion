@@ -312,7 +312,7 @@ class Common extends MY_Controller
                 }
             }
 
-            $token_leave = $this->db->where(array('user_id' => $user_id, 'leave_category_id' => $leave_category_id, 'YEAR(`leave_start_date`)' => date('Y'), 'application_status' => '2'))->get('tbl_leave_application')->result();
+            $token_leave = $this->db->where(array('user_id' => $user_id, 'leave_category_id' => $leave_category_id, 'YEAR(`leave_start_date`)' => jdate('Y'), 'application_status' => '2'))->get('tbl_leave_application')->result();
 
             $total_taken = 0;
             $total_hourly = 0;
@@ -332,7 +332,7 @@ class Common extends MY_Controller
             $input_ge_days = 0;
             $input_m_days = 0;
             if (!empty($end_date) && $end_date != 'null') {
-                $input_month = cal_days_in_month(CAL_GREGORIAN, date('m', strtotime($start_date)), date('Y', strtotime($end_date)));
+                $input_month = cal_days_in_month(CAL_GREGORIAN, jdate('m', strtotime($start_date)), jdate('Y', strtotime($end_date)));
 
                 $input_datetime1 = new DateTime($start_date);
                 $input_datetime2 = new DateTime($end_date);

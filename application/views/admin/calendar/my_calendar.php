@@ -58,8 +58,8 @@ $gcal_id = config_item('gcal_id');
                                             //$client_info = $this->db->where(array('client_id' => $invoice->client_id))->get('tbl_client')->row();
                             ?> {
                                                 title: "<?= clear_textarea_breaks($v_payments->name . " (" . client_currency($v_payments->client_id) . $v_payments->amount . ")") ?>",
-                                                start: '<?= date('Y-m-d', strtotime($v_payments->payment_date)) ?>',
-                                                end: '<?= date('Y-m-d', strtotime($v_payments->payment_date)) ?>',
+                                                start: '<?= jdate('Y-m-d', strtotime($v_payments->payment_date)) ?>',
+                                                end: '<?= jdate('Y-m-d', strtotime($v_payments->payment_date)) ?>',
                                                 color: '<?= config_item('payments_color') ?>',
                                                 url: '<?= base_url() ?>admin/invoice/manage_invoice/payments_details/<?= $v_payments->payments_id ?>'
                                             },
@@ -81,8 +81,8 @@ $gcal_id = config_item('gcal_id');
                                             foreach ($invoice_info as $v_invoice) :
                                     ?> {
                                             title: "<?php echo clear_textarea_breaks($v_invoice->reference_no) ?>",
-                                            start: '<?= date('Y-m-d', strtotime($v_invoice->due_date)) ?>',
-                                            end: '<?= date('Y-m-d', strtotime($v_invoice->due_date)) ?>',
+                                            start: '<?= jdate('Y-m-d', strtotime($v_invoice->due_date)) ?>',
+                                            end: '<?= jdate('Y-m-d', strtotime($v_invoice->due_date)) ?>',
                                             color: '<?= config_item('invoice_color') ?>',
                                             url: '<?= base_url() ?>admin/invoice/manage_invoice/invoice_details/<?= $v_invoice->invoices_id ?>'
                                         },
@@ -102,8 +102,8 @@ $gcal_id = config_item('gcal_id');
                                             foreach ($estimates_info as $v_estimates) :
                                     ?> {
                                             title: "<?php echo clear_textarea_breaks($v_estimates->reference_no) ?>",
-                                            start: '<?= date('Y-m-d', strtotime($v_estimates->due_date)) ?>',
-                                            end: '<?= date('Y-m-d', strtotime($v_estimates->due_date)) ?>',
+                                            start: '<?= jdate('Y-m-d', strtotime($v_estimates->due_date)) ?>',
+                                            end: '<?= jdate('Y-m-d', strtotime($v_estimates->due_date)) ?>',
                                             color: '<?= config_item('estimate_color') ?>',
                                             url: '<?= base_url() ?>admin/estimates/create/estimates_details/<?= $v_estimates->estimates_id ?>'
                                         },
@@ -125,8 +125,8 @@ $gcal_id = config_item('gcal_id');
                                                     if (!empty($v_project)) {
                                     ?> {
                                                     title: "<?php echo clear_textarea_breaks($v_project->project_name) ?>",
-                                                    start: '<?= date('Y-m-d', strtotime($v_project->end_date)) ?>',
-                                                    end: '<?= date('Y-m-d', strtotime($v_project->end_date)) ?>',
+                                                    start: '<?= jdate('Y-m-d', strtotime($v_project->end_date)) ?>',
+                                                    end: '<?= jdate('Y-m-d', strtotime($v_project->end_date)) ?>',
                                                     color: '<?= config_item('project_color') ?>',
                                                     url: '<?= base_url() ?>admin/projects/project_details/<?= $v_project->project_id ?>'
                                                 },
@@ -144,8 +144,8 @@ $gcal_id = config_item('gcal_id');
                                                         foreach ($milestone_info as $v_milestone) :
                                     ?> {
                                             title: '<?php echo clear_textarea_breaks($v_milestone->milestone_name) ?>',
-                                            start: '<?= date('Y-m-d', strtotime($v_milestone->end_date)) ?>',
-                                            end: '<?= date('Y-m-d', strtotime($v_milestone->end_date)) ?>',
+                                            start: '<?= jdate('Y-m-d', strtotime($v_milestone->end_date)) ?>',
+                                            end: '<?= jdate('Y-m-d', strtotime($v_milestone->end_date)) ?>',
                                             color: '<?= config_item('milestone_color') ?>',
                                             url: '<?= base_url() ?>admin/projects/project_details/<?= $v_project->project_id ?>/5'
                                         },
@@ -169,8 +169,8 @@ $gcal_id = config_item('gcal_id');
                                             foreach ($task_info as $v_task) :
                                     ?> {
                                             title: "<?php echo clear_textarea_breaks($v_task->task_name) ?>",
-                                            start: '<?= date('Y-m-d', strtotime($v_task->due_date)) ?>',
-                                            end: '<?= date('Y-m-d', strtotime($v_task->due_date)) ?>',
+                                            start: '<?= jdate('Y-m-d', strtotime($v_task->due_date)) ?>',
+                                            end: '<?= jdate('Y-m-d', strtotime($v_task->due_date)) ?>',
                                             color: '<?= config_item('tasks_color') ?>',
                                             url: '<?= base_url() ?>admin/tasks/details/<?= $v_task->task_id ?>'
                                         },
@@ -188,8 +188,8 @@ $gcal_id = config_item('gcal_id');
                                         if (!empty($bug_info)) {
                                             foreach ($bug_info as $v_bug) : ?> {
                                             title: "<?php echo clear_textarea_breaks($v_bug->bug_title) ?>",
-                                            start: '<?= date('Y-m-d', strtotime($v_bug->created_time)) ?>',
-                                            end: '<?= date('Y-m-d', strtotime($v_bug->created_time)) ?>',
+                                            start: '<?= jdate('Y-m-d', strtotime($v_bug->created_time)) ?>',
+                                            end: '<?= jdate('Y-m-d', strtotime($v_bug->created_time)) ?>',
                                             color: '<?= config_item('bugs_color') ?>',
                                             url: '<?= base_url() ?>admin/bugs/view_bug_details/<?= $v_bug->bug_id ?>'
                                         },
@@ -209,15 +209,15 @@ $gcal_id = config_item('gcal_id');
                                                 if (!empty($v_opportunity)) {
                                     ?> {
                                                 title: "<?php echo clear_textarea_breaks($v_opportunity->opportunity_name) ?>",
-                                                start: '<?= date('Y-m-d', strtotime($v_opportunity->close_date)) ?>',
-                                                end: '<?= date('Y-m-d', strtotime($v_opportunity->close_date)) ?>',
+                                                start: '<?= jdate('Y-m-d', strtotime($v_opportunity->close_date)) ?>',
+                                                end: '<?= jdate('Y-m-d', strtotime($v_opportunity->close_date)) ?>',
                                                 color: '<?= config_item('opportunities_color') ?>',
                                                 url: '<?= base_url() ?>admin/opportunities/opportunity_details/<?= $v_opportunity->opportunities_id ?>'
                                             },
                                             {
                                                 title: "<?php echo clear_textarea_breaks($v_opportunity->next_action) ?>",
-                                                start: '<?= date('Y-m-d', strtotime($v_opportunity->next_action_date)) ?>',
-                                                end: '<?= date('Y-m-d', strtotime($v_opportunity->next_action_date)) ?>',
+                                                start: '<?= jdate('Y-m-d', strtotime($v_opportunity->next_action_date)) ?>',
+                                                end: '<?= jdate('Y-m-d', strtotime($v_opportunity->next_action_date)) ?>',
                                                 color: '<?= config_item('opportunities_color') ?>',
                                                 url: '<?= base_url() ?>admin/opportunities/opportunity_details/<?= $v_opportunity->opportunities_id ?>'
                                             },
@@ -232,8 +232,8 @@ $gcal_id = config_item('gcal_id');
                                                 foreach ($opportunity_calls as $v_o_calls) :
                                     ?> {
                                     title: '<?php echo clear_textarea_breaks($v_o_calls->call_summary) ?>',
-                                    start: '<?= date('Y-m-d', strtotime($v_o_calls->date)) ?>',
-                                    end: '<?= date('Y-m-d', strtotime($v_o_calls->date)) ?>',
+                                    start: '<?= jdate('Y-m-d', strtotime($v_o_calls->date)) ?>',
+                                    end: '<?= jdate('Y-m-d', strtotime($v_o_calls->date)) ?>',
                                     color: '<?= config_item('opportunities_color') ?>',
                                     url: '<?= base_url() ?>admin/opportunities/opportunity_details/<?= $v_opportunity->opportunities_id ?>/2'
                                 },
@@ -241,8 +241,8 @@ $gcal_id = config_item('gcal_id');
                                                 foreach ($opportunity_meetings as $v_o_meetings) :
                             ?> {
                                     title: '<?php echo clear_textarea_breaks($v_o_meetings->meeting_subject) ?>',
-                                    start: '<?= date('Y-m-d H:i:s', ($v_o_meetings->start_date)) ?>',
-                                    end: '<?= date('Y-m-d H:i:s', ($v_o_meetings->end_date)) ?>',
+                                    start: '<?= jdate('Y-m-d H:i:s', ($v_o_meetings->start_date)) ?>',
+                                    end: '<?= jdate('Y-m-d H:i:s', ($v_o_meetings->end_date)) ?>',
                                     color: '<?= config_item('opportunities_color') ?>',
                                     url: '<?= base_url() ?>admin/opportunities/opportunity_details/<?= $v_opportunity->opportunities_id ?>/3'
                                 },
@@ -263,8 +263,8 @@ $gcal_id = config_item('gcal_id');
                                                 if (!empty($v_leads)) {
                                     ?> {
                                                 title: "<?php echo clear_textarea_breaks($v_leads->lead_name) ?>",
-                                                start: '<?= date('Y-m-d', strtotime($v_leads->created_time)) ?>',
-                                                end: '<?= date('Y-m-d', strtotime($v_leads->created_time)) ?>',
+                                                start: '<?= jdate('Y-m-d', strtotime($v_leads->created_time)) ?>',
+                                                end: '<?= jdate('Y-m-d', strtotime($v_leads->created_time)) ?>',
                                                 color: '<?= config_item('leads_color') ?>',
                                                 url: '<?= base_url() ?>admin/leads/leads_details/<?= $v_leads->leads_id ?>'
                                             }
@@ -279,8 +279,8 @@ $gcal_id = config_item('gcal_id');
                                                 foreach ($opportunity_calls as $v_l_calls) :
                                     ?> {
                                     title: '<?php echo clear_textarea_breaks($v_l_calls->call_summary) ?>',
-                                    start: '<?= date('Y-m-d', strtotime($v_l_calls->date)) ?>',
-                                    end: '<?= date('Y-m-d', strtotime($v_l_calls->date)) ?>',
+                                    start: '<?= jdate('Y-m-d', strtotime($v_l_calls->date)) ?>',
+                                    end: '<?= jdate('Y-m-d', strtotime($v_l_calls->date)) ?>',
                                     color: '<?= config_item('opportunities_color') ?>',
                                     url: '<?= base_url() ?>admin/opportunities/opportunity_details/<?= $v_leads->leads_id ?>/2'
                                 },
@@ -288,8 +288,8 @@ $gcal_id = config_item('gcal_id');
                                                 foreach ($opportunity_meetings as $v_l_meetings) :
                             ?> {
                                     title: '<?php echo clear_textarea_breaks($v_l_meetings->meeting_subject) ?>',
-                                    start: '<?= date('Y-m-d H:i:s', ($v_l_meetings->start_date)) ?>',
-                                    end: '<?= date('Y-m-d H:i:s', ($v_l_meetings->end_date)) ?>',
+                                    start: '<?= jdate('Y-m-d H:i:s', ($v_l_meetings->start_date)) ?>',
+                                    end: '<?= jdate('Y-m-d H:i:s', ($v_l_meetings->end_date)) ?>',
                                     color: '<?= config_item('opportunities_color') ?>',
                                     url: '<?= base_url() ?>admin/opportunities/opportunity_details/<?= $v_leads->leads_id ?>/3'
                                 },
@@ -310,8 +310,8 @@ $gcal_id = config_item('gcal_id');
                                             foreach ($holiday_info as $v_holiday) :
                                     ?> {
                                             title: "<?php echo clear_textarea_breaks($v_holiday->event_name) ?>",
-                                            start: '<?= date('Y-m-d', strtotime($v_holiday->start_date)) ?>',
-                                            end: '<?= date('Y-m-d', strtotime($v_holiday->end_date)) ?>',
+                                            start: '<?= jdate('Y-m-d', strtotime($v_holiday->start_date)) ?>',
+                                            end: '<?= jdate('Y-m-d', strtotime($v_holiday->end_date)) ?>',
                                             color: '<?= $v_holiday->color ?>',
                                             url: '<?= base_url() ?>admin/holiday/index/<?= $v_holiday->holiday_id ?>'
                                         },
@@ -328,8 +328,8 @@ $gcal_id = config_item('gcal_id');
                                         if (!empty($all_goal_tracking)) {
                                             foreach ($all_goal_tracking as $v_goal_tracking) : ?> {
                                             title: "<?php echo clear_textarea_breaks($v_goal_tracking->subject) ?>",
-                                            start: '<?= date('Y-m-d', strtotime($v_goal_tracking->end_date)) ?>',
-                                            end: '<?= date('Y-m-d', strtotime($v_goal_tracking->end_date)) ?>',
+                                            start: '<?= jdate('Y-m-d', strtotime($v_goal_tracking->end_date)) ?>',
+                                            end: '<?= jdate('Y-m-d', strtotime($v_goal_tracking->end_date)) ?>',
                                             color: '<?= config_item('goal_tracking_color') ?>',
                                             url: '<?= base_url() ?>admin/goal_tracking/goal_details/<?= $v_goal_tracking->goal_tracking_id ?>'
                                         },
@@ -351,8 +351,8 @@ $gcal_id = config_item('gcal_id');
                                             foreach ($absent_info as $v_absent) {
                                     ?> {
                                             title: "<?php echo clear_textarea_breaks($v_absent->fullname) ?>",
-                                            start: '<?= date('Y-m-d', strtotime($v_absent->date_in)) ?>',
-                                            end: '<?= date('Y-m-d', strtotime($v_absent->date_in)) ?>',
+                                            start: '<?= jdate('Y-m-d', strtotime($v_absent->date_in)) ?>',
+                                            end: '<?= jdate('Y-m-d', strtotime($v_absent->date_in)) ?>',
                                             color: '<?= config_item('absent_color') ?>',
                                             url: '<?= base_url() ?>admin/user/user_details/<?= $v_absent->user_id ?>'
                                         },
@@ -372,17 +372,17 @@ $gcal_id = config_item('gcal_id');
                                         if (!empty($leave_info)) {
                                             foreach ($leave_info as $v_leave) :
 
-                                                $l_start_day = date('d', strtotime($v_leave->date_in));
-                                                $l_smonth = date('n', strtotime($v_leave->date_in));
+                                                $l_start_day = jdate('d', strtotime($v_leave->date_in));
+                                                $l_smonth = jdate('n', strtotime($v_leave->date_in));
                                                 $l_start_month = $l_smonth - 1;
-                                                $l_start_year = date('Y', strtotime($v_leave->date_in));
-                                                $l_end_year = date('Y', strtotime($v_leave->date_in));
-                                                $l_end_day = date('d', strtotime($v_leave->date_in));
-                                                $l_emonth = date('n', strtotime($v_leave->date_in));
+                                                $l_start_year = jdate('Y', strtotime($v_leave->date_in));
+                                                $l_end_year = jdate('Y', strtotime($v_leave->date_in));
+                                                $l_end_day = jdate('d', strtotime($v_leave->date_in));
+                                                $l_emonth = jdate('n', strtotime($v_leave->date_in));
                                                 $l_end_month = $l_emonth - 1; ?> {
                                             title: "<?php echo clear_textarea_breaks($v_leave->fullname) ?>",
-                                            start: '<?= date('Y-m-d', strtotime($v_leave->date_in)) ?>',
-                                            end: '<?= date('Y-m-d', strtotime($v_leave->date_in)) ?>',
+                                            start: '<?= jdate('Y-m-d', strtotime($v_leave->date_in)) ?>',
+                                            end: '<?= jdate('Y-m-d', strtotime($v_leave->date_in)) ?>',
                                             color: '<?= config_item('on_leave_color') ?>',
                                             url: '<?= base_url() ?>admin/user/user_details/<?= $v_leave->user_id ?>'
                                         },
